@@ -1,6 +1,7 @@
 {
   "name": "risscsolutions/printformer-php-sdk",
   "type": "library",
+  "license": ["MIT"],
   "require": {
     "php": "^8.0",
     "guzzlehttp/guzzle": "^7.4",
