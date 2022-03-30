@@ -23,10 +23,9 @@ class Client extends Base implements WorkflowClient
         parent::__construct($http, 'workflow');
     }
 
-    #[ArrayShape(['definitionIdentifier' => 'string', 'data' => 'array', 'subject' => ['type' => 'string', 'identifier' => 'string']])]
-    public function create(array $data): Workflow
+    public function create(string $definitionIdentifier, array $subject, array $data = []): Workflow
     {
-        return self::workflowFromResponse($this->post($this->resource, $data));
+        return self::workflowFromResponse($this->post($this->resource, compact('definitionIdentifier', 'subject', 'data')));
     }
 
     public function show(string $identifier): Workflow

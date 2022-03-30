@@ -24,10 +24,9 @@ class Client extends Base implements ReviewClient
         parent::__construct($http, 'review');
     }
 
-    #[ArrayShape(['draftId' => 'string', 'user' => 'array', 'closeCallbackURL' => 'string', 'remoteAcl' => 'bool'])]
-    public function create(array $data): Review
+    public function create(string $draftId, array $user, string $closeCallbackURL, bool $remoteAcl = false): Review
     {
-        return self::reviewFromResponse($this->post($this->resource, $data));
+        return self::reviewFromResponse($this->post($this->resource, compact('draftId', 'user', 'closeCallbackURL', 'remoteAcl')));
     }
 
     public function deleteUser(string $review, string $userIdentifier): bool

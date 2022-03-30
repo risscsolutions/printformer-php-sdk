@@ -9,12 +9,9 @@
 
 namespace Rissc\Printformer\Client\Processing;
 
-use JetBrains\PhpStorm\ArrayShape;
-
 interface ProcessingClient
 {
-    #[ArrayShape(['draftIds' => 'array', 'stateChangedNotifyUrl' => 'string'])]
-    public function create(array $data): Processing;
+    public function create(array $drafts, ?string $callbackUrl = null): Processing;
 
     public function show(string $identifier): Processing;
 }

@@ -70,7 +70,6 @@ interface DraftClient
         'apiDefaultValues' => 'array',
         'customAttributes' => 'array',
         'draftParameter' => 'array',
-
     ])]
     public function replicate(string $identifier, array $data): Draft;
 
@@ -79,6 +78,4 @@ interface DraftClient
     public function pageInfo(string $draft, string $usage, ?int $row = null, ?string $unit = null): PageInfo;
 
     public function requestIdmlPackage(string $draft, string $callbackURL): bool;
-
-    //TODO VARIABLE DATA
 }

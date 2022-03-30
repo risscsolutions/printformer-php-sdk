@@ -7,7 +7,7 @@
  * Date: 26.03.22
  */
 
-namespace Rissc\Printformer;
+namespace Rissc\Printformer\Client;
 
 use Rissc\Printformer\Client\Draft\DraftClient;
 use Rissc\Printformer\Client\Feed\FeedClient;
@@ -21,7 +21,7 @@ use Rissc\Printformer\Client\UserGroup\UserGroupClient;
 use Rissc\Printformer\Client\VariableData\VariableDataClient;
 use Rissc\Printformer\Client\Workflow\WorkflowClient;
 
-interface ClientFactory
+interface Factory
 {
     public function user(): UserClient;
 

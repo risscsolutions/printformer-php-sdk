@@ -13,8 +13,7 @@ use JetBrains\PhpStorm\ArrayShape;
 
 interface WorkflowClient
 {
-    #[ArrayShape(['definitionIdentifier' => 'string', 'data' => 'array', 'subject' => ['type' => 'string', 'identifier' => 'string']])]
-    public function create(array $data): Workflow;
+    public function create(string $definitionIdentifier, array $subject, array $data = []): Workflow;
 
     public function show(string $identifier): Workflow;
 

@@ -10,6 +10,10 @@
 namespace Rissc\Printformer;
 
 use Rissc\Printformer\Acl\Handler;
+use Rissc\Printformer\Builder\ConcreteFactory as ConcreteBuilderFactory;
+use Rissc\Printformer\Builder\Factory as BuilderFactory;
+use Rissc\Printformer\Client\Factory as ClientFactory;
+use Rissc\Printformer\Client\ConcreteFactory as ConcreteClientFactory;
 use Rissc\Printformer\Url\GeneratorFactory;
 use Rissc\Printformer\Url\TokenBuilder;
 use Illuminate\Config\Repository;
@@ -45,5 +49,10 @@ class Printformer
     #[Pure] public function acl(): Handler
     {
         return new Handler();
+    }
+
+    #[Pure] public function builderFactory(): BuilderFactory
+    {
+        return new ConcreteBuilderFactory($this);
     }
 }

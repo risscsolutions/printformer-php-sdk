@@ -9,12 +9,9 @@
 
 namespace Rissc\Printformer\Client\Review;
 
-use JetBrains\PhpStorm\ArrayShape;
-
 interface ReviewClient
 {
-    #[ArrayShape(['draftId' => 'string', 'user' => 'array', 'closeCallbackURL' => 'string', 'remoteAcl' => 'bool'])]
-    public function create(array $data): Review;
+    public function create(string $draftId, array $user, string $closeCallbackURL, bool $remoteAcl = false): Review;
 
     public function deleteUser(string $review, string $userIdentifier): bool;
 

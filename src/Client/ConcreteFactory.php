@@ -7,9 +7,8 @@
  * Date: 26.03.22
  */
 
-namespace Rissc\Printformer;
+namespace Rissc\Printformer\Client;
 
-use Rissc\Printformer\Client\BadRequestHandler;
 use Rissc\Printformer\Client\Draft\Client as DraftClient;
 use Rissc\Printformer\Client\Draft\DraftClient as DraftClientContract;
 use Rissc\Printformer\Client\Draft\Proxy as DraftProxy;
@@ -47,7 +46,7 @@ use GuzzleHttp\Client as HTTPClient;
 use Illuminate\Config\Repository;
 use JetBrains\PhpStorm\Pure;
 
-class ConcreteClientFactory implements ClientFactory
+class ConcreteFactory implements Factory
 {
     private HTTPClient $http;
 

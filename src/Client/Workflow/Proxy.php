@@ -22,10 +22,9 @@ class Proxy extends Base implements WorkflowClient
         parent::__construct($badRequestHandler);
     }
 
-    #[ArrayShape(['definitionIdentifier' => 'string', 'data' => 'array', 'subject' => ['type' => 'string', 'identifier' => 'string']])]
-    public function create(array $data): Workflow
+    public function create(string $definitionIdentifier, array $subject, array $data = []): Workflow
     {
-        return $this->wrap(fn(): Workflow => $this->client->create($data));
+        return $this->wrap(fn(): Workflow => $this->client->create($definitionIdentifier, $subject, $data));
     }
 
     public function show(string $identifier): Workflow

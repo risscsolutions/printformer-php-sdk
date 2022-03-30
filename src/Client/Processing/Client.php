@@ -23,11 +23,14 @@ class Client extends Base implements ProcessingClient
         parent::__construct($http, 'pdf-processing');
     }
 
-    #[ArrayShape(['draftIds' => 'array', 'stateChangedNotifyUrl' => 'string'])]
-    public function create(array $data): Processing
+    public function create(array $drafts, ?string $callbackUrl = null): Processing
     {
         return self::processingFromResponse(
-            $this->post($this->resource, $data)
+            $this->post($this->resource, array_filter([
+                    'draftIds' => $drafts,
+                    'stateChangedNotifyUrl' => $callbackUrl
+                ], static fn(?string $value): bool => !empty($value))
+            )
         );
     }
 

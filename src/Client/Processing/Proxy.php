@@ -21,9 +21,9 @@ class Proxy extends Base implements ProcessingClient
         parent::__construct($badRequestHandler);
     }
 
-    #[ArrayShape(['draftIds' => 'array', 'stateChangedNotifyUrl' => 'string'])] public function create(array $data): Processing
+    public function create(array $drafts, ?string $callbackUrl = null): Processing
     {
-        return $this->wrap(fn(): Processing => $this->client->create($data));
+        return $this->wrap(fn(): Processing => $this->client->create($drafts, $callbackUrl));
     }
 
     public function show(string $identifier): Processing

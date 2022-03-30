@@ -7,7 +7,7 @@
  * Date: 30.03.22
  */
 
-namespace Rissc\Printformer;
+namespace Rissc\Printformer\Builder;
 
 use Rissc\Printformer\Client\Draft\Draft;
 use Rissc\Printformer\Client\Draft\DraftClient;
@@ -47,133 +47,133 @@ class DraftBuilder
     {
     }
 
-    public function setIntent(?string $intent): DraftBuilder
+    public function intent(?string $intent): DraftBuilder
     {
         $this->intent = $intent;
         return $this;
     }
 
-    public function setTemplateIdentifier(?string $templateIdentifier): DraftBuilder
+    public function template(?string $templateIdentifier): DraftBuilder
     {
         $this->templateIdentifier = $templateIdentifier;
         return $this;
     }
 
-    public function setUserIdentifier(?string $userIdentifier): DraftBuilder
+    public function user(?string $userIdentifier): DraftBuilder
     {
         $this->userIdentifier = $userIdentifier;
         return $this;
     }
 
-    public function setUserGroupIdentifier(?string $userGroupIdentifier): DraftBuilder
+    public function userGroup(?string $userGroupIdentifier): DraftBuilder
     {
         $this->userGroupIdentifier = $userGroupIdentifier;
         return $this;
     }
 
-    public function setApiDefaultValues(array $apiDefaultValues): DraftBuilder
+    public function apiDefaultValues(array $apiDefaultValues): DraftBuilder
     {
         $this->apiDefaultValues = $apiDefaultValues;
         return $this;
     }
 
-    public function setCustomAttributes(array $customAttributes): DraftBuilder
+    public function customAttributes(array $customAttributes): DraftBuilder
     {
         $this->customAttributes = $customAttributes;
         return $this;
     }
 
-    public function setPagePlanner(bool $pagePlanner): DraftBuilder
+    public function pagePlanner(bool $pagePlanner): DraftBuilder
     {
         $this->pagePlanner = $pagePlanner;
         return $this;
     }
 
-    public function setFeedIdentifier(?string $feedIdentifier): DraftBuilder
+    public function feed(?string $feedIdentifier): DraftBuilder
     {
         $this->feedIdentifier = $feedIdentifier;
         return $this;
     }
 
-    public function setAvailableVariants(?array $availableVariants): DraftBuilder
+    public function availableVariants(?array $availableVariants): DraftBuilder
     {
         $this->availableVariants = $availableVariants;
         return $this;
     }
 
-    public function setAvailableVariantVersions(?array $availableVariantVersions): DraftBuilder
+    public function availableVariantVersions(?array $availableVariantVersions): DraftBuilder
     {
         $this->availableVariantVersions = $availableVariantVersions;
         return $this;
     }
 
-    public function setVariant(?int $variant): DraftBuilder
+    public function vriant(?int $variant): DraftBuilder
     {
         $this->variant = $variant;
         return $this;
     }
 
-    public function setVariantVersion(?int $variantVersion): DraftBuilder
+    public function variantVersion(?int $variantVersion): DraftBuilder
     {
         $this->variantVersion = $variantVersion;
         return $this;
     }
 
-    public function setRemoteAcl(bool $remoteAcl): DraftBuilder
+    public function remoteAcl(bool $remoteAcl): DraftBuilder
     {
         $this->remoteAcl = $remoteAcl;
         return $this;
     }
 
-    public function setLocked(bool $locked): DraftBuilder
+    public function locked(bool $locked): DraftBuilder
     {
         $this->locked = $locked;
         return $this;
     }
 
-    public function setDisablePreflight(bool $disablePreflight): DraftBuilder
+    public function disablePreflight(bool $disablePreflight): DraftBuilder
     {
         $this->disablePreflight = $disablePreflight;
         return $this;
     }
 
-    public function setPageFillColor(?string $pageFillColor): DraftBuilder
+    public function pageFillColor(?string $pageFillColor): DraftBuilder
     {
         $this->pageFillColor = $pageFillColor;
         return $this;
     }
 
-    public function setSpineWidth(?float $spineWidth): DraftBuilder
+    public function spineWidth(?float $spineWidth): DraftBuilder
     {
         $this->spineWidth = $spineWidth;
         return $this;
     }
 
-    public function setPageDimensions(?array $pageDimensions): DraftBuilder
+    public function pageDimensions(?array $pageDimensions): DraftBuilder
     {
         $this->pageDimensions = $pageDimensions;
         return $this;
     }
 
-    public function setBleedAdditions(?array $bleedAdditions): DraftBuilder
+    public function bleedAdditions(?array $bleedAdditions): DraftBuilder
     {
         $this->bleedAdditions = $bleedAdditions;
         return $this;
     }
 
-    public function setDefaultGroupTemplate(?string $defaultGroupTemplate): DraftBuilder
+    public function defaultGroupTemplate(?string $defaultGroupTemplate): DraftBuilder
     {
         $this->defaultGroupTemplate = $defaultGroupTemplate;
         return $this;
     }
 
-    public function setContainerContentPreFilling(?array $containerContentPreFilling): DraftBuilder
+    public function containerContentPreFilling(?array $containerContentPreFilling): DraftBuilder
     {
         $this->containerContentPreFilling = $containerContentPreFilling;
         return $this;
     }
 
-    public function setAvailableCatalogTemplates(?array $availableCatalogTemplates): DraftBuilder
+    public function availableCatalogTemplates(?array $availableCatalogTemplates): DraftBuilder
     {
         $this->availableCatalogTemplates = $availableCatalogTemplates;
         return $this;

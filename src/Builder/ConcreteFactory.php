@@ -11,7 +11,7 @@ namespace Rissc\Printformer\Builder;
 
 use Rissc\Printformer\Printformer;
 
-class Factory
+class ConcreteFactory implements Factory
 {
     public function __construct(private Printformer $printformer)
     {

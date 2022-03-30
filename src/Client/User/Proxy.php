@@ -11,14 +11,8 @@ namespace Rissc\Printformer\Client\User;
 
 use Rissc\Printformer\Client\BadRequestHandler;
 use Rissc\Printformer\Client\Proxy as Base;
-use Rissc\Printformer\Exceptions\ValidationException;
-use GuzzleHttp\Exception\BadResponseException;
-use GuzzleHttp\Utils;
 use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\Pure;
-use Psr\Http\Message\ResponseInterface;
-use Symfony\Component\HttpFoundation\Response;
-use function dd;
 
 class Proxy extends Base implements UserClient
 {
