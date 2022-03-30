@@ -54,6 +54,7 @@ $url = (string)$printformer->urlGenerator()->editor()
 ```php
 $printformer->clientFactory()->processing()->create([
     'draftIds' => [$draft->draftHash],
+    'stateChangedNotifyUrl' => 'https://YOUR-CALLBACK-URL-HERE'
 ]);
 ```
 
