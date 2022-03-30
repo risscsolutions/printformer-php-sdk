@@ -33,7 +33,8 @@ class Client extends Base implements VariableDataClient
 
     public function create(\SplFileInfo $file, array $columnMapping): bool
     {
-        return $this->http->post($this->resource, [
+        return self::assertEmptyResponse(
+            $this->http->post($this->resource, [
                 'multipart' => [
                     [
                         'name' => 'file',
@@ -45,11 +46,11 @@ class Client extends Base implements VariableDataClient
                         'contents' => json_encode($columnMapping)
                     ]
                 ],
-            ])->getStatusCode() === Response::HTTP_NO_CONTENT;
+            ]));
     }
 
     public function update(array $data): bool
     {
-        return $this->put($this->resource, compact('data'))->getStatusCode() === Response::HTTP_NO_CONTENT;
+        return self::assertEmptyResponse($this->put($this->resource, compact('data')));
     }
 }

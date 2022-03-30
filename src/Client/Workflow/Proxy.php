@@ -32,7 +32,6 @@ class Proxy extends Base implements WorkflowClient
         return $this->wrap(fn(): Workflow => $this->client->show($identifier));
     }
 
-    #[ArrayShape(['data' => 'array'])]
     public function update(string $identifier, array $data): Workflow
     {
         return $this->wrap(fn(): Workflow => $this->client->update($identifier, $data));

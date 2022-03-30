@@ -31,33 +31,32 @@ class Client extends Base implements ReviewClient
 
     public function deleteUser(string $review, string $userIdentifier): bool
     {
-        return $this
-                ->post($this->buildPath($review, 'delete-user'), compact('userIdentifier'))
-                ->getStatusCode() === Response::HTTP_NO_CONTENT;
+        return self::assertEmptyResponse(
+            $this->post($this->buildPath($review, 'delete-user'), compact('userIdentifier'))
+        );
     }
 
     public function addUser(string $review, string $userIdentifier): bool
     {
-        return $this
-                ->post($this->buildPath($review, 'add-user'), compact('userIdentifier'))
-                ->getStatusCode() === Response::HTTP_NO_CONTENT;
+        return self::assertEmptyResponse(
+            $this->post($this->buildPath($review, 'add-user'), compact('userIdentifier'))
+        );
     }
 
     public function closeReview(string $review): bool
     {
-        return $this
-                ->http
-                ->post($this->buildPath($review, 'close-review'))
-                ->getStatusCode() === Response::HTTP_NO_CONTENT;
+        return self::assertEmptyResponse(
+            $this->http->post($this->buildPath($review, 'close-review'))
+        );
     }
 
     public function createReviewPDF(string $review, string $callbackURL): bool
     {
-        return $this
-                ->post($this->buildPath($review, 'create-review-pdf'), [
-                    'notifyCallbackURL' => $callbackURL
-                ])
-                ->getStatusCode() === Response::HTTP_NO_CONTENT;
+        return self::assertEmptyResponse(
+            $this->post($this->buildPath($review, 'create-review-pdf'), [
+                'notifyCallbackURL' => $callbackURL
+            ])
+        );
     }
 
     protected static function reviewFromResponse(ResponseInterface $response): Review

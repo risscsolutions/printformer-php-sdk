@@ -17,6 +17,5 @@ interface WorkflowClient
 
     public function show(string $identifier): Workflow;
 
-    #[ArrayShape(['data' => 'array'])]
     public function update(string $identifier, array $data): Workflow;
 }

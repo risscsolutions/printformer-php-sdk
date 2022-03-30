@@ -15,7 +15,6 @@ use GuzzleHttp\ClientInterface as HTTPClient;
 use GuzzleHttp\Utils;
 use JetBrains\PhpStorm\Pure;
 use Psr\Http\Message\ResponseInterface;
-use Symfony\Component\HttpFoundation\Response;
 
 class Client extends Base implements DraftClient
 {
@@ -70,9 +69,9 @@ class Client extends Base implements DraftClient
 
     public function requestIdmlPackage(string $draft, string $callbackURL): bool
     {
-        return $this
-                ->post($this->buildPath($draft, 'request-idml-package'), compact('callbackURL'))
-                ->getStatusCode() === Response::HTTP_NO_CONTENT;
+        return self::assertEmptyResponse(
+            $this->post($this->buildPath($draft, 'request-idml-package'), compact('callbackURL'))
+        );
     }
 
     protected static function draftFromResponse(ResponseInterface $response): Draft

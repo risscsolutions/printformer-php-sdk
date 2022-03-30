@@ -33,10 +33,9 @@ class Client extends Base implements WorkflowClient
         return self::workflowFromResponse($this->get($this->buildPath($identifier)));
     }
 
-    #[ArrayShape(['data' => 'array'])]
     public function update(string $identifier, array $data): Workflow
     {
-        return self::workflowFromResponse($this->put($this->buildPath($identifier), $data));
+        return self::workflowFromResponse($this->put($this->buildPath($identifier), compact('data')));
     }
 
     private static function workflowFromResponse(ResponseInterface $response): Workflow
