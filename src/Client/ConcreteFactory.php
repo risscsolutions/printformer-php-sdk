@@ -37,6 +37,9 @@ use Rissc\Printformer\Client\User\UserClient as UserClientContract;
 use Rissc\Printformer\Client\UserGroup\Client as UserGroupClient;
 use Rissc\Printformer\Client\UserGroup\Proxy as UserGroupProxy;
 use Rissc\Printformer\Client\UserGroup\UserGroupClient as UserGroupClientContract;
+use Rissc\Printformer\Client\VariableData\Client as VariableDataClient;
+use Rissc\Printformer\Client\VariableData\Proxy as VariableDataProxy;
+use Rissc\Printformer\Client\VariableData\VariableDataClient as VariableDataClientContract;
 use Rissc\Printformer\Client\Workflow\Client as WorkflowClient;
 use Rissc\Printformer\Client\Workflow\Proxy as WorkflowProxy;
 use Rissc\Printformer\Client\Workflow\WorkflowClient as WorkflowClientContract;
@@ -108,5 +111,10 @@ class ConcreteClientFactory implements ClientFactory
     #[Pure] public function tenant(): TenantClientContract
     {
         return new TenantProxy(new BadRequestHandler(), new TenantClient($this->http));
+    }
+
+    #[Pure] public function variableData(string $draft): VariableDataClientContract
+    {
+        return new VariableDataProxy(new BadRequestHandler(), new VariableDataClient($this->http, $draft));
     }
 }

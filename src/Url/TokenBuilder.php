@@ -26,6 +26,7 @@ class TokenBuilder
     private array $claims = [];
 
     public bool $withJTI = false;
+    public \DateTimeImmutable $expiresAt;
 
     public function __construct(private Repository $config)
     {
@@ -48,10 +49,12 @@ class TokenBuilder
             InMemory::plainText($this->config->get('api_key'))
         );
 
-        $now = now();
         $builder = $configuration->builder()
-            ->issuedAt($now->toDateTimeImmutable())
-            ->expiresAt($now->modify('+1 hour')->toDateTimeImmutable());
+            ->issuedAt(new \DateTimeImmutable());
+
+        if (isset($this->expiresAt)) {
+            $builder->expiresAt($this->expiresAt);
+        }
 
         if ($this->withJTI) {
             $builder->withHeader('jti', Str::random());

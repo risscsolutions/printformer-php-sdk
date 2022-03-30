@@ -27,6 +27,11 @@ abstract class Base
         return $this;
     }
 
+    public function expiresAt(\DateTimeImmutable $expiresAt): self
+    {
+        $this->tokenBuilder->expiresAt = $expiresAt;
+        return $this;
+    }
 
     abstract public function __toString(): string;
 

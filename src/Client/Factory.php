@@ -18,6 +18,7 @@ use Rissc\Printformer\Client\Review\ReviewClient;
 use Rissc\Printformer\Client\Tenant\TenantClient;
 use Rissc\Printformer\Client\User\UserClient;
 use Rissc\Printformer\Client\UserGroup\UserGroupClient;
+use Rissc\Printformer\Client\VariableData\VariableDataClient;
 use Rissc\Printformer\Client\Workflow\WorkflowClient;
 
 interface ClientFactory
@@ -33,6 +34,8 @@ interface ClientFactory
 //TODO    public function pageTemplates();
 
     public function draft(): DraftClient;
+
+    public function variableData(string $draft): VariableDataClient;
 
     public function workflow(): WorkflowClient;
 
