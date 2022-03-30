@@ -2,6 +2,7 @@
 .DS_Store
 .docker
 .env
+.phpunit.result.cache
 composer.phar
 docker-compose.yml
 /vendor/
