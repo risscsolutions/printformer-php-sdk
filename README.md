@@ -46,7 +46,7 @@ $draft = $printformer->clientFactory()->draft()->create([
 ### Create a URL to the Editor
 ```php
 $url = (string)$printformer->urlGenerator()->editor()
-        ->draft($draft->draftHash)
+        ->draft($draft->draftHash,'https://YOUR-CALLBACK-URL-HERE')
         ->user($pfUser->identifier);
 ```
 
