@@ -1,0 +1,7 @@
+.idea
+.DS_Store
+.docker
+.env
+composer.phar
+docker-compose.yml
+/vendor/
