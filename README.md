@@ -35,30 +35,45 @@ $pfUser = $this->printformer->clientFactory()->user()->create([
 ```
 
 ### Create a new Draft
+by passing an array to the DraftClient
 ```php
-$draft = $printformer->clientFactory()->draft()->create([
-    'templateIdentifier' => 'YOUR MASTER TEMPLATE IDENTIFIER',
-    'user_identifier' => $pfUser->identifier,
-    'intent' => 'customize'
-]);
+$draftClient = $printformer->clientFactory()->draft();
+$draft = $draftClient
+    ->create([
+        'templateIdentifier' => 'YOUR MASTER TEMPLATE IDENTIFIER',
+        'user_identifier' => $pfUser->identifier,
+        'intent' => 'customize'
+    ]);
+```
+or with a fluid builder
+```php
+$draftBuilder = $printformer->builderFactory()->draft();
+$draft = $draftBuilder
+    ->template('YOUR MASTER TEMPLATE IDENTIFIER')
+    ->user($pfUser->identifier)
+    ->intent('customize')
+    ->create();
 ```
 
 ### Create a URL to the Editor
 ```php
 $url = (string)$printformer->urlGenerator()->editor()
-        ->draft($draft->draftHash,'https://YOUR-CALLBACK-URL-HERE')
+        ->draft($draft->draftHash, 'https://YOUR-CALLBACK-URL-HERE')
         ->user($pfUser->identifier);
 ```
 
 ### Create a Print PDF
 ```php
-$printformer->clientFactory()->processing()->create([
-    'draftIds' => [$draft->draftHash],
-    'stateChangedNotifyUrl' => 'https://YOUR-CALLBACK-URL-HERE'
-]);
+$printformer->clientFactory()->processing()->create(
+    [$draft->draftHash, $otherDraft->draftHash],
+    'https://YOUR-CALLBACK-URL-HERE'
+);
 ```
 
 ### Create a URL to the Print PDF
 ```php
-(string)$printformer->urlGenerator()->draftFiles()->printFile($draft->draftHash);
+(string)$printformer->urlGenerator()
+->draftFiles()
+->printFile($draft->draftHash)
+->expiresAt(new \DateTimeImmutable()->modify('+1 hour'))
 ```
