@@ -2,7 +2,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Latest Stable Version](https://poser.pugx.org/risscsolutions/printformer-php-sdk/v/stable.svg)](https://packagist.org/packages/risscsolutions/printformer-php-sdk)
 [![Total Downloads](https://poser.pugx.org/risscsolutions/printformer-php-sdk/downloads)](https://packagist.org/packages/risscsolutions/printformer-php-sdk)
-
+[![PHP Composer](https://github.com/risscsolutions/printformer-php-sdk/actions/workflows/tests.yml/badge.svg)](https://github.com/risscsolutions/printformer-php-sdk/actions/workflows/tests.yml)
 ## Installation
 
 ```bash
