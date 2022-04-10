@@ -14,7 +14,12 @@ use GuzzleHttp\ClientInterface as HTTPClient;
 use GuzzleHttp\Utils;
 use JetBrains\PhpStorm\Pure;
 use Psr\Http\Message\ResponseInterface;
+use Rissc\Printformer\Client\PaginationMeta;
+use Rissc\Printformer\Client\Paginator;
 
+/**
+ * @internal
+ */
 class Client extends Base implements MasterTemplateClient
 {
     #[Pure] public function __construct(HTTPClient $http)
@@ -22,12 +27,17 @@ class Client extends Base implements MasterTemplateClient
         parent::__construct($http, 'template');
     }
 
-    public function list(?int $page = null): array
+    public function list(int $page): Paginator
     {
+        $page = $page === 0 ? 1 : $page;
         $response = $this->get(sprintf('template?%s', http_build_query(array_filter(compact('page'), static fn(?string $value) => !empty($value)))));
-        $masters = Utils::jsonDecode($response->getBody()->getContents(), true)['data'];
+        $responseBody = Utils::jsonDecode($response->getBody()->getContents(), true);
 
-        return array_map(static fn(array $master) => MasterTemplate::fromArray($master), $masters);
+        return new Paginator(
+            array_map(static fn(array $master) => MasterTemplate::fromArray($master), $responseBody['data']),
+            PaginationMeta::fromArray($responseBody['meta']),
+            $this,
+        );
     }
 
     protected static function masterTemplateFromResponse(ResponseInterface $response): MasterTemplate

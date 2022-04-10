@@ -15,6 +15,9 @@ use GuzzleHttp\Utils;
 use JetBrains\PhpStorm\Pure;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * @internal
+ */
 class Client extends Base implements FileClient
 {
     #[Pure] public function __construct(HTTPClient $http)

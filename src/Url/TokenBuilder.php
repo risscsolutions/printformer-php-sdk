@@ -21,7 +21,7 @@ use Lcobucci\JWT\Signer\Key\InMemory;
  * @property string $urlPath
  * @property string $user
  */
-class TokenBuilder
+final class TokenBuilder implements \Stringable
 {
     private array $claims = [];
 

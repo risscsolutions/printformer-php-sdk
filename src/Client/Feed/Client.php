@@ -15,7 +15,9 @@ use GuzzleHttp\ClientInterface as HTTPClient;
 use GuzzleHttp\Utils;
 use JetBrains\PhpStorm\Pure;
 use Psr\Http\Message\ResponseInterface;
-
+/**
+ * @internal
+ */
 class Client extends Base implements FeedClient
 {
     use DestroysResources;

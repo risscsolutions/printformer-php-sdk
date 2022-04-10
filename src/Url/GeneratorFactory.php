@@ -11,7 +11,7 @@ namespace Rissc\Printformer\Url;
 
 use Illuminate\Config\Repository;
 
-class GeneratorFactory
+final class GeneratorFactory
 {
     public function __construct(private Repository $config)
     {

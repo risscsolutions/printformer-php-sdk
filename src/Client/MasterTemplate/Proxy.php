@@ -13,6 +13,9 @@ use Rissc\Printformer\Client\BadRequestHandler;
 use Rissc\Printformer\Client\Proxy as Base;
 use JetBrains\PhpStorm\Pure;
 
+/**
+ * @internal
+ */
 class Proxy extends Base implements MasterTemplateClient
 {
     #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private MasterTemplateClient $client)

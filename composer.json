@@ -26,8 +26,11 @@
     }
   },
   "scripts": {
-    "tests": [
-      "phpunit --configuration phpunit.xml"
+    "local-tests": [
+      "docker run --rm -v ${PWD}:/var/www/html endlezz/php-dev bash -c \"php composer.phar du && php vendor/bin/phpunit --configuration phpunit.xml\""
+    ],
+    "doc": [
+      "docker run --rm -v ${PWD}:/data phpdoc/phpdoc:3 phpDocumentor --config "
     ]
   },
   "authors": [

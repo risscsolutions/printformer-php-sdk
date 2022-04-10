@@ -13,8 +13,12 @@ use GuzzleHttp\ClientInterface as HTTPClient;
 use GuzzleHttp\Utils;
 use JetBrains\PhpStorm\Pure;
 use Rissc\Printformer\Client\Client as Base;
-use Symfony\Component\HttpFoundation\Response;
+use Rissc\Printformer\Client\PaginationMeta;
+use Rissc\Printformer\Client\Paginator;
 
+/**
+ * @internal
+ */
 class Client extends Base implements VariableDataClient
 {
     #[Pure] public function __construct(HTTPClient $http, string $draft)
@@ -22,12 +26,21 @@ class Client extends Base implements VariableDataClient
         parent::__construct($http, sprintf('draft/%s/variable-data', $draft));
     }
 
-    public function list(int $limit, int $offset = 0): array
+    public function list(int $page, int $perPage = 25): Paginator
     {
-        return Utils::jsonDecode(
-            $this->get($this->resource . '?' . http_build_query(compact('limit', 'offset')))
-                ->getBody()
-                ->getContents()
+        $page = $page === 0 ? 1 : $page;
+        $limit = $perPage;
+        $offset = $perPage * ($page - 1);
+
+        $response = $this->get($this->resource . '?' . http_build_query(compact('limit', 'offset')));
+        $responseBody = Utils::jsonDecode($response->getBody()->getContents(), true);
+        $meta = $responseBody['_meta'];
+        $amountOfRows = $meta['amountOfRows'];
+
+        return new Paginator(
+            $responseBody['data'],
+            new PaginationMeta($page, ceil($amountOfRows / $perPage), $perPage, $amountOfRows),
+            $this
         );
     }
 

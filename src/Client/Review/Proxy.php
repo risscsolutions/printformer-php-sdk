@@ -14,6 +14,9 @@ use Rissc\Printformer\Client\Proxy as Base;
 use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\Pure;
 
+/**
+ * @internal
+ */
 class Proxy extends Base implements ReviewClient
 {
     #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private Client $client)

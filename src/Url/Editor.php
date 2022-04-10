@@ -11,7 +11,7 @@ namespace Rissc\Printformer\Url;
 
 use GuzzleHttp\Psr7\Uri;
 
-class Editor extends Auth
+final class Editor extends Auth
 {
     public function draft(string $draft, ?string $callback = null, ?string $callback_cancel = null, ?string $callback_halt = null): self
     {

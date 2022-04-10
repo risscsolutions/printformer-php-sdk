@@ -14,6 +14,9 @@ use Rissc\Printformer\Client\Proxy as Base;
 use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\Pure;
 
+/**
+ * @internal
+ */
 class Proxy extends Base implements DraftClient
 {
     #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private Client $client)
@@ -26,19 +29,19 @@ class Proxy extends Base implements DraftClient
         return $this->wrap(fn(): Draft => $this->client->create($data));
     }
 
-    public function destroy(string $identifier): bool
+    public function destroy(string|Draft $draft): bool
     {
-        return $this->wrap(fn(): bool => $this->client->destroy($identifier));
+        return $this->wrap(fn(): bool => $this->client->destroy($draft));
     }
 
-    public function show(string $identifier): Draft
+    public function show(string|Draft $draft): Draft
     {
-        return $this->wrap(fn(): Draft => $this->client->show($identifier));
+        return $this->wrap(fn(): Draft => $this->client->show($draft));
     }
 
-    public function update(string $identifier, array $data): Draft
+    public function update(string|Draft $draft, array $data): Draft
     {
-        return $this->wrap(fn(): Draft => $this->client->update($identifier, $data));
+        return $this->wrap(fn(): Draft => $this->client->update($draft, $data));
     }
 
     #[ArrayShape([
@@ -50,9 +53,9 @@ class Proxy extends Base implements DraftClient
         'customAttributes' => 'array',
         'draftParameter' => 'array',
 
-    ])] public function replicate(string $identifier, array $data): Draft
+    ])] public function replicate(string|Draft $draft, array $data): Draft
     {
-        return $this->wrap(fn(): Draft => $this->client->replicate($identifier, $data));
+        return $this->wrap(fn(): Draft => $this->client->replicate($draft, $data));
     }
 
     public function claim(string $user, array $identifiers, bool $dryRun = false): array
@@ -60,12 +63,12 @@ class Proxy extends Base implements DraftClient
         return $this->wrap(fn(): array => $this->client->claim($user, $identifiers, $dryRun));
     }
 
-    public function pageInfo(string $draft, string $usage, ?int $row = null, ?string $unit = null): PageInfo
+    public function pageInfo(string|Draft $draft, string $usage, ?int $row = null, ?string $unit = null): PageInfo
     {
         return $this->wrap(fn(): PageInfo => $this->client->pageInfo($draft, $usage, $row, $unit));
     }
 
-    public function requestIdmlPackage(string $draft, string $callbackURL): bool
+    public function requestIdmlPackage(string|Draft $draft, string $callbackURL): bool
     {
         return $this->wrap(fn(): bool => $this->client->requestIdmlPackage($draft, $callbackURL));
     }

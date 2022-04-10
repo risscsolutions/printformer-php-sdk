@@ -10,9 +10,19 @@
 namespace Rissc\Printformer\Client\Draft;
 
 use JetBrains\PhpStorm\ArrayShape;
+use Rissc\Printformer\Exceptions\MaintenanceException;
+use Rissc\Printformer\Exceptions\NotFoundException;
+use Rissc\Printformer\Exceptions\TooManyRequestsException;
+use Rissc\Printformer\Exceptions\ValidationException;
 
 interface DraftClient
 {
+    /**
+     * Creates a new Draft
+     * @param array $data
+     * @return Draft
+     * @throws MaintenanceException|TooManyRequestsException|NotFoundException|ValidationException
+     */
     #[ArrayShape([
         'intent' => 'string',
         'templateIdentifier' => 'string',
@@ -56,11 +66,11 @@ interface DraftClient
     ])]
     public function create(array $data): Draft;
 
-    public function show(string $identifier): Draft;
+    public function show(string|Draft $draft): Draft;
 
-    public function update(string $identifier, array $data): Draft;
+    public function update(string|Draft $draft, array $data): Draft;
 
-    public function destroy(string $identifier): bool;
+    public function destroy(string|Draft $draft): bool;
 
     #[ArrayShape([
         'pagePlanner' => [
@@ -71,11 +81,11 @@ interface DraftClient
         'customAttributes' => 'array',
         'draftParameter' => 'array',
     ])]
-    public function replicate(string $identifier, array $data): Draft;
+    public function replicate(string|Draft $draft, array $data): Draft;
 
     public function claim(string $user, array $identifiers, bool $dryRun = false): array;
 
-    public function pageInfo(string $draft, string $usage, ?int $row = null, ?string $unit = null): PageInfo;
+    public function pageInfo(string|Draft $draft, string $usage, ?int $row = null, ?string $unit = null): PageInfo;
 
-    public function requestIdmlPackage(string $draft, string $callbackURL): bool;
+    public function requestIdmlPackage(string|Draft $draft, string $callbackURL): bool;
 }

@@ -11,7 +11,7 @@ namespace Rissc\Printformer\Url;
 
 use Illuminate\Config\Repository;
 
-abstract class Base
+abstract class Base implements \Stringable
 {
     public function __construct(
         protected Repository   $config,

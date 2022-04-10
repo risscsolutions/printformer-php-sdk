@@ -20,7 +20,7 @@ use Illuminate\Config\Repository;
 use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\Pure;
 
-class Printformer
+final class Printformer
 {
     private Repository $config;
 

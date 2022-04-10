@@ -11,7 +11,7 @@ namespace Rissc\Printformer\Url;
 
 use GuzzleHttp\Psr7\Uri;
 
-class DraftFiles extends Base
+final class DraftFiles extends Base
 {
     private ?int $row = null;
     private ?string $usage = null;

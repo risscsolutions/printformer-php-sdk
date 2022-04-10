@@ -46,7 +46,7 @@ use GuzzleHttp\Client as HTTPClient;
 use Illuminate\Config\Repository;
 use JetBrains\PhpStorm\Pure;
 
-class ConcreteFactory implements Factory
+final class ConcreteFactory implements Factory
 {
     private HTTPClient $http;
 

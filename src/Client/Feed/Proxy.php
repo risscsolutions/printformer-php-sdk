@@ -13,6 +13,9 @@ use Rissc\Printformer\Client\BadRequestHandler;
 use Rissc\Printformer\Client\Proxy as Base;
 use JetBrains\PhpStorm\Pure;
 
+/**
+ * @internal
+ */
 class Proxy extends Base implements FeedClient
 {
     #[Pure]

@@ -11,7 +11,7 @@ namespace Rissc\Printformer\Url;
 
 use GuzzleHttp\Psr7\Uri;
 
-class Review extends Auth
+final class Review extends Auth
 {
     public function review(string $review): self
     {

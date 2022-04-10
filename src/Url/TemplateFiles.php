@@ -11,7 +11,7 @@ namespace Rissc\Printformer\Url;
 
 use GuzzleHttp\Psr7\Uri;
 
-class TemplateFiles extends Base
+final class TemplateFiles extends Base
 {
     private ?int $page = null;
     private ?int $variantVersionID = null;

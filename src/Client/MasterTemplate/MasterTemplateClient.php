@@ -9,7 +9,14 @@
 
 namespace Rissc\Printformer\Client\MasterTemplate;
 
-interface MasterTemplateClient
+use Rissc\Printformer\Client\Paginator;
+use Rissc\Printformer\Client\ProvidesListing;
+
+interface MasterTemplateClient extends ProvidesListing
 {
-    public function list(?int $page = null): array;
+    /**
+     * @inheritDoc
+     * @return Paginator<int, MasterTemplate>
+     */
+    public function list(int $page): Paginator;
 }

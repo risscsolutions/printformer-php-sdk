@@ -9,10 +9,29 @@
 
 namespace Rissc\Printformer\Client\VariableData;
 
-interface VariableDataClient
-{
-    public function list(int $limit, int $offset = 0): array;
+use Rissc\Printformer\Client\Paginator;
+use Rissc\Printformer\Client\ProvidesListing;
+use Rissc\Printformer\Exceptions\FeatureNotEnabledException;
+use Rissc\Printformer\Exceptions\MaintenanceException;
+use Rissc\Printformer\Exceptions\NotFoundException;
+use Rissc\Printformer\Exceptions\TooManyRequestsException;
+use Rissc\Printformer\Exceptions\ValidationException;
 
+interface VariableDataClient extends ProvidesListing
+{
+    /**
+     * @inheritDoc
+     * @return Paginator<int, array>
+     */
+    public function list(int $page): Paginator;
+
+    /**
+     * @param \SplFileInfo $file Either a csv or xls file
+     * @param Array<int|string, int> $columnMapping Column name to column index mapping
+     * @return bool
+     * @throws MaintenanceException|TooManyRequestsException|NotFoundException|FeatureNotEnabledException|ValidationException
+     * @api
+     */
     public function create(\SplFileInfo $file, array $columnMapping): bool;
 
     public function update(array $data): bool;

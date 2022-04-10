@@ -12,6 +12,9 @@ namespace Rissc\Printformer\Client\File;
 use Rissc\Printformer\Client\BadRequestHandler;
 use JetBrains\PhpStorm\Pure;
 
+/**
+ * @internal
+ */
 class Proxy extends \Rissc\Printformer\Client\Proxy implements FileClient
 {
     #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private FileClient $client)

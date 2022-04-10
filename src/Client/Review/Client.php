@@ -17,6 +17,9 @@ use JetBrains\PhpStorm\Pure;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @internal
+ */
 class Client extends Base implements ReviewClient
 {
     #[Pure] public function __construct(HTTPClient $http)
