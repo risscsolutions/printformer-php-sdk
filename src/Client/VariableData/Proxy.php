@@ -11,6 +11,7 @@ namespace Rissc\Printformer\Client\VariableData;
 
 use JetBrains\PhpStorm\Pure;
 use Rissc\Printformer\Client\BadRequestHandler;
+use Rissc\Printformer\Client\Paginator;
 use Rissc\Printformer\Client\Proxy as Base;
 
 /**
@@ -23,9 +24,9 @@ class Proxy extends Base implements VariableDataClient
         parent::__construct($badRequestHandler);
     }
 
-    public function list(int $limit, int $offset = 0): array
+    public function list(int $page, int $perPage = 0): Paginator
     {
-        return $this->wrap(fn(): array => $this->client->list($limit, $offset));
+        return $this->wrap(fn(): array => $this->client->list($page, $perPage));
     }
 
     public function create(\SplFileInfo $file, array $columnMapping): bool

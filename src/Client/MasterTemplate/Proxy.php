@@ -10,6 +10,7 @@
 namespace Rissc\Printformer\Client\MasterTemplate;
 
 use Rissc\Printformer\Client\BadRequestHandler;
+use Rissc\Printformer\Client\Paginator;
 use Rissc\Printformer\Client\Proxy as Base;
 use JetBrains\PhpStorm\Pure;
 
@@ -23,7 +24,7 @@ class Proxy extends Base implements MasterTemplateClient
         parent::__construct($badRequestHandler);
     }
 
-    public function list(?int $page = null): array
+    public function list(?int $page = null): Paginator
     {
         return $this->wrap(fn(): array => $this->client->list($page));
     }
