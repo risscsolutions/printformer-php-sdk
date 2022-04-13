@@ -13,5 +13,5 @@ interface ProcessingClient
 {
     public function create(array $drafts, ?string $callbackUrl = null): Processing;
 
-    public function show(string $identifier): Processing;
+    public function show(string|Processing $processing): Processing;
 }

@@ -9,7 +9,11 @@
 
 namespace Rissc\Printformer\Client;
 
+use Rissc\Printformer\Client\Derivative\Client as DerivativeClient;
+use Rissc\Printformer\Client\Derivative\DerivativeClient as DerivativeClientContract;
+use Rissc\Printformer\Client\Derivative\Proxy as DerivativeProxy;
 use Rissc\Printformer\Client\Draft\Client as DraftClient;
+use Rissc\Printformer\Client\Draft\Draft;
 use Rissc\Printformer\Client\Draft\DraftClient as DraftClientContract;
 use Rissc\Printformer\Client\Draft\Proxy as DraftProxy;
 use Rissc\Printformer\Client\Feed\Client as FeedClient;
@@ -112,8 +116,13 @@ final class ConcreteFactory implements Factory
         return new TenantProxy(new BadRequestHandler(), new TenantClient($this->http));
     }
 
-    #[Pure] public function variableData(string $draft): VariableDataClientContract
+    #[Pure] public function variableData(string|Draft $draft): VariableDataClientContract
     {
         return new VariableDataProxy(new BadRequestHandler(), new VariableDataClient($this->http, $draft));
+    }
+
+    #[Pure] public function derivative(Resource $owner): DerivativeClientContract
+    {
+        return new DerivativeProxy(new BadRequestHandler(), new DerivativeClient($this->http, $owner));
     }
 }

@@ -19,34 +19,32 @@ use JetBrains\PhpStorm\Pure;
  */
 class Proxy extends Base implements UserClient
 {
-    #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private Client $client)
+    #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private UserClient $client)
     {
         parent::__construct($badRequestHandler);
     }
 
-    #[ArrayShape(['email' => 'string', 'firstName' => 'string', 'lastName' => 'string', 'title' => 'string', 'salutation' => 'string', 'customAttributes' => 'array', 'locale' => 'string',])]
     public function create(array $data): User
     {
         return $this->wrap(fn(): User => $this->client->create($data));
     }
 
-    public function destroy(string $identifier): bool
+    public function destroy(string|User $user): bool
     {
-        return $this->wrap(fn(): bool => $this->client->destroy($identifier));
+        return $this->wrap(fn(): bool => $this->client->destroy($user));
     }
 
-    public function show(string $identifier): User
+    public function show(string|User $user): User
     {
-        return $this->wrap(fn(): User => $this->client->show($identifier));
+        return $this->wrap(fn(): User => $this->client->show($user));
     }
 
-    #[ArrayShape(['email' => 'string', 'firstName' => 'string', 'lastName' => 'string', 'title' => 'string', 'salutation' => 'string', 'customAttributes' => 'array', 'locale' => 'string',])]
-    public function update(string $identifier, array $data): User
+    public function update(string|User $user, array $data): User
     {
-        return $this->wrap(fn(): User => $this->client->update($identifier, $data));
+        return $this->wrap(fn(): User => $this->client->update($user, $data));
     }
 
-    public function merge(string $targetUser, string $sourceUser): User
+    public function merge(string|User $targetUser, string|User $sourceUser): User
     {
         return $this->wrap(fn(): User => $this->client->merge($targetUser, $sourceUser));
     }

@@ -9,20 +9,25 @@
 
 namespace Rissc\Printformer\Client\Feed;
 
-class Feed
+use Rissc\Printformer\Util\AccessPropertiesAsArray;
+use Rissc\Printformer\Client\Resource;
+
+class Feed implements Resource
 {
+    use AccessPropertiesAsArray;
+
     public function __construct(
         public string $identifier,
         public string $type,
         public string $name,
         public string $mappingIdentifier,
         public string $mediaProvider,
-        public array $config,
+        public array  $config,
     )
     {
     }
 
-    public static function fromArray(array $data): Feed
+    public static function fromArray(array $data): static
     {
         return new Feed(
             data_get($data, 'identifier'),
@@ -32,5 +37,15 @@ class Feed
             data_get($data, 'mediaProvider'),
             data_get($data, 'config'),
         );
+    }
+
+    public function getIdentifier(): string
+    {
+        return $this->identifier;
+    }
+
+    public static function getPath(): string
+    {
+        return 'product-feed';
     }
 }

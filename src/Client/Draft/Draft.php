@@ -10,11 +10,15 @@
 namespace Rissc\Printformer\Client\Draft;
 
 use JetBrains\PhpStorm\ArrayShape;
+use Rissc\Printformer\Util\AccessPropertiesAsArray;
+use Rissc\Printformer\Client\Resource;
 use function data_get;
 
 /** @property ValidationResult[] $validationResults */
-class Draft
+class Draft implements Resource
 {
+    use AccessPropertiesAsArray;
+
     public function __construct(
         public string  $userIdentifier,
         public ?string $userGroupIdentifier,
@@ -35,7 +39,7 @@ class Draft
     {
     }
 
-    public static function fromArray(array $data): Draft
+    public static function fromArray(array $data): static
     {
         return new Draft(
             data_get($data, 'userIdentifier'),
@@ -53,5 +57,15 @@ class Draft
             data_get($data, 'setupStatus'),
             array_map(static fn(array $result): ValidationResult => ValidationResult::fromArray($result), data_get($data, 'validationResults', []))
         );
+    }
+
+    public function getIdentifier(): string
+    {
+        return $this->draftHash;
+    }
+
+    public static function getPath(): string
+    {
+        return 'draft';
     }
 }

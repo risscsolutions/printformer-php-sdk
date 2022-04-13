@@ -11,11 +11,11 @@ namespace Rissc\Printformer\Client\Feed;
 
 interface FeedClient
 {
-    public function store(array $data): Feed;
+    public function create(array $data): Feed;
 
-    public function show(string $identifier): Feed;
+    public function show(string|Feed $feed): Feed;
 
-    public function update(string $identifier, array $data): Feed;
+    public function update(string|Feed $feed, array $data): Feed;
 
-    public function destroy(string $identifier): bool;
+    public function destroy(string|Feed $feed): bool;
 }

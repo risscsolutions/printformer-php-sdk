@@ -9,15 +9,18 @@
 
 namespace Rissc\Printformer\Client\Review;
 
+use Rissc\Printformer\Client\Draft\Draft;
+use Rissc\Printformer\Client\User\User;
+
 interface ReviewClient
 {
-    public function create(string $draftId, array $user, string $closeCallbackURL, bool $remoteAcl = false): Review;
+    public function create(string|Draft $draft, array $user, string $closeCallbackURL, bool $remoteAcl = false): Review;
 
-    public function deleteUser(string $review, string $userIdentifier): bool;
+    public function deleteUser(string|Review $review, string|User $user): bool;
 
-    public function addUser(string $review, string $userIdentifier): bool;
+    public function addUser(string|Review $review, string|User $user): bool;
 
-    public function closeReview(string $review): bool;
+    public function closeReview(string|Review $review): bool;
 
-    public function createReviewPDF(string $review, string $callbackURL): bool;
+    public function createReviewPDF(string|Review $review, string $callbackURL): bool;
 }

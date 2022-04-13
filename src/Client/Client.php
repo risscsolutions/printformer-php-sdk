@@ -11,11 +11,14 @@ namespace Rissc\Printformer\Client;
 
 use GuzzleHttp\ClientInterface as HTTPClient;
 use Psr\Http\Message\ResponseInterface;
+use Rissc\Printformer\Util\BuildsQueryStrings;
 use Symfony\Component\HttpFoundation\Response;
 
 abstract class Client
 {
-    public function __construct(protected HTTPClient $http, protected string $resource)
+    use BuildsQueryStrings;
+
+    public function __construct(protected HTTPClient $http, protected string $path)
     {
     }
 
@@ -45,7 +48,12 @@ abstract class Client
 
     protected function buildPath(string $identifier, ?string $action = null): string
     {
-        return implode('/', array_filter([$this->resource, $identifier, $action], static fn(?string $value) => !empty($value)));
+        return implode('/', array_filter([$this->path, $identifier, $action], static fn(?string $value) => !empty($value)));
+    }
+
+    protected function buildPathWithQuery(string $identifier, ?string $action = null, array $params = []): string
+    {
+        return sprintf('%s?%s', $this->buildPath($identifier, $action), self::buildQuery($params));
     }
 
     protected static function assertEmptyResponse(ResponseInterface $response): bool

@@ -9,41 +9,30 @@
 
 namespace Rissc\Printformer\Client\Feed;
 
-use Rissc\Printformer\Client\Client as Base;
 use Rissc\Printformer\Client\DestroysResources;
-use GuzzleHttp\ClientInterface as HTTPClient;
-use GuzzleHttp\Utils;
-use JetBrains\PhpStorm\Pure;
-use Psr\Http\Message\ResponseInterface;
+use Rissc\Printformer\Client\ResourceClient;
+
 /**
  * @internal
  */
-class Client extends Base implements FeedClient
+class Client extends ResourceClient implements FeedClient
 {
     use DestroysResources;
 
-    #[Pure] public function __construct(HTTPClient $http)
+    protected static string $resource = Feed::class;
+
+    public function create(array $data): Feed
     {
-        parent::__construct($http, 'product-feed');
+        return $this->createResource($data);
     }
 
-    public function store(array $data): Feed
+    public function show(string|Feed $feed): Feed
     {
-        return self::feedFromResponse($this->post($this->resource, $data));
+        return $this->showResource($feed);
     }
 
-    public function show(string $identifier): Feed
+    public function update(string|Feed $feed, array $data): Feed
     {
-        return self::feedFromResponse($this->get($this->buildPath($identifier)));
-    }
-
-    public function update(string $identifier, array $data): Feed
-    {
-        return self::feedFromResponse($this->put($this->buildPath($identifier), $data));
-    }
-
-    protected static function feedFromResponse(ResponseInterface $response): Feed
-    {
-        return Feed::fromArray(Utils::jsonDecode($response->getBody()->getContents(), true)['data']);
+        return $this->updateResource($feed, $data);
     }
 }

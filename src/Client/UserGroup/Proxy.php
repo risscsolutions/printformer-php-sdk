@@ -18,7 +18,7 @@ use JetBrains\PhpStorm\Pure;
  */
 class Proxy extends Base implements UserGroupClient
 {
-    #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private Client $client)
+    #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private UserGroupClient $client)
     {
         parent::__construct($badRequestHandler);
     }

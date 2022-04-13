@@ -10,9 +10,12 @@
 namespace Rissc\Printformer\Url;
 
 use Illuminate\Config\Repository;
+use Rissc\Printformer\Util\BuildsQueryStrings;
 
 abstract class Base implements \Stringable
 {
+    use BuildsQueryStrings;
+
     public function __construct(
         protected Repository   $config,
         protected TokenBuilder $tokenBuilder
@@ -34,9 +37,4 @@ abstract class Base implements \Stringable
     }
 
     abstract public function __toString(): string;
-
-    protected static function buildQuery(array $args): string
-    {
-        return http_build_query(array_filter($args, static fn(?string $value) => !empty($value)));
-    }
 }

@@ -11,10 +11,12 @@ namespace Rissc\Printformer\Client;
 
 trait DestroysResources
 {
-    public function destroy(string $identifier): bool
+    use UnwrapsResourceIdentifier;
+
+    public function destroy(string|Resource $resource): bool
     {
         return $this
-                ->delete($this->buildPath($identifier))
+                ->delete($this->buildPath($this->getIdentifier($resource)))
                 ->getStatusCode() === 204;
     }
 }

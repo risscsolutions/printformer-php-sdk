@@ -24,23 +24,23 @@ class Proxy extends Base implements FeedClient
         parent::__construct($badRequestHandler);
     }
 
-    public function store(array $data): Feed
+    public function create(array $data): Feed
     {
-        return $this->wrap(fn(): Feed => $this->client->store($data));
+        return $this->wrap(fn(): Feed => $this->client->create($data));
     }
 
-    public function show(string $identifier): Feed
+    public function show(string|Feed $feed): Feed
     {
-        return $this->wrap(fn(): Feed => $this->client->show($identifier));
+        return $this->wrap(fn(): Feed => $this->client->show($feed));
     }
 
-    public function update(string $identifier, array $data): Feed
+    public function update(string|Feed $feed, array $data): Feed
     {
-        return $this->wrap(fn(): Feed => $this->client->update($identifier, $data));
+        return $this->wrap(fn(): Feed => $this->client->update($feed, $data));
     }
 
-    public function destroy(string $identifier): bool
+    public function destroy(string|Feed $feed): bool
     {
-        return $this->wrap(fn(): bool => $this->client->destroy($identifier));
+        return $this->wrap(fn(): bool => $this->client->destroy($feed));
     }
 }

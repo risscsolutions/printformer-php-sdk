@@ -16,12 +16,12 @@ interface UserClient
     #[ArrayShape(['email' => 'string', 'firstName' => 'string', 'lastName' => 'string', 'title' => 'string', 'salutation' => 'string', 'customAttributes' => 'array', 'locale' => 'string',])]
     public function create(array $data): User;
 
-    public function show(string $identifier): User;
+    public function show(string|User $user): User;
 
     #[ArrayShape(['email' => 'string', 'firstName' => 'string', 'lastName' => 'string', 'title' => 'string', 'salutation' => 'string', 'customAttributes' => 'array', 'locale' => 'string',])]
-    public function update(string $identifier, array $data): User;
+    public function update(string|User $user, array $data): User;
 
-    public function destroy(string $identifier): bool;
+    public function destroy(string|User $user): bool;
 
-    public function merge(string $targetUser, string $sourceUser): User;
+    public function merge(string|User $targetUser, string|User $sourceUser): User;
 }

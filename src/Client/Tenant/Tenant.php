@@ -9,8 +9,13 @@
 
 namespace Rissc\Printformer\Client\Tenant;
 
-class Tenant
+use Rissc\Printformer\Util\AccessPropertiesAsArray;
+use Rissc\Printformer\Client\Resource;
+
+class Tenant implements Resource
 {
+    use AccessPropertiesAsArray;
+
     public function __construct(
         public string $name,
         public string $identifier,
@@ -19,12 +24,22 @@ class Tenant
     {
     }
 
-    public static function fromArray(array $data): Tenant
+    public static function fromArray(array $data): static
     {
         return new Tenant(
             data_get($data, 'name'),
             data_get($data, 'identifier'),
             data_get($data, 'createdAt'),
         );
+    }
+
+    public function getIdentifier(): string
+    {
+        return $this->identifier;
+    }
+
+    public static function getPath(): string
+    {
+        return 'client';
     }
 }

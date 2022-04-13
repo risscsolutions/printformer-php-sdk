@@ -9,6 +9,8 @@
 
 namespace Rissc\Printformer\Client;
 
+use Rissc\Printformer\Client\Derivative\DerivativeClient;
+use Rissc\Printformer\Client\Draft\Draft;
 use Rissc\Printformer\Client\Draft\DraftClient;
 use Rissc\Printformer\Client\Feed\FeedClient;
 use Rissc\Printformer\Client\File\FileClient;
@@ -35,7 +37,7 @@ interface Factory
 
     public function draft(): DraftClient;
 
-    public function variableData(string $draft): VariableDataClient;
+    public function variableData(string|Draft $draft): VariableDataClient;
 
     public function workflow(): WorkflowClient;
 
@@ -51,7 +53,7 @@ interface Factory
 
     public function file(): FileClient;
 
-//TODO    public function derivative();
+    public function derivative(Resource $owner): DerivativeClient;
 
 //TODO    public function declaration();
 

@@ -10,41 +10,43 @@
 namespace Rissc\Printformer\Client\Review;
 
 use Rissc\Printformer\Client\BadRequestHandler;
+use Rissc\Printformer\Client\Draft\Draft;
 use Rissc\Printformer\Client\Proxy as Base;
 use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\Pure;
+use Rissc\Printformer\Client\User\User;
 
 /**
  * @internal
  */
 class Proxy extends Base implements ReviewClient
 {
-    #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private Client $client)
+    #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private ReviewClient $client)
     {
         parent::__construct($badRequestHandler);
     }
 
-    public function create(string $draftId, array $user, string $closeCallbackURL, bool $remoteAcl = false): Review
+    public function create(string|Draft $draft, array $user, string $closeCallbackURL, bool $remoteAcl = false): Review
     {
-        return $this->wrap(fn(): Review => $this->client->create($draftId, $user, $closeCallbackURL, $remoteAcl));
+        return $this->wrap(fn(): Review => $this->client->create($draft, $user, $closeCallbackURL, $remoteAcl));
     }
 
-    public function deleteUser(string $review, string $userIdentifier): bool
+    public function deleteUser(string|Review $review, string|User $user): bool
     {
-        return $this->wrap(fn(): bool => $this->client->deleteUser($review, $userIdentifier));
+        return $this->wrap(fn(): bool => $this->client->deleteUser($review, $user));
     }
 
-    public function addUser(string $review, string $userIdentifier): bool
+    public function addUser(string|Review $review, string|User $user): bool
     {
-        return $this->wrap(fn(): bool => $this->client->addUser($review, $userIdentifier));
+        return $this->wrap(fn(): bool => $this->client->addUser($review, $user));
     }
 
-    public function closeReview(string $review): bool
+    public function closeReview(string|Review $review): bool
     {
         return $this->wrap(fn(): bool => $this->client->closeReview($review));
     }
 
-    public function createReviewPDF(string $review, string $callbackURL): bool
+    public function createReviewPDF(string|Review $review, string $callbackURL): bool
     {
         return $this->wrap(fn(): bool => $this->client->createReviewPDF($review, $callbackURL));
     }

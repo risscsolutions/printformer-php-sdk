@@ -9,18 +9,20 @@
 
 namespace Rissc\Printformer\Client\Workflow;
 
-
 use JetBrains\PhpStorm\ArrayShape;
+use Rissc\Printformer\Util\AccessPropertiesAsArray;
+use Rissc\Printformer\Client\Resource;
 use function data_get;
 
-class Workflow
+class Workflow implements Resource
 {
+    use AccessPropertiesAsArray;
+
     public function __construct(
-        public string  $identifier,
-        public array   $data,
-        public ?string $definitionIdentifier,
-                       #[ArrayShape(['type' => 'string', 'identifier' => 'string'])]
-        public array $subject
+        public string          $identifier,
+        public array           $data,
+        public ?string         $definitionIdentifier,
+        public WorkflowSubject $subject
     )
     {
     }
@@ -30,13 +32,23 @@ class Workflow
         return data_get($this->data, $key);
     }
 
-    public static function fromArray(array $data): Workflow
+    public static function fromArray(array $data): static
     {
         return new Workflow(
             data_get($data, 'identifier'),
             data_get($data, 'data'),
             data_get($data, 'definitionIdentifier'),
-            data_get($data, 'subject'),
+            WorkflowSubject::fromArray(data_get($data, 'subject')),
         );
+    }
+
+    public function getIdentifier(): string
+    {
+        return $this->identifier;
+    }
+
+    public static function getPath(): string
+    {
+        return 'workflow';
     }
 }

@@ -20,7 +20,7 @@ use JetBrains\PhpStorm\Pure;
 class Proxy extends Base implements WorkflowClient
 {
     #[Pure]
-    public function __construct(BadRequestHandler $badRequestHandler, private Client $client)
+    public function __construct(BadRequestHandler $badRequestHandler, private WorkflowClient $client)
     {
         parent::__construct($badRequestHandler);
     }
@@ -30,13 +30,13 @@ class Proxy extends Base implements WorkflowClient
         return $this->wrap(fn(): Workflow => $this->client->create($definitionIdentifier, $subject, $data));
     }
 
-    public function show(string $identifier): Workflow
+    public function show(string|Workflow $workflow): Workflow
     {
-        return $this->wrap(fn(): Workflow => $this->client->show($identifier));
+        return $this->wrap(fn(): Workflow => $this->client->show($workflow));
     }
 
-    public function update(string $identifier, array $data): Workflow
+    public function update(string|Workflow $workflow, array $data): Workflow
     {
-        return $this->wrap(fn(): Workflow => $this->client->update($identifier, $data));
+        return $this->wrap(fn(): Workflow => $this->client->update($workflow, $data));
     }
 }

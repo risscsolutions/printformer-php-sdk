@@ -9,13 +9,11 @@
 
 namespace Rissc\Printformer\Client\Workflow;
 
-use JetBrains\PhpStorm\ArrayShape;
-
 interface WorkflowClient
 {
     public function create(string $definitionIdentifier, array $subject, array $data = []): Workflow;
 
-    public function show(string $identifier): Workflow;
+    public function show(string|Workflow $workflow): Workflow;
 
-    public function update(string $identifier, array $data): Workflow;
+    public function update(string|Workflow $workflow, array $data): Workflow;
 }

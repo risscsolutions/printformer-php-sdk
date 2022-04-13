@@ -9,40 +9,27 @@
 
 namespace Rissc\Printformer\Client\Workflow;
 
-use Rissc\Printformer\Client\Client as Base;
-use GuzzleHttp\ClientInterface as HTTPClient;
-use GuzzleHttp\Utils;
-use JetBrains\PhpStorm\ArrayShape;
-use JetBrains\PhpStorm\Pure;
-use Psr\Http\Message\ResponseInterface;
+use Rissc\Printformer\Client\ResourceClient;
 
 /**
  * @internal
  */
-class Client extends Base implements WorkflowClient
+class Client extends ResourceClient implements WorkflowClient
 {
-    #[Pure] public function __construct(HTTPClient $http)
-    {
-        parent::__construct($http, 'workflow');
-    }
+    protected static string $resource = Workflow::class;
 
     public function create(string $definitionIdentifier, array $subject, array $data = []): Workflow
     {
-        return self::workflowFromResponse($this->post($this->resource, compact('definitionIdentifier', 'subject', 'data')));
+        return $this->createResource(compact('definitionIdentifier', 'subject', 'data'));
     }
 
-    public function show(string $identifier): Workflow
+    public function show(string|Workflow $workflow): Workflow
     {
-        return self::workflowFromResponse($this->get($this->buildPath($identifier)));
+        return $this->showResource($workflow);
     }
 
-    public function update(string $identifier, array $data): Workflow
+    public function update(string|Workflow $workflow, array $data): Workflow
     {
-        return self::workflowFromResponse($this->put($this->buildPath($identifier), compact('data')));
-    }
-
-    private static function workflowFromResponse(ResponseInterface $response): Workflow
-    {
-        return Workflow::fromArray(Utils::jsonDecode($response->getBody()->getContents(), true)['data']);
+        return $this->updateResource($workflow, compact('data'));
     }
 }

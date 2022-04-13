@@ -9,8 +9,13 @@
 
 namespace Rissc\Printformer\Client\File;
 
-class File
+use Rissc\Printformer\Client\Resource;
+use Rissc\Printformer\Util\AccessPropertiesAsArray;
+
+class File implements Resource
 {
+    use AccessPropertiesAsArray;
+
     public function __construct(public string $identifier)
     {
     }
@@ -18,5 +23,15 @@ class File
     public static function fromArray(array $data): File
     {
         return new File(data_get($data, 'identifier'));
+    }
+
+    public static function getPath(): string
+    {
+        return 'file';
+    }
+
+    public function getIdentifier(): string
+    {
+        return $this->identifier;
     }
 }

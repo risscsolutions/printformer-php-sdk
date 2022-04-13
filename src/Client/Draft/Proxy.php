@@ -19,7 +19,7 @@ use JetBrains\PhpStorm\Pure;
  */
 class Proxy extends Base implements DraftClient
 {
-    #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private Client $client)
+    #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private DraftClient $client)
     {
         parent::__construct($badRequestHandler);
     }

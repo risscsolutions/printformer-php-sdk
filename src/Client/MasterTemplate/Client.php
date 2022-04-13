@@ -9,28 +9,22 @@
 
 namespace Rissc\Printformer\Client\MasterTemplate;
 
-use Rissc\Printformer\Client\Client as Base;
-use GuzzleHttp\ClientInterface as HTTPClient;
 use GuzzleHttp\Utils;
-use JetBrains\PhpStorm\Pure;
-use Psr\Http\Message\ResponseInterface;
 use Rissc\Printformer\Client\PaginationMeta;
 use Rissc\Printformer\Client\Paginator;
+use Rissc\Printformer\Client\ResourceClient;
 
 /**
  * @internal
  */
-class Client extends Base implements MasterTemplateClient
+class Client extends ResourceClient implements MasterTemplateClient
 {
-    #[Pure] public function __construct(HTTPClient $http)
-    {
-        parent::__construct($http, 'template');
-    }
+    protected static string $resource = MasterTemplate::class;
 
     public function list(int $page): Paginator
     {
         $page = $page === 0 ? 1 : $page;
-        $response = $this->get(sprintf('template?%s', http_build_query(array_filter(compact('page'), static fn(?string $value) => !empty($value)))));
+        $response = $this->get(sprintf('%s?%s', MasterTemplate::getPath(), self::buildQuery(compact('page'))));
         $responseBody = Utils::jsonDecode($response->getBody()->getContents(), true);
 
         return new Paginator(
@@ -38,10 +32,5 @@ class Client extends Base implements MasterTemplateClient
             PaginationMeta::fromArray($responseBody['meta']),
             $this,
         );
-    }
-
-    protected static function masterTemplateFromResponse(ResponseInterface $response): MasterTemplate
-    {
-        return MasterTemplate::fromArray(Utils::jsonDecode($response->getBody()->getContents(), true)['data']);
     }
 }

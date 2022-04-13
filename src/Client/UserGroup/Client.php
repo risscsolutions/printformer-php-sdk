@@ -9,34 +9,24 @@
 
 namespace Rissc\Printformer\Client\UserGroup;
 
-use Rissc\Printformer\Client\Client as Base;
-use GuzzleHttp\ClientInterface as HTTPClient;
-use GuzzleHttp\Utils;
-use JetBrains\PhpStorm\Pure;
-use Psr\Http\Message\ResponseInterface;
+use Rissc\Printformer\Client\Resource;
+use Rissc\Printformer\Client\ResourceClient;
 
 /**
  * @internal
  */
-class Client extends Base implements UserGroupClient
+class Client extends ResourceClient implements UserGroupClient
 {
-    #[Pure] public function __construct(HTTPClient $http)
-    {
-        parent::__construct($http, 'user-group');
-    }
+    /** @var class-string<Resource> */
+    protected static string $resource = UserGroup::class;
 
     public function create(): UserGroup
     {
-        return self::userGroupFromResponse($this->http->post($this->resource));
+        return self::resourceFromResponse($this->http->post(UserGroup::getPath()));
     }
 
     public function show(string $identifier): UserGroup
     {
-        return self::userGroupFromResponse($this->get($this->buildPath($identifier)));
-    }
-
-    private static function userGroupFromResponse(ResponseInterface $response): UserGroup
-    {
-        return UserGroup::fromArray(Utils::jsonDecode($response->getBody()->getContents(), true)['data']);
+        return $this->showResource($identifier);
     }
 }

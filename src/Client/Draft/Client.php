@@ -9,41 +9,40 @@
 
 namespace Rissc\Printformer\Client\Draft;
 
-use Rissc\Printformer\Client\Client as Base;
-use GuzzleHttp\ClientInterface as HTTPClient;
 use GuzzleHttp\Utils;
-use JetBrains\PhpStorm\Pure;
-use Psr\Http\Message\ResponseInterface;
+use Rissc\Printformer\Client\DestroysResources;
+use Rissc\Printformer\Client\ResourceClient;
 
 /**
  * @internal
  */
-class Client extends Base implements DraftClient
+class Client extends ResourceClient implements DraftClient
 {
-    #[Pure] public function __construct(HTTPClient $http)
-    {
-        parent::__construct($http, 'draft');
-    }
+    use DestroysResources;
+
+    protected static string $resource = Draft::class;
 
     public function create(array $data): Draft
     {
-        return self::draftFromResponse($this->post($this->resource, $data));
+        return $this->createResource($data);
     }
 
     public function show(string|Draft $draft): Draft
     {
-        return self::draftFromResponse($this->get($this->buildPath($this->getIdentifier($draft))));
+        return $this->showResource($draft);
     }
 
     public function update(string|Draft $draft, array $data): Draft
     {
-        return self::draftFromResponse($this->put($this->buildPath($this->getIdentifier($draft)), $data));
+        return $this->updateResource($draft, $data);
     }
 
     public function replicate(string|Draft $draft, array $data): Draft
     {
-        return self::draftFromResponse($this->post($this->buildPath(
-            $this->getIdentifier($draft), 'replicate'), $data));
+        return self::resourceFromResponse($this->post(
+            $this->buildPath($this->getIdentifier($draft), 'replicate'),
+            $data
+        ));
     }
 
     public function claim(string $user, array $identifiers, bool $dryRun = false): array
@@ -62,10 +61,8 @@ class Client extends Base implements DraftClient
 
     public function pageInfo(string|Draft $draft, string $usage, ?int $row = null, ?string $unit = null): PageInfo
     {
-        return PageInfo::fromArray(
-            Utils::jsonDecode($this->get(sprintf('%s/%s/%s/page-info?%s', $this->resource, $this->getIdentifier($draft), $usage, http_build_query(array_filter(compact('row', 'unit'), static fn(?string $value) => !empty($value))))
-            )->getBody()->getContents(), true)['data']
-        );
+        $url = sprintf('%s/%s/%s/page-info?%s', Draft::getPath(), $this->getIdentifier($draft), $usage, http_build_query(array_filter(compact('row', 'unit'), static fn(?string $value) => !empty($value))));
+        return PageInfo::fromArray(Utils::jsonDecode($this->get($url)->getBody()->getContents(), true)['data']);
     }
 
     public function requestIdmlPackage(string|Draft $draft, string $callbackURL): bool
@@ -73,22 +70,5 @@ class Client extends Base implements DraftClient
         return self::assertEmptyResponse(
             $this->post($this->buildPath($this->getIdentifier($draft), 'request-idml-package'), compact('callbackURL'))
         );
-    }
-
-    public function destroy(string|Draft $draft): bool
-    {
-        return $this
-                ->delete($this->buildPath($this->getIdentifier($draft)))
-                ->getStatusCode() === 204;
-    }
-
-    protected static function draftFromResponse(ResponseInterface $response): Draft
-    {
-        return Draft::fromArray(Utils::jsonDecode($response->getBody()->getContents(), true)['data']);
-    }
-
-    private function getIdentifier(string|Draft $draft): string
-    {
-        return is_string($draft) ? $draft : $draft->draftHash;
     }
 }

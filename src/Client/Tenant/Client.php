@@ -9,29 +9,17 @@
 
 namespace Rissc\Printformer\Client\Tenant;
 
-use Rissc\Printformer\Client\Client as Base;
-use GuzzleHttp\ClientInterface as HTTPClient;
-use GuzzleHttp\Utils;
-use JetBrains\PhpStorm\Pure;
-use Psr\Http\Message\ResponseInterface;
+use Rissc\Printformer\Client\ResourceClient;
 
 /**
  * @internal
  */
-class Client extends Base implements TenantClient
+class Client extends ResourceClient implements TenantClient
 {
-    #[Pure] public function __construct(HTTPClient $http)
-    {
-        parent::__construct($http, 'client');
-    }
+    protected static string $resource = Tenant::class;
 
     public function show(): Tenant
     {
-        return self::tenantFromResponse($this->get($this->resource));
-    }
-
-    protected static function tenantFromResponse(ResponseInterface $response): Tenant
-    {
-        return Tenant::fromArray(Utils::jsonDecode($response->getBody()->getContents(), true)['data']);
+        return self::resourceFromResponse($this->get(Tenant::getPath()));
     }
 }

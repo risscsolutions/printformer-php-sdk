@@ -9,25 +9,18 @@
 
 namespace Rissc\Printformer\Client\File;
 
-use Rissc\Printformer\Client\Client as Base;
-use GuzzleHttp\ClientInterface as HTTPClient;
-use GuzzleHttp\Utils;
-use JetBrains\PhpStorm\Pure;
-use Psr\Http\Message\ResponseInterface;
+use Rissc\Printformer\Client\ResourceClient;
 
 /**
  * @internal
  */
-class Client extends Base implements FileClient
+class Client extends ResourceClient implements FileClient
 {
-    #[Pure] public function __construct(HTTPClient $http)
-    {
-        parent::__construct($http, 'file');
-    }
+    protected static string $resource = File::class;
 
     public function create(\SplFileInfo $file): File
     {
-        return self::fileFromResponse($this->http->post($this->resource, [
+        return self::resourceFromResponse($this->http->post($this->resource, [
             'multipart' => [
                 [
                     'name' => 'file',
@@ -36,10 +29,5 @@ class Client extends Base implements FileClient
                 ]
             ],
         ]));
-    }
-
-    protected static function fileFromResponse(ResponseInterface $response): File
-    {
-        return File::fromArray(Utils::jsonDecode($response->getBody()->getContents(), true)['data']);
     }
 }

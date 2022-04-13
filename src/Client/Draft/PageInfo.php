@@ -9,8 +9,12 @@
 
 namespace Rissc\Printformer\Client\Draft;
 
-class PageInfo
+use Rissc\Printformer\Util\AccessPropertiesAsArray;
+
+class PageInfo implements \ArrayAccess
 {
+    use AccessPropertiesAsArray;
+
     public function __construct(
         public int   $pages,
         public array $dimensions

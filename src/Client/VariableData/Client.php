@@ -11,19 +11,22 @@ namespace Rissc\Printformer\Client\VariableData;
 
 use GuzzleHttp\ClientInterface as HTTPClient;
 use GuzzleHttp\Utils;
-use JetBrains\PhpStorm\Pure;
 use Rissc\Printformer\Client\Client as Base;
+use Rissc\Printformer\Client\Draft\Draft;
 use Rissc\Printformer\Client\PaginationMeta;
 use Rissc\Printformer\Client\Paginator;
+use Rissc\Printformer\Client\UnwrapsResourceIdentifier;
 
 /**
  * @internal
  */
 class Client extends Base implements VariableDataClient
 {
-    #[Pure] public function __construct(HTTPClient $http, string $draft)
+    use UnwrapsResourceIdentifier;
+
+    public function __construct(HTTPClient $http, string|Draft $draft)
     {
-        parent::__construct($http, sprintf('draft/%s/variable-data', $draft));
+        parent::__construct($http, sprintf('%s/%s/variable-data', Draft::getPath(), $this->getIdentifier($draft)));
     }
 
     public function list(int $page, int $perPage = 25): Paginator
@@ -32,7 +35,7 @@ class Client extends Base implements VariableDataClient
         $limit = $perPage;
         $offset = $perPage * ($page - 1);
 
-        $response = $this->get($this->resource . '?' . http_build_query(compact('limit', 'offset')));
+        $response = $this->get($this->path . '?' . self::buildQuery(compact('limit', 'offset')));
         $responseBody = Utils::jsonDecode($response->getBody()->getContents(), true);
         $meta = $responseBody['_meta'];
         $amountOfRows = $meta['amountOfRows'];
@@ -47,7 +50,7 @@ class Client extends Base implements VariableDataClient
     public function create(\SplFileInfo $file, array $columnMapping): bool
     {
         return self::assertEmptyResponse(
-            $this->http->post($this->resource, [
+            $this->http->post($this->path, [
                 'multipart' => [
                     [
                         'name' => 'file',
@@ -64,6 +67,6 @@ class Client extends Base implements VariableDataClient
 
     public function update(array $data): bool
     {
-        return self::assertEmptyResponse($this->put($this->resource, compact('data')));
+        return self::assertEmptyResponse($this->put($this->path, compact('data')));
     }
 }

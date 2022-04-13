@@ -19,7 +19,7 @@ use JetBrains\PhpStorm\Pure;
  */
 class Proxy extends Base implements ProcessingClient
 {
-    #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private Client $client)
+    #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private ProcessingClient $client)
     {
         parent::__construct($badRequestHandler);
     }
@@ -29,8 +29,8 @@ class Proxy extends Base implements ProcessingClient
         return $this->wrap(fn(): Processing => $this->client->create($drafts, $callbackUrl));
     }
 
-    public function show(string $identifier): Processing
+    public function show(string|Processing $processing): Processing
     {
-        return $this->wrap(fn(): Processing => $this->client->show($identifier));
+        return $this->wrap(fn(): Processing => $this->client->show($processing));
     }
 }
