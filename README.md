@@ -45,7 +45,7 @@ $draftClient = $printformer->clientFactory()->draft();
 $draft = $draftClient
     ->create([
         'templateIdentifier' => 'YOUR MASTER TEMPLATE IDENTIFIER',
-        'user_identifier' => $pfUser->identifier,
+        'user_identifier' => $pfUser->getIdentifier(),
         'intent' => 'customize'
     ]);
 ```
@@ -54,7 +54,7 @@ or with a fluid builder
 $draftBuilder = $printformer->builderFactory()->draft();
 $draft = $draftBuilder
     ->template('YOUR MASTER TEMPLATE IDENTIFIER')
-    ->user($pfUser->identifier)
+    ->user($pfUser->getIdentifier())
     ->intent('customize')
     ->create();
 ```
@@ -62,14 +62,14 @@ $draft = $draftBuilder
 ### Create a URL to the Editor
 ```php
 $url = (string)$printformer->urlGenerator()->editor()
-        ->draft($draft->draftHash, 'https://YOUR-CALLBACK-URL-HERE')
-        ->user($pfUser->identifier);
+        ->draft($draft->getIdentifier(), 'https://YOUR-CALLBACK-URL-HERE')
+        ->user($pfUser->getIdentifier());
 ```
 
 ### Create a Print PDF
 ```php
 $printformer->clientFactory()->processing()->create(
-    [$draft->draftHash, $otherDraft->draftHash],
+    [$draft->getIdentifier(), $otherDraft->getIdentifier()],
     'https://YOUR-CALLBACK-URL-HERE'
 );
 ```
@@ -78,6 +78,6 @@ $printformer->clientFactory()->processing()->create(
 ```php
 (string)$printformer->urlGenerator()
 ->draftFiles()
-->printFile($draft->draftHash)
-->expiresAt(new \DateTimeImmutable()->modify('+1 hour'))
+->printFile($draft->getIdentifier())
+->expiresAt((new \DateTimeImmutable())->modify('+1 hour'))
 ```

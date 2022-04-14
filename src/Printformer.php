@@ -55,4 +55,9 @@ final class Printformer
     {
         return new ConcreteBuilderFactory($this);
     }
+
+    public function validateConfiguration(): bool
+    {
+        return $this->clientFactory()->tenant()->show()->identifier === $this->config->get('identifier');
+    }
 }

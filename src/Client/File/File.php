@@ -20,7 +20,7 @@ class File implements Resource
     {
     }
 
-    public static function fromArray(array $data): File
+    public static function fromArray(array $data): static
     {
         return new File(data_get($data, 'identifier'));
     }
