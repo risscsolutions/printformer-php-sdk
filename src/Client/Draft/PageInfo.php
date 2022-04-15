@@ -25,7 +25,7 @@ final class PageInfo implements \ArrayAccess
     {
     }
 
-    /** @param array{pages:int, dimensions:array<array{width: float, height: float}} $data */
+    /** @param array{pages:int, dimensions:array<array{width: float, height: float}>} $data */
     public static function fromArray(array $data): PageInfo
     {
         return new PageInfo(

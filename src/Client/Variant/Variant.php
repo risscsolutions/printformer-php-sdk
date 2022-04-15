@@ -12,7 +12,7 @@ namespace Rissc\Printformer\Client\Variant;
 use Rissc\Printformer\Client\Resource;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
-/** @implements \Resource<string, mixed> */
+/** @implements Resource<string, mixed> */
 final class Variant implements Resource
 {
     use AccessPropertiesAsArray;

@@ -14,13 +14,15 @@ use Rissc\Printformer\Util\AccessPropertiesAsArray;
 use Rissc\Printformer\Client\Resource;
 use function data_get;
 
-/** @implements \Resource<string, mixed> */
+/** @implements Resource<string, mixed> */
 final class Workflow implements Resource
 {
     use AccessPropertiesAsArray;
 
+    /** @param array<string, mixed> $data */
     public function __construct(
         public string          $identifier,
+        /** @var array<string, mixed> */
         public array           $data,
         public ?string         $definitionIdentifier,
         public WorkflowSubject $subject

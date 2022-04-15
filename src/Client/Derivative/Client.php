@@ -16,10 +16,12 @@ use Rissc\Printformer\Client\PaginationMeta;
 use Rissc\Printformer\Client\Paginator;
 use Rissc\Printformer\Client\Resource;
 use Rissc\Printformer\Client\ResourceClient;
+use Rissc\Printformer\Client\Variant\Variant;
 
 /**
  * @internal
  * @extends ResourceClient<Derivative>
+ * @extends ListsResources<Variant>
  */
 class Client extends ResourceClient implements DerivativeClient
 {

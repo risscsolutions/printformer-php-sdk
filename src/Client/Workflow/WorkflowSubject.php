@@ -28,6 +28,7 @@ final class WorkflowSubject implements \ArrayAccess, Arrayable
     {
     }
 
+    /** @param array{type: string, identifier:string} $data */
     public static function fromArray(array $data): WorkflowSubject
     {
         return new static(

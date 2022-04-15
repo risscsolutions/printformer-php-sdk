@@ -47,7 +47,6 @@ class Client extends ResourceClient implements DraftClient
         ));
     }
 
-    /** @param array<string|Draft> $drafts */
     public function claim(string|User $user, array $drafts, bool $dryRun = false): array
     {
         return Utils::jsonDecode(

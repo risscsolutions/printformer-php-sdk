@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 
 class Handler
 {
+    /** @return array{allowAction:bool, action:string, userIdentifier:string, entityType:string, entityIdentifier:string} */
     public function __invoke(ParameterBag $request, \Closure $closure): array
     {
         $actions = $request->get('actions');

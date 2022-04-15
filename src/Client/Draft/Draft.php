@@ -14,7 +14,7 @@ use Rissc\Printformer\Util\AccessPropertiesAsArray;
 use Rissc\Printformer\Client\Resource;
 use function data_get;
 
-/** @implements \Resource<string, mixed> */
+/** @implements Resource<string, mixed> */
 final class Draft implements Resource
 {
     use AccessPropertiesAsArray;

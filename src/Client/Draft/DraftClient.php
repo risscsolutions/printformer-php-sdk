@@ -84,6 +84,10 @@ interface DraftClient
     ])]
     public function replicate(string|Draft $draft, array $data): Draft;
 
+    /**
+     * @param array<string|Draft> $drafts
+     * @return array<string, bool>
+     */
     public function claim(string|User $user, array $drafts, bool $dryRun = false): array;
 
     public function pageInfo(string|Draft $draft, string $usage, ?int $row = null, ?string $unit = null): PageInfo;
