@@ -15,7 +15,7 @@ use Rissc\Printformer\Client\Resource;
 use function data_get;
 
 /** @property ValidationResult[] $validationResults */
-class Draft implements Resource
+final class Draft implements Resource
 {
     use AccessPropertiesAsArray;
 

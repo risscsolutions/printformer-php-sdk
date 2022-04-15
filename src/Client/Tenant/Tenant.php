@@ -12,7 +12,7 @@ namespace Rissc\Printformer\Client\Tenant;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 use Rissc\Printformer\Client\Resource;
 
-class Tenant implements Resource
+final class Tenant implements Resource
 {
     use AccessPropertiesAsArray;
 

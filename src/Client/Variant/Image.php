@@ -9,7 +9,7 @@
 
 namespace Rissc\Printformer\Client\Variant;
 
-class Image extends Thumbnail
+final class Image extends Thumbnail
 {
 
 }

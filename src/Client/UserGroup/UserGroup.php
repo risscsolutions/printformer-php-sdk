@@ -13,7 +13,7 @@ use Rissc\Printformer\Client\Resource;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 use function data_get;
 
-class UserGroup implements Resource
+final class UserGroup implements Resource
 {
     use AccessPropertiesAsArray;
 

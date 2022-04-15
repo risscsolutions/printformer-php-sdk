@@ -11,7 +11,7 @@ namespace Rissc\Printformer\Client\Processing;
 
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
-class DraftState implements \ArrayAccess
+final class DraftState implements \ArrayAccess
 {
     use AccessPropertiesAsArray;
 

@@ -12,7 +12,7 @@ namespace Rissc\Printformer\Client\MasterTemplate;
 use Rissc\Printformer\Client\Resource;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
-class GroupMember implements Resource
+final class GroupMember implements Resource
 {
     use AccessPropertiesAsArray;
 

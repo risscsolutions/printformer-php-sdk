@@ -11,7 +11,7 @@ namespace Rissc\Printformer\Client\Draft;
 
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
-class PageInfo implements \ArrayAccess
+final class PageInfo implements \ArrayAccess
 {
     use AccessPropertiesAsArray;
 

@@ -9,6 +9,6 @@
 
 namespace Rissc\Printformer\Client\Variant;
 
-class Color extends Thumbnail
+final class Color extends Thumbnail
 {
 }

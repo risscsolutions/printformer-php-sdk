@@ -14,7 +14,7 @@ use Rissc\Printformer\Util\AccessPropertiesAsArray;
 use Rissc\Printformer\Client\Resource;
 use function data_get;
 
-class Workflow implements Resource
+final class Workflow implements Resource
 {
     use AccessPropertiesAsArray;
 

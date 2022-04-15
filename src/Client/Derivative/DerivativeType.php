@@ -11,7 +11,7 @@ namespace Rissc\Printformer\Client\Derivative;
 
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
-class DerivativeType implements \ArrayAccess
+final class DerivativeType implements \ArrayAccess
 {
     use AccessPropertiesAsArray;
 

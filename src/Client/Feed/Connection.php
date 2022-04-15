@@ -12,7 +12,7 @@ namespace Rissc\Printformer\Client\Feed;
 use Illuminate\Contracts\Support\Arrayable;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
-class Connection implements \ArrayAccess, Arrayable
+final class Connection implements \ArrayAccess, Arrayable
 {
     use AccessPropertiesAsArray;
 

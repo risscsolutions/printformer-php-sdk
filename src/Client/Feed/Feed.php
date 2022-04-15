@@ -12,7 +12,7 @@ namespace Rissc\Printformer\Client\Feed;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 use Rissc\Printformer\Client\Resource;
 
-class Feed implements Resource
+final class Feed implements Resource
 {
     use AccessPropertiesAsArray;
 

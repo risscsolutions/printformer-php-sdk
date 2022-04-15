@@ -13,7 +13,7 @@ use Illuminate\Contracts\Support\Arrayable;
 use Rissc\Printformer\Client\Resource;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
-class WorkflowSubject implements \ArrayAccess, Arrayable
+final class WorkflowSubject implements \ArrayAccess, Arrayable
 {
     use AccessPropertiesAsArray;
 

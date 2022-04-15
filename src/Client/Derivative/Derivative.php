@@ -12,7 +12,7 @@ namespace Rissc\Printformer\Client\Derivative;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 use Rissc\Printformer\Client\Resource;
 
-class Derivative implements Resource
+final class Derivative implements Resource
 {
     use AccessPropertiesAsArray;
 
