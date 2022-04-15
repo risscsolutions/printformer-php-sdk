@@ -44,7 +44,7 @@ class Client extends Base implements VariableDataClient
 
         return new Paginator(
             $responseBody['data'],
-            new PaginationMeta($page, ceil($amountOfRows / $perPage), $perPage, $amountOfRows),
+            new PaginationMeta($page, (int)ceil($amountOfRows / $perPage), $perPage, $amountOfRows),
             $this
         );
     }
