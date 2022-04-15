@@ -19,7 +19,7 @@ use Rissc\Printformer\Client\Variant\Variant;
 /**
  * @internal
  * @extends ResourceClient<MasterTemplate>
- * @extends ListsResources<Variant>
+ * @uses ListsResources<Variant>
  */
 class Client extends ResourceClient implements MasterTemplateClient
 {

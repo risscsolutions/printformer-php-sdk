@@ -9,6 +9,11 @@
 
 namespace Rissc\Printformer\Client;
 
+/**
+ * @template TKey
+ * @template TValue
+ * @extends \ArrayAccess<TKey, TValue>
+ */
 interface Resource extends \ArrayAccess
 {
     public static function getPath(): string;

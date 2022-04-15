@@ -21,7 +21,7 @@ use Rissc\Printformer\Client\Variant\Variant;
 /**
  * @internal
  * @extends ResourceClient<Derivative>
- * @extends ListsResources<Variant>
+ * @uses ListsResources<Variant>
  */
 class Client extends ResourceClient implements DerivativeClient
 {

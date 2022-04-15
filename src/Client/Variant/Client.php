@@ -18,7 +18,7 @@ use Rissc\Printformer\Client\ResourceClient;
 /**
  * @internal
  * @extends ResourceClient<Variant>
- * @extends ListsResources<Variant>
+ * @uses ListsResources<Variant>
  */
 class Client extends ResourceClient implements VariantClient
 {
