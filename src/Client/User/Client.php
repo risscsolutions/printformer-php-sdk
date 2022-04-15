@@ -16,6 +16,7 @@ use GuzzleHttp\Utils;
 
 /**
  * @internal
+ * @extends ResourceClient<User>
  */
 class Client extends ResourceClient implements UserClient
 {

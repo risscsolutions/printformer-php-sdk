@@ -24,7 +24,7 @@ class Proxy extends Base implements VariableDataClient
         parent::__construct($badRequestHandler);
     }
 
-    public function list(int $page, int $perPage = 0): Paginator
+    public function list(int $page, int $perPage = 25): Paginator
     {
         return $this->wrap(fn(): array => $this->client->list($page, $perPage));
     }

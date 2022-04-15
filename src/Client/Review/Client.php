@@ -15,6 +15,7 @@ use Rissc\Printformer\Client\User\User;
 
 /**
  * @internal
+ * @extends ResourceClient<Review>
  */
 class Client extends ResourceClient implements ReviewClient
 {

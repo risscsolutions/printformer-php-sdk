@@ -14,6 +14,7 @@ use Rissc\Printformer\Client\ResourceClient;
 
 /**
  * @internal
+ * @extends ResourceClient<Feed>
  */
 class Client extends ResourceClient implements FeedClient
 {

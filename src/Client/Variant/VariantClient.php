@@ -12,11 +12,10 @@ namespace Rissc\Printformer\Client\Variant;
 use Rissc\Printformer\Client\Paginator;
 use Rissc\Printformer\Client\ProvidesListing;
 
+/**
+ * @extends ProvidesListing<Variant>
+ */
 interface VariantClient extends ProvidesListing
 {
-    /**
-     * @inheritDoc
-     * @return Paginator<Variant>
-     */
     public function list(int $page): Paginator;
 }

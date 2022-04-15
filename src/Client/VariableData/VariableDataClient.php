@@ -17,13 +17,12 @@ use Rissc\Printformer\Exceptions\NotFoundException;
 use Rissc\Printformer\Exceptions\TooManyRequestsException;
 use Rissc\Printformer\Exceptions\ValidationException;
 
+/**
+ * @extends ProvidesListing<array>
+ */
 interface VariableDataClient extends ProvidesListing
 {
-    /**
-     * @inheritDoc
-     * @return Paginator<array>
-     */
-    public function list(int $page): Paginator;
+    public function list(int $page, int $perPage = 25): Paginator;
 
     /**
      * @param \SplFileInfo $file Either a csv or xls file

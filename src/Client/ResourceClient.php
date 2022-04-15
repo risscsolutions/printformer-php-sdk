@@ -23,7 +23,7 @@ abstract class ResourceClient extends Client
     use UnwrapsResourceIdentifier;
     use BuildsResourcePaths;
 
-    /** @var class-string<Resource> */
+    /** @var class-string<T> */
     protected static string $resource;
 
     public function __construct(HTTPClient $http)

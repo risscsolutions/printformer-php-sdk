@@ -13,6 +13,7 @@ use Rissc\Printformer\Client\ResourceClient;
 
 /**
  * @internal
+ * @extends ResourceClient<File>
  */
 class Client extends ResourceClient implements FileClient
 {
