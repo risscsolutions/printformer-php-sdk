@@ -26,7 +26,7 @@ class Tenant implements Resource
 
     public static function fromArray(array $data): static
     {
-        return new Tenant(
+        return new static(
             data_get($data, 'name'),
             data_get($data, 'identifier'),
             data_get($data, 'createdAt'),

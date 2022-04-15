@@ -34,7 +34,7 @@ class Workflow implements Resource
 
     public static function fromArray(array $data): static
     {
-        return new Workflow(
+        return new static(
             data_get($data, 'identifier'),
             data_get($data, 'data'),
             data_get($data, 'definitionIdentifier'),

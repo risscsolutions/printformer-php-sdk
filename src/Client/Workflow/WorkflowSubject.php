@@ -26,7 +26,7 @@ class WorkflowSubject implements \ArrayAccess, Arrayable
 
     public static function fromArray(array $data): WorkflowSubject
     {
-        return new WorkflowSubject(
+        return new static(
             data_get($data, 'type'),
             data_get($data, 'identifier'),
         );

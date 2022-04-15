@@ -32,7 +32,7 @@ class User implements Resource
 
     public static function fromArray(array $data): static
     {
-        return new User(
+        return new static(
             data_get($data, 'identifier'),
             data_get($data, 'locale'),
             data_get($data, 'profile.salutation'),

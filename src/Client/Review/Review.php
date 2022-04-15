@@ -23,7 +23,7 @@ class Review implements Resource
 
     public static function fromArray(mixed $data): static
     {
-        return new Review(data_get($data, 'reviewId'));
+        return new static(data_get($data, 'reviewId'));
     }
 
     public function getIdentifier(): string

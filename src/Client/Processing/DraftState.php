@@ -25,7 +25,7 @@ class DraftState implements \ArrayAccess
 
     public static function fromArray(array $data): static
     {
-        return new DraftState(
+        return new static(
             data_get($data, 'draftId'),
             data_get($data, 'state'),
             data_get($data, 'message'),

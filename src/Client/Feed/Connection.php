@@ -29,7 +29,7 @@ class Connection implements \ArrayAccess, Arrayable
 
     public static function fromArray(array $data): static
     {
-        return new Connection(
+        return new static(
             data_get($data, 'host'),
             data_get($data, 'username'),
             data_get($data, 'password'),

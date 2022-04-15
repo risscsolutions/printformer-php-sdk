@@ -13,6 +13,7 @@ use Rissc\Printformer\Client\ResourceClient;
 
 /**
  * @internal
+ * @extends ResourceClient<Workflow>
  */
 class Client extends ResourceClient implements WorkflowClient
 {

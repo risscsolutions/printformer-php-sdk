@@ -22,9 +22,9 @@ class AvailTemplate implements \ArrayAccess
     {
     }
 
-    public static function fromArray(array $data): AvailTemplate
+    public static function fromArray(array $data): static
     {
-        return new AvailTemplate(
+        return new static(
             data_get($data, 'name'),
             data_get($data, 'pageCount'),
         );

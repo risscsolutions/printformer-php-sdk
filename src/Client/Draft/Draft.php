@@ -40,7 +40,7 @@ class Draft implements Resource
 
     public static function fromArray(array $data): static
     {
-        return new Draft(
+        return new static(
             data_get($data, 'userIdentifier'),
             data_get($data, 'userGroupIdentifier'),
             data_get($data, 'templateIdentifier'),

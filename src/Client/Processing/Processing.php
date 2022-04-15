@@ -26,7 +26,7 @@ class Processing implements Resource
 
     public static function fromArray(array $data): static
     {
-        return new Processing(
+        return new static(
             data_get($data, 'processingId'),
             array_map(static fn(array $draftState) => DraftState::fromArray($draftState), data_get($data, 'draftStates', []))
         );

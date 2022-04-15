@@ -26,7 +26,7 @@ class Polling implements \ArrayAccess, Arrayable
 
     public static function fromArray(array $data): static
     {
-        return new Polling(
+        return new static(
             data_get($data, 'enabled'),
             data_get($data, 'interval'),
             data_get($data, 'dropBeforeImport'),

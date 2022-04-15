@@ -19,6 +19,7 @@ use Rissc\Printformer\Client\ResourceClient;
 
 /**
  * @internal
+ * @extends ResourceClient<Derivative>
  */
 class Client extends ResourceClient implements DerivativeClient
 {
