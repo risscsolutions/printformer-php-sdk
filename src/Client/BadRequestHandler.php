@@ -25,23 +25,14 @@ final class BadRequestHandler
         $response = $exception->getResponse();
         $responseBody = Utils::jsonDecode($response->getBody()->getContents(), true);
 
-        switch ($response->getStatusCode()) {
-            case Response::HTTP_UNPROCESSABLE_ENTITY:
-                $e = new ValidationException($exception->getMessage(), $exception->getCode(), $exception);
-                $e->setErrors($responseBody['errors'] ?? [$responseBody['message']]);
-                throw $e;
-            case Response::HTTP_FORBIDDEN:
-                throw new FeatureNotEnabledException($responseBody['message'], $exception->getCode(), $exception);
-            case Response::HTTP_NOT_FOUND:
-                throw new NotFoundException($responseBody['message'], $exception->getCode(), $exception);
-            case Response::HTTP_TOO_MANY_REQUESTS:
-                throw new TooManyRequestsException($responseBody['message'], $exception->getCode(), $exception);
-            case Response::HTTP_BAD_GATEWAY:
-            case Response::HTTP_SERVICE_UNAVAILABLE:
-                throw new MaintenanceException($exception->getMessage(), $exception->getCode(), $exception);
-            case Response::HTTP_INTERNAL_SERVER_ERROR:
-            default:
-                throw $exception;
-        }
+        throw match ($response->getStatusCode()) {
+            Response::HTTP_UNPROCESSABLE_ENTITY => (new ValidationException($exception->getMessage(), $exception->getCode(), $exception))->setErrors($responseBody['errors'] ?? [$responseBody['message']]),
+            Response::HTTP_FORBIDDEN => new FeatureNotEnabledException($responseBody['message'], $exception->getCode(), $exception),
+            Response::HTTP_NOT_FOUND => new NotFoundException($responseBody['message'], $exception->getCode(), $exception),
+            Response::HTTP_TOO_MANY_REQUESTS => new TooManyRequestsException($responseBody['message'], $exception->getCode(), $exception),
+            Response::HTTP_BAD_GATEWAY, Response::HTTP_SERVICE_UNAVAILABLE => new MaintenanceException($exception->getMessage(), $exception->getCode(), $exception),
+            Response::HTTP_INTERNAL_SERVER_ERROR => $exception,
+            default => $exception,
+        };
     }
 }

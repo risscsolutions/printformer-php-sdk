@@ -46,16 +46,6 @@ abstract class Client
         return $this->http->delete($uri);
     }
 
-    protected function buildPath(string $identifier, ?string $action = null): string
-    {
-        return implode('/', array_filter([$this->path, $identifier, $action], static fn(?string $value) => !empty($value)));
-    }
-
-    protected function buildPathWithQuery(string $identifier, ?string $action = null, array $params = []): string
-    {
-        return sprintf('%s?%s', $this->buildPath($identifier, $action), self::buildQuery($params));
-    }
-
     protected static function assertEmptyResponse(ResponseInterface $response): bool
     {
         return $response->getStatusCode() === Response::HTTP_NO_CONTENT;

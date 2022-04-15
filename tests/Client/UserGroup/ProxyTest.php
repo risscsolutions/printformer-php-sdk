@@ -9,30 +9,15 @@
 
 namespace Rissc\Printformer\Tests\Client\UserGroup;
 
-use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
+use GuzzleHttp\ClientInterface as HTTPClient;
 use Rissc\Printformer\Client\BadRequestHandler;
-use Rissc\Printformer\Client\UserGroup\Client;
 use Rissc\Printformer\Client\UserGroup\Proxy;
-use Rissc\Printformer\Exceptions\NotFoundException;
-use Rissc\Printformer\Tests\Client\TestsHTTPCalls;
+use Rissc\Printformer\Client\UserGroup\UserGroupClient;
 
-class ProxyTest extends TestCase
+class ProxyTest extends ClientTest
 {
-    use TestsHTTPCalls;
-
-    public function testShowNotFound(): void
+    protected static function createAPIClient(HTTPClient $http): UserGroupClient
     {
-        static::expectException(NotFoundException::class);
-        $container = [];
-        $http = $this->createMockHTTPClient($container, [
-            new Response(404, [], json_encode([
-                'message' => 'No query results for model [Printformer\\UserGroup].',
-                'success' => false
-            ]))
-        ]);
-
-        $client = new Proxy(new BadRequestHandler(), new Client($http));
-        $client->show('123abcxy');
+        return new Proxy(new BadRequestHandler(), parent::createAPIClient($http));
     }
 }

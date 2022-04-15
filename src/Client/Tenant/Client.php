@@ -20,6 +20,6 @@ class Client extends ResourceClient implements TenantClient
 
     public function show(): Tenant
     {
-        return self::resourceFromResponse($this->get(Tenant::getPath()));
+        return self::resourceFromResponse($this->get($this->path));
     }
 }

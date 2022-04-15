@@ -31,7 +31,7 @@ class Client extends ResourceClient implements DerivativeClient
     public function list(int $page): Paginator
     {
         $page = $page === 0 ? 1 : $page;
-        $response = $this->get(implode('/', [$this->owner::getPath(), $this->owner->getIdentifier(), $this->path]) . '?' . self::buildQuery(compact('page')));
+        $response = $this->get(self::buildResourcePath($this->owner, $this->path) . '?' . self::buildQuery(compact('page')));
         $responseBody = Utils::jsonDecode($response->getBody()->getContents(), true);
 
         return new Paginator(

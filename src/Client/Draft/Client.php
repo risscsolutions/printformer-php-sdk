@@ -12,6 +12,7 @@ namespace Rissc\Printformer\Client\Draft;
 use GuzzleHttp\Utils;
 use Rissc\Printformer\Client\DestroysResources;
 use Rissc\Printformer\Client\ResourceClient;
+use Rissc\Printformer\Client\User\User;
 
 /**
  * @internal
@@ -40,18 +41,18 @@ class Client extends ResourceClient implements DraftClient
     public function replicate(string|Draft $draft, array $data): Draft
     {
         return self::resourceFromResponse($this->post(
-            $this->buildPath($this->getIdentifier($draft), 'replicate'),
+            $this->buildPath($draft, 'replicate'),
             $data
         ));
     }
 
-    public function claim(string $user, array $identifiers, bool $dryRun = false): array
+    public function claim(string|User $user, array $drafts, bool $dryRun = false): array
     {
         return Utils::jsonDecode(
             $this
-                ->post('draft/claim', [
-                    'user_identifier' => $user,
-                    'drafts' => $identifiers,
+                ->post($this->buildPath('claim'), [
+                    'user_identifier' => static::unwrapResource($user),
+                    'drafts' => static::unwrapArray($drafts),
                     'dryRun' => $dryRun
                 ])
                 ->getBody()
@@ -61,14 +62,14 @@ class Client extends ResourceClient implements DraftClient
 
     public function pageInfo(string|Draft $draft, string $usage, ?int $row = null, ?string $unit = null): PageInfo
     {
-        $url = sprintf('%s/%s/%s/page-info?%s', Draft::getPath(), $this->getIdentifier($draft), $usage, http_build_query(array_filter(compact('row', 'unit'), static fn(?string $value) => !empty($value))));
+        $url = self::buildResourcePath($draft, $usage, 'page-info') . '?' . self::buildQuery(compact('row', 'unit'));
         return PageInfo::fromArray(Utils::jsonDecode($this->get($url)->getBody()->getContents(), true)['data']);
     }
 
     public function requestIdmlPackage(string|Draft $draft, string $callbackURL): bool
     {
         return self::assertEmptyResponse(
-            $this->post($this->buildPath($this->getIdentifier($draft), 'request-idml-package'), compact('callbackURL'))
+            $this->post($this->buildPath($draft, 'request-idml-package'), compact('callbackURL'))
         );
     }
 }

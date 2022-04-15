@@ -12,4 +12,5 @@ namespace Rissc\Printformer\Builder;
 interface Factory
 {
     public function draft(): DraftBuilder;
+    public function feed(): FeedBuilder;
 }

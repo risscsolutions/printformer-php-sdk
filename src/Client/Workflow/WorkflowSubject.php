@@ -9,9 +9,11 @@
 
 namespace Rissc\Printformer\Client\Workflow;
 
+use Illuminate\Contracts\Support\Arrayable;
+use Rissc\Printformer\Client\Resource;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
-class WorkflowSubject implements \ArrayAccess
+class WorkflowSubject implements \ArrayAccess, Arrayable
 {
     use AccessPropertiesAsArray;
 
@@ -28,5 +30,18 @@ class WorkflowSubject implements \ArrayAccess
             data_get($data, 'type'),
             data_get($data, 'identifier'),
         );
+    }
+
+    public static function fromResource(Resource $resource): WorkflowSubject
+    {
+        return new WorkflowSubject($resource::getPath(), $resource->getIdentifier());
+    }
+
+    public function toArray()
+    {
+        return [
+            'type' => $this->type,
+            'identifier' => $this->identifier,
+        ];
     }
 }

@@ -13,5 +13,5 @@ interface UserGroupClient
 {
     public function create(): UserGroup;
 
-    public function show(string $identifier): UserGroup;
+    public function show(string $userGroup): UserGroup;
 }

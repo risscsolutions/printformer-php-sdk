@@ -13,6 +13,7 @@ use Rissc\Printformer\Client\BadRequestHandler;
 use Rissc\Printformer\Client\Proxy as Base;
 use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\Pure;
+use Rissc\Printformer\Client\User\User;
 
 /**
  * @internal
@@ -58,9 +59,9 @@ class Proxy extends Base implements DraftClient
         return $this->wrap(fn(): Draft => $this->client->replicate($draft, $data));
     }
 
-    public function claim(string $user, array $identifiers, bool $dryRun = false): array
+    public function claim(string|User $user, array $drafts, bool $dryRun = false): array
     {
-        return $this->wrap(fn(): array => $this->client->claim($user, $identifiers, $dryRun));
+        return $this->wrap(fn(): array => $this->client->claim($user, $drafts, $dryRun));
     }
 
     public function pageInfo(string|Draft $draft, string $usage, ?int $row = null, ?string $unit = null): PageInfo

@@ -24,6 +24,8 @@ use Rissc\Printformer\Url\TokenBuilder;
 
 class TokenBuilderTest extends TestCase
 {
+    use ParsesTokens;
+
     private const TEST_API_TOKEN = 'pqalymxnskwoiedjcnvbfhrutzg';
     private TokenBuilder $tokenBuilder;
 
@@ -87,14 +89,5 @@ class TokenBuilderTest extends TestCase
             'second' => true,
             'third' => 123,
         ], Arr::except($token->claims()->all(), ['iat', 'exp']));
-    }
-
-    private function parseToken(Configuration $configuration, string $tokenString): UnencryptedToken
-    {
-        /** @var UnencryptedToken $token */
-        $token = $configuration->parser()->parse($tokenString);
-        static::assertInstanceOf(UnencryptedToken::class, $token);
-        static::assertTrue($configuration->validator()->validate($token, ...$configuration->validationConstraints()));
-        return $token;
     }
 }

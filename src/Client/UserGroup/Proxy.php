@@ -28,8 +28,8 @@ class Proxy extends Base implements UserGroupClient
         return $this->wrap(fn(): UserGroup => $this->client->create());
     }
 
-    public function show(string $identifier): UserGroup
+    public function show(string|UserGroup $userGroup): UserGroup
     {
-        return $this->wrap(fn(): UserGroup => $this->client->show($identifier));
+        return $this->wrap(fn(): UserGroup => $this->client->show($userGroup));
     }
 }

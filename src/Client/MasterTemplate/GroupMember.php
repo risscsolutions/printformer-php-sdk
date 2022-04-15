@@ -9,9 +9,10 @@
 
 namespace Rissc\Printformer\Client\MasterTemplate;
 
+use Rissc\Printformer\Client\Resource;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
-class GroupMember implements \ArrayAccess
+class GroupMember implements Resource
 {
     use AccessPropertiesAsArray;
 
@@ -22,11 +23,22 @@ class GroupMember implements \ArrayAccess
     {
     }
 
-    public static function fromArray(array $data): GroupMember
+    public static function fromArray(array $data): static
     {
         return new GroupMember(
             data_get($data, 'identifier'),
             data_get($data, 'name'),
         );
+    }
+
+
+    public static function getPath(): string
+    {
+        return 'template';
+    }
+
+    public function getIdentifier(): string
+    {
+        return $this->identifier;
     }
 }

@@ -43,6 +43,9 @@ use Rissc\Printformer\Client\UserGroup\UserGroupClient as UserGroupClientContrac
 use Rissc\Printformer\Client\VariableData\Client as VariableDataClient;
 use Rissc\Printformer\Client\VariableData\Proxy as VariableDataProxy;
 use Rissc\Printformer\Client\VariableData\VariableDataClient as VariableDataClientContract;
+use Rissc\Printformer\Client\Variant\VariantClient as VariantClientContract;
+use Rissc\Printformer\Client\Variant\Client as VariantClient;
+use Rissc\Printformer\Client\Variant\Proxy as VariantProxy;
 use Rissc\Printformer\Client\Workflow\Client as WorkflowClient;
 use Rissc\Printformer\Client\Workflow\Proxy as WorkflowProxy;
 use Rissc\Printformer\Client\Workflow\WorkflowClient as WorkflowClientContract;
@@ -123,5 +126,10 @@ final class ConcreteFactory implements Factory
     public function derivative(Resource $owner): DerivativeClientContract
     {
         return new DerivativeProxy(new BadRequestHandler(), new DerivativeClient($this->http, $owner));
+    }
+
+    public function variant(): VariantClientContract
+    {
+        return new VariantProxy(new BadRequestHandler(), new VariantClient($this->http));
     }
 }

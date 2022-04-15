@@ -24,4 +24,9 @@ class ConcreteFactory implements Factory
     {
         return new DraftBuilder($this->printformer->clientFactory()->draft());
     }
+
+    public function feed(): FeedBuilder
+    {
+        return new FeedBuilder($this->printformer->clientFactory()->feed());
+    }
 }

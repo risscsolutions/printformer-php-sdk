@@ -15,7 +15,8 @@ use Rissc\Printformer\Client\Client as Base;
 use Rissc\Printformer\Client\Draft\Draft;
 use Rissc\Printformer\Client\PaginationMeta;
 use Rissc\Printformer\Client\Paginator;
-use Rissc\Printformer\Client\UnwrapsResourceIdentifier;
+use Rissc\Printformer\Util\BuildsResourcePaths;
+use Rissc\Printformer\Util\UnwrapsResourceIdentifier;
 
 /**
  * @internal
@@ -23,10 +24,11 @@ use Rissc\Printformer\Client\UnwrapsResourceIdentifier;
 class Client extends Base implements VariableDataClient
 {
     use UnwrapsResourceIdentifier;
+    use BuildsResourcePaths;
 
     public function __construct(HTTPClient $http, string|Draft $draft)
     {
-        parent::__construct($http, sprintf('%s/%s/variable-data', Draft::getPath(), $this->getIdentifier($draft)));
+        parent::__construct($http, sprintf('%s/%s/variable-data', Draft::getPath(), static::unwrapResource($draft)));
     }
 
     public function list(int $page, int $perPage = 25): Paginator

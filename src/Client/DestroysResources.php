@@ -9,14 +9,14 @@
 
 namespace Rissc\Printformer\Client;
 
+use Rissc\Printformer\Util\UnwrapsResourceIdentifier;
+
 trait DestroysResources
 {
     use UnwrapsResourceIdentifier;
 
     public function destroy(string|Resource $resource): bool
     {
-        return $this
-                ->delete($this->buildPath($this->getIdentifier($resource)))
-                ->getStatusCode() === 204;
+        return self::assertEmptyResponse($this->delete($this->buildPath(static::unwrapResource($resource))));
     }
 }

@@ -13,6 +13,7 @@ use Rissc\Printformer\Client\BadRequestHandler;
 use Rissc\Printformer\Client\Proxy as Base;
 use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\Pure;
+use Rissc\Printformer\Client\Resource;
 
 /**
  * @internal
@@ -25,7 +26,7 @@ class Proxy extends Base implements WorkflowClient
         parent::__construct($badRequestHandler);
     }
 
-    public function create(string $definitionIdentifier, array $subject, array $data = []): Workflow
+    public function create(string $definitionIdentifier, WorkflowSubject $subject, array $data = []): Workflow
     {
         return $this->wrap(fn(): Workflow => $this->client->create($definitionIdentifier, $subject, $data));
     }

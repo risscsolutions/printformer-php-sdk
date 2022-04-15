@@ -9,15 +9,23 @@
 
 namespace Rissc\Printformer\Tests\Client\User;
 
+use GuzzleHttp\ClientInterface as HTTPClient;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Rissc\Printformer\Client\User\Client;
+use Rissc\Printformer\Client\User\User;
+use Rissc\Printformer\Client\User\UserClient;
 use Rissc\Printformer\Tests\Client\TestsHTTPCalls;
 
 class ClientTest extends TestCase
 {
     use TestsHTTPCalls;
+
+    protected static function createAPIClient(HTTPClient $http): UserClient
+    {
+        return new Client($http);
+    }
 
     public function testCreate(): void
     {
@@ -33,7 +41,7 @@ class ClientTest extends TestCase
             ])),
         ]);
 
-        $client = new Client($http);
+        $client = static::createAPIClient($http);
         $user = $client->create([
             'email' => 'info@rissc.com'
         ]);
@@ -64,7 +72,7 @@ class ClientTest extends TestCase
             ]))
         ]);
 
-        $client = new Client($http);
+        $client = static::createAPIClient($http);
         $user = $client->show('123abcxy');
 
         static::assertCount(1, $container);
@@ -93,7 +101,7 @@ class ClientTest extends TestCase
             ])),
         ]);
 
-        $client = new Client($http);
+        $client = static::createAPIClient($http);
         $user = $client->update('123abcxy', [
             'email' => 'info@rissc.com'
         ]);
@@ -127,7 +135,7 @@ class ClientTest extends TestCase
             ]))
         ]);
 
-        $client = new Client($http);
+        $client = static::createAPIClient($http);
         $user = $client->merge('123abcxy', 'qwertzy12');
 
         static::assertCount(2, $container);
@@ -147,5 +155,25 @@ class ClientTest extends TestCase
         static::assertEquals('123abcxy', $user->identifier);
         static::assertEquals('info@rissc.com', $user->email);
         static::assertNull($user->firstName);
+    }
+
+    public function testDestroy(): void
+    {
+        $container = [];
+        $http = $this->createMockHTTPClient($container, [
+            new Response(204, [], json_encode([])),
+        ]);
+
+        $client = static::createAPIClient($http);
+
+        static::assertTrue($client->destroy(new User('123abcxy', null, null, null, null, null, null, [])));
+
+        static::assertCount(1, $container);
+
+        /** @var RequestInterface $request */
+        $request = head($container)['request'];
+
+        static::assertEquals('DELETE', $request->getMethod());
+        static::assertStringMatchesFormat('https://printformer.test/api-ext/user/123abcxy', (string)$request->getUri());
     }
 }

@@ -10,39 +10,42 @@
 namespace Rissc\Printformer\Url;
 
 use GuzzleHttp\Psr7\Uri;
+use Rissc\Printformer\Client\MasterTemplate\MasterTemplate;
 
-final class TemplateFiles extends Base
+final class TemplateFiles extends Files
 {
+    protected static string $resource = MasterTemplate::class;
+
     private ?int $page = null;
     private ?int $variantVersionID = null;
 
-    public function variantExport(string $template): TemplateFiles
+    public function variantExport(string|MasterTemplate $template): TemplateFiles
     {
-        $this->tokenBuilder->urlPath = sprintf('/api-ext/template/%s/variant-export', $template);
+        $this->tokenBuilder->urlPath = $this->buildPath($template, 'variant-export');
         return $this;
     }
 
-    public function variantThumb(string $template): TemplateFiles
+    public function variantThumb(string|MasterTemplate $template): TemplateFiles
     {
-        $this->tokenBuilder->urlPath = sprintf('/api-ext/template/%s/variant-thumb', $template);
+        $this->tokenBuilder->urlPath = $this->buildPath($template, 'variant-thumb');
         return $this;
     }
 
-    public function photoThumb(string $template): TemplateFiles
+    public function photoThumb(string|MasterTemplate $template): TemplateFiles
     {
-        $this->tokenBuilder->urlPath = sprintf('/api-ext/template/%s/photo-thumb', $template);
+        $this->tokenBuilder->urlPath = $this->buildPath($template, 'photo-thumb');
         return $this;
     }
 
-    public function pagePreviewThumb(string $template): TemplateFiles
+    public function pagePreviewThumb(string|MasterTemplate $template): TemplateFiles
     {
-        $this->tokenBuilder->urlPath = sprintf('/api-ext/template/%s/page-preview-thumb', $template);
+        $this->tokenBuilder->urlPath = $this->buildPath($template, 'page-preview-thumb');
         return $this;
     }
 
-    public function threeDeeTexture(string $template, int $pageNumber = 1): TemplateFiles
+    public function threeDeeTexture(string|MasterTemplate $template, int $pageNumber = 1): TemplateFiles
     {
-        $this->tokenBuilder->urlPath = sprintf('/api-ext/template/%s/3d-texture/%s', $template, $pageNumber);
+        $this->tokenBuilder->urlPath = $this->buildPath($template, sprintf('3d-texture/%s', $pageNumber));
         return $this;
     }
 

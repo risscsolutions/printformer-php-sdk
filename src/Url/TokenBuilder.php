@@ -14,6 +14,8 @@ use Illuminate\Support\Str;
 use Lcobucci\JWT\Configuration;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Lcobucci\JWT\Signer\Key\InMemory;
+use Rissc\Printformer\Client\Resource;
+use Rissc\Printformer\Util\UnwrapsResourceIdentifier;
 
 /**
  * @property string $client
@@ -23,6 +25,8 @@ use Lcobucci\JWT\Signer\Key\InMemory;
  */
 final class TokenBuilder implements \Stringable
 {
+    use UnwrapsResourceIdentifier;
+
     private array $claims = [];
 
     public bool $withJTI = false;
@@ -32,9 +36,9 @@ final class TokenBuilder implements \Stringable
     {
     }
 
-    public function __set(string $name, string $value): void
+    public function __set(string $name, string|Resource $value): void
     {
-        $this->claims[$name] = $value;
+        $this->claims[$name] = static::unwrapResource($value);
     }
 
     public function __get(string $name): ?string

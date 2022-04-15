@@ -25,16 +25,17 @@ use Rissc\Printformer\Client\Review\Proxy as ReviewProxy;
 use Rissc\Printformer\Client\Feed\Proxy as FeedProxy;
 use Rissc\Printformer\Client\Tenant\Proxy as TenantProxy;
 use Rissc\Printformer\Client\File\Proxy as FileProxy;
+use Rissc\Printformer\Client\Variant\Proxy as VariantProxy;
 
 class FactoryTest extends TestCase
 {
-    private ConcreteFactory $factory;
+    private static ConcreteFactory $factory;
 
-    public function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        parent::setUp();
+        parent::setUpBeforeClass();
 
-        $this->factory = new ConcreteFactory(new Repository([
+        static::$factory = new ConcreteFactory(new Repository([
             'base_uri' => 'https://printformer.test',
             'identifier' => 'test api identifier',
             'api_key' => 'test api token'
@@ -44,7 +45,7 @@ class FactoryTest extends TestCase
     public function testConstruct(): void
     {
         /** @var HTTPClient $http */
-        $http = NSA::getProperty($this->factory, 'http');
+        $http = NSA::getProperty(static::$factory, 'http');
         /** @var array $config */
         $config = NSA::getProperty($http, 'config');
         /** @var Uri $baseUri */
@@ -71,14 +72,15 @@ class FactoryTest extends TestCase
         yield 'Draft' => ['draft', DraftProxy::class];
         yield 'File' => ['file', FileProxy::class];
         yield 'Tenant' => ['tenant', TenantProxy::class];
+        yield 'Variant' => ['variant', VariantProxy::class];
     }
 
     /**
      * @depends      testConstruct
      * @dataProvider methodToExpectedProvider
      */
-    public function testDraft(string $method, string $expected): void
+    public function testMake(string $method, string $expected): void
     {
-        static::assertInstanceOf($expected, $this->factory->$method());
+        static::assertInstanceOf($expected, static::$factory->$method());
     }
 }

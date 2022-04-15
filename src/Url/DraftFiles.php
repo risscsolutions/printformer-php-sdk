@@ -10,44 +10,45 @@
 namespace Rissc\Printformer\Url;
 
 use GuzzleHttp\Psr7\Uri;
+use Rissc\Printformer\Client\Draft\Draft;
 
-final class DraftFiles extends Base
+final class DraftFiles extends Files
 {
+    protected static string $resource = Draft::class;
+
     private ?int $row = null;
     private ?string $usage = null;
     private ?int $width = null;
     private ?int $height = null;
     private ?int $page = null;
 
-    public function idmlPackage(string $draft): self
+    public function idmlPackage(string|Draft $draft): self
     {
-        $this->tokenBuilder->urlPath = sprintf('/api-ext/files/draft/%s/idml-package', $draft);
+        $this->tokenBuilder->urlPath = $this->buildPath($draft, 'idml-package');
         return $this;
     }
 
-    public function printFile(string $draft): self
+    public function printFile(string|Draft $draft): self
     {
-        $this->tokenBuilder->urlPath = sprintf('/api-ext/files/draft/%s/print', $draft);
+        $this->tokenBuilder->urlPath = $this->buildPath($draft, 'print');
         return $this;
     }
 
-    public function preview(string $draft): self
+    public function preview(string|Draft $draft): self
     {
-        $this->tokenBuilder->urlPath = sprintf('/api-ext/files/draft/%s/low-res', $draft);
+        $this->tokenBuilder->urlPath = $this->buildPath($draft, 'low-res');
         return $this;
     }
 
-    public function image(string $draft): self
+    public function image(string|Draft $draft): self
     {
-        $this->tokenBuilder->urlPath = sprintf('/api-ext/files/draft/%s/image', $draft);
-
+        $this->tokenBuilder->urlPath = $this->buildPath($draft, 'image');
         return $this;
     }
 
-    public function x3d(string $draft): self
+    public function x3d(string|Draft $draft): self
     {
-        $this->tokenBuilder->urlPath = sprintf('/api-ext/files/draft/%s/x3d', $draft);
-
+        $this->tokenBuilder->urlPath = $this->buildPath($draft, 'x3d');
         return $this;
     }
 

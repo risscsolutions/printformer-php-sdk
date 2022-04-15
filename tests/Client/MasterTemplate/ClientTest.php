@@ -9,16 +9,23 @@
 
 namespace Rissc\Printformer\Tests\Client\MasterTemplate;
 
+use GuzzleHttp\ClientInterface as HTTPClient;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Rissc\Printformer\Client\MasterTemplate\Client;
 use Rissc\Printformer\Client\MasterTemplate\MasterTemplate;
+use Rissc\Printformer\Client\MasterTemplate\MasterTemplateClient;
 use Rissc\Printformer\Tests\Client\TestsHTTPCalls;
 
 class ClientTest extends TestCase
 {
     use TestsHTTPCalls;
+
+    protected static function createAPIClient(HTTPClient $http): MasterTemplateClient
+    {
+        return new Client($http);
+    }
 
     public function testList(): void
     {
@@ -50,7 +57,7 @@ class ClientTest extends TestCase
             ])),
         ]);
 
-        $client = new Client($http);
+        $client = static::createAPIClient($http);
         $masterPaginator = $client->list(1);
 
         static::assertCount(1, $container);

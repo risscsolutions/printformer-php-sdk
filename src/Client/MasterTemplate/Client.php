@@ -24,7 +24,7 @@ class Client extends ResourceClient implements MasterTemplateClient
     public function list(int $page): Paginator
     {
         $page = $page === 0 ? 1 : $page;
-        $response = $this->get(sprintf('%s?%s', MasterTemplate::getPath(), self::buildQuery(compact('page'))));
+        $response = $this->get(sprintf('%s?%s', $this->path, self::buildQuery(compact('page'))));
         $responseBody = Utils::jsonDecode($response->getBody()->getContents(), true);
 
         return new Paginator(

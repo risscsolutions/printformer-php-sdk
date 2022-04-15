@@ -9,15 +9,22 @@
 
 namespace Rissc\Printformer\Tests\Client\Tenant;
 
+use GuzzleHttp\ClientInterface as HTTPClient;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Rissc\Printformer\Client\Tenant\Client;
+use Rissc\Printformer\Client\Tenant\TenantClient;
 use Rissc\Printformer\Tests\Client\TestsHTTPCalls;
 
 class ClientTest extends TestCase
 {
     use TestsHTTPCalls;
+
+    protected static function createAPIClient(HTTPClient $http): TenantClient
+    {
+        return new Client($http);
+    }
 
     public function testShow(): void
     {
@@ -32,7 +39,7 @@ class ClientTest extends TestCase
             ]))
         ]);
 
-        $client = new Client($http);
+        $client = static::createAPIClient($http);
         $tenant = $client->show();
 
         static::assertCount(1, $container);

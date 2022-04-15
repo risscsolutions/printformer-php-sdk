@@ -11,9 +11,19 @@ namespace Rissc\Printformer\Builder;
 
 use Rissc\Printformer\Client\Draft\Draft;
 use Rissc\Printformer\Client\Draft\DraftClient;
+use Rissc\Printformer\Client\Feed\Feed;
+use Rissc\Printformer\Client\MasterTemplate\GroupMember;
+use Rissc\Printformer\Client\MasterTemplate\MasterTemplate;
+use Rissc\Printformer\Client\Resource;
+use Rissc\Printformer\Client\Variant\Variant;
+use Rissc\Printformer\Util\UnwrapsResourceIdentifier;
+use Rissc\Printformer\Client\User\User;
+use Rissc\Printformer\Client\UserGroup\UserGroup;
 
 class DraftBuilder
 {
+    use UnwrapsResourceIdentifier;
+
     private ?string $intent = null;
     private ?string $templateIdentifier = null;
 
@@ -27,8 +37,8 @@ class DraftBuilder
     private ?array $availableVariants = null;
     private ?array $availableVariantVersions = null;
 
-    private ?int $variant = null;
-    private ?int $variantVersion = null;
+    private ?string $variant = null;
+    private ?string $variantVersion = null;
     private bool $remoteAcl = false;
     private bool $locked = false;
     private bool $disablePreflight = false;
@@ -53,21 +63,21 @@ class DraftBuilder
         return $this;
     }
 
-    public function template(?string $templateIdentifier): DraftBuilder
+    public function template(string|MasterTemplate|null $template): DraftBuilder
     {
-        $this->templateIdentifier = $templateIdentifier;
+        $this->templateIdentifier = static::unwrapOptionalResource($template);
         return $this;
     }
 
-    public function user(?string $userIdentifier): DraftBuilder
+    public function user(string|User|null $user): DraftBuilder
     {
-        $this->userIdentifier = $userIdentifier;
+        $this->userIdentifier = static::unwrapOptionalResource($user);
         return $this;
     }
 
-    public function userGroup(?string $userGroupIdentifier): DraftBuilder
+    public function userGroup(string|UserGroup|null $userGroup): DraftBuilder
     {
-        $this->userGroupIdentifier = $userGroupIdentifier;
+        $this->userGroupIdentifier = static::unwrapOptionalResource($userGroup);
         return $this;
     }
 
@@ -89,9 +99,9 @@ class DraftBuilder
         return $this;
     }
 
-    public function feed(?string $feedIdentifier): DraftBuilder
+    public function feed(string|Feed|null $feed): DraftBuilder
     {
-        $this->feedIdentifier = $feedIdentifier;
+        $this->feedIdentifier = static::unwrapOptionalResource($feed);
         return $this;
     }
 
@@ -107,13 +117,13 @@ class DraftBuilder
         return $this;
     }
 
-    public function vriant(?int $variant): DraftBuilder
+    public function variant(string|Variant|null $variant): DraftBuilder
     {
-        $this->variant = $variant;
+        $this->variant = static::unwrapOptionalResource($variant);
         return $this;
     }
 
-    public function variantVersion(?int $variantVersion): DraftBuilder
+    public function variantVersion(?string $variantVersion): DraftBuilder
     {
         $this->variantVersion = $variantVersion;
         return $this;
@@ -161,9 +171,9 @@ class DraftBuilder
         return $this;
     }
 
-    public function defaultGroupTemplate(?string $defaultGroupTemplate): DraftBuilder
+    public function defaultGroupTemplate(string|GroupMember|null $defaultGroupTemplate): DraftBuilder
     {
-        $this->defaultGroupTemplate = $defaultGroupTemplate;
+        $this->defaultGroupTemplate = static::unwrapOptionalResource($defaultGroupTemplate);
         return $this;
     }
 

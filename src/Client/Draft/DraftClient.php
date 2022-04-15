@@ -10,6 +10,7 @@
 namespace Rissc\Printformer\Client\Draft;
 
 use JetBrains\PhpStorm\ArrayShape;
+use Rissc\Printformer\Client\User\User;
 use Rissc\Printformer\Exceptions\MaintenanceException;
 use Rissc\Printformer\Exceptions\NotFoundException;
 use Rissc\Printformer\Exceptions\TooManyRequestsException;
@@ -83,7 +84,7 @@ interface DraftClient
     ])]
     public function replicate(string|Draft $draft, array $data): Draft;
 
-    public function claim(string $user, array $identifiers, bool $dryRun = false): array;
+    public function claim(string|User $user, array $drafts, bool $dryRun = false): array;
 
     public function pageInfo(string|Draft $draft, string $usage, ?int $row = null, ?string $unit = null): PageInfo;
 

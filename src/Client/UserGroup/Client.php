@@ -17,16 +17,15 @@ use Rissc\Printformer\Client\ResourceClient;
  */
 class Client extends ResourceClient implements UserGroupClient
 {
-    /** @var class-string<Resource> */
     protected static string $resource = UserGroup::class;
 
     public function create(): UserGroup
     {
-        return self::resourceFromResponse($this->http->post(UserGroup::getPath()));
+        return self::resourceFromResponse($this->http->post($this->path));
     }
 
-    public function show(string $identifier): UserGroup
+    public function show(string|UserGroup $userGroup): UserGroup
     {
-        return $this->showResource($identifier);
+        return $this->showResource($userGroup);
     }
 }

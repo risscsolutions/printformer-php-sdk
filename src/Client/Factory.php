@@ -21,6 +21,7 @@ use Rissc\Printformer\Client\Tenant\TenantClient;
 use Rissc\Printformer\Client\User\UserClient;
 use Rissc\Printformer\Client\UserGroup\UserGroupClient;
 use Rissc\Printformer\Client\VariableData\VariableDataClient;
+use Rissc\Printformer\Client\Variant\VariantClient;
 use Rissc\Printformer\Client\Workflow\WorkflowClient;
 
 interface Factory
@@ -57,6 +58,6 @@ interface Factory
 
 //TODO    public function declaration();
 
-//TODO    public function variants();
+    public function variant(): VariantClient;
 
 }

@@ -18,10 +18,11 @@ class ValidationException extends \LogicException
         return $this->errors;
     }
 
-    public function setErrors(array $errors): void
+    public function setErrors(array $errors): self
     {
         $this->errors = $errors;
-
         $this->message = json_encode($errors, JSON_PRETTY_PRINT);
+
+        return $this;
     }
 }

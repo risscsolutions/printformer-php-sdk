@@ -26,6 +26,6 @@ class Proxy extends Base implements MasterTemplateClient
 
     public function list(?int $page = null): Paginator
     {
-        return $this->wrap(fn(): array => $this->client->list($page));
+        return $this->wrap(fn(): Paginator => $this->client->list($page));
     }
 }

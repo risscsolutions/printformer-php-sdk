@@ -41,8 +41,8 @@ class Client extends ResourceClient implements UserClient
     public function merge(string|User $targetUser, string|User $sourceUser): User
     {
         $mergeResponse = $this->post(
-            $this->buildPath($this->getIdentifier($targetUser), 'merge'),
-            ['source_user_identifier' => $this->getIdentifier($sourceUser)]
+            $this->buildPath($targetUser, 'merge'),
+            ['source_user_identifier' => static::unwrapResource($sourceUser)]
         );
         if (Utils::jsonDecode($mergeResponse->getBody()->getContents())->success === false) {
             throw new SuccessFalseException();

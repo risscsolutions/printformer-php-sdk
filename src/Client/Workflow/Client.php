@@ -18,7 +18,7 @@ class Client extends ResourceClient implements WorkflowClient
 {
     protected static string $resource = Workflow::class;
 
-    public function create(string $definitionIdentifier, array $subject, array $data = []): Workflow
+    public function create(string $definitionIdentifier, WorkflowSubject $subject, array $data = []): Workflow
     {
         return $this->createResource(compact('definitionIdentifier', 'subject', 'data'));
     }

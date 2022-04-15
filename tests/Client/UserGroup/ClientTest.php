@@ -9,17 +9,23 @@
 
 namespace Rissc\Printformer\Tests\Client\UserGroup;
 
+use GuzzleHttp\ClientInterface as HTTPClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Rissc\Printformer\Client\UserGroup\Client;
-use Rissc\Printformer\Exceptions\NotFoundException;
+use Rissc\Printformer\Client\UserGroup\UserGroupClient;
 use Rissc\Printformer\Tests\Client\TestsHTTPCalls;
 
 class ClientTest extends TestCase
 {
     use TestsHTTPCalls;
+
+    protected static function createAPIClient(HTTPClient $http): UserGroupClient
+    {
+        return new Client($http);
+    }
 
     public function testCreate(): void
     {
@@ -32,7 +38,7 @@ class ClientTest extends TestCase
             ]))
         ]);
 
-        $client = new Client($http);
+        $client = static::createAPIClient($http);
         $userGroup = $client->create();
 
         static::assertCount(1, $container);
@@ -56,7 +62,7 @@ class ClientTest extends TestCase
             ]))
         ]);
 
-        $client = new Client($http);
+        $client = static::createAPIClient($http);
         $userGroup = $client->show('123abcxy');
 
         static::assertCount(1, $container);
@@ -67,20 +73,5 @@ class ClientTest extends TestCase
         static::assertEquals('GET', $request->getMethod());
         static::assertStringMatchesFormat('https://printformer.test/api-ext/user-group/123abcxy', (string)$request->getUri());
         static::assertEquals('123abcxy', $userGroup->identifier);
-    }
-
-    public function testShowNotFound(): void
-    {
-        static::expectException(ClientException::class);
-        $container = [];
-        $http = $this->createMockHTTPClient($container, [
-            new Response(404, [], json_encode([
-                'message' => 'No query results for model [Printformer\\UserGroup].',
-                'success' => false
-            ]))
-        ]);
-
-        $client = new Client($http);
-        $client->show('123abcxy');
     }
 }

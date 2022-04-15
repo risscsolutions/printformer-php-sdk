@@ -9,17 +9,24 @@
 
 namespace Rissc\Printformer\Tests\Client\Derivative;
 
+use GuzzleHttp\ClientInterface as HTTPClient;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Rissc\Printformer\Client\Derivative\Client;
 use Rissc\Printformer\Client\Derivative\Derivative;
+use Rissc\Printformer\Client\Derivative\DerivativeClient;
 use Rissc\Printformer\Client\User\User;
 use Rissc\Printformer\Tests\Client\TestsHTTPCalls;
 
 class ClientTest extends TestCase
 {
     use TestsHTTPCalls;
+
+    protected static function createAPIClient(HTTPClient $http): DerivativeClient
+    {
+        return new Client($http, new User('okmlp12', null, null, null, null, null, null, []));
+    }
 
     public function testList(): void
     {
@@ -47,7 +54,7 @@ class ClientTest extends TestCase
             ])),
         ]);
 
-        $client = new Client($http, new User('okmlp12', null, null, null, null, null, null, []));
+        $client = static::createAPIClient($http);
         $masterPaginator = $client->list(1);
 
         static::assertCount(1, $container);
@@ -87,7 +94,7 @@ class ClientTest extends TestCase
             ])),
         ]);
 
-        $client = new Client($http, new User('okmlp12', null, null, null, null, null, null, []));
+        $client = static::createAPIClient($http);
         $derivative = $client->show('xyzabc12');
 
         static::assertCount(1, $container);

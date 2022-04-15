@@ -19,7 +19,7 @@ class Processing implements Resource
 
     public function __construct(
         public string $processingId,
-        public array  $draftIds,
+        public array  $draftStates,
     )
     {
     }
@@ -28,7 +28,7 @@ class Processing implements Resource
     {
         return new Processing(
             data_get($data, 'processingId'),
-            data_get($data, 'draftIds')
+            array_map(static fn(array $draftState) => DraftState::fromArray($draftState), data_get($data, 'draftStates', []))
         );
     }
 

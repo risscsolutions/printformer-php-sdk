@@ -22,7 +22,7 @@ class Feed implements Resource
         public string $name,
         public string $mappingIdentifier,
         public string $mediaProvider,
-        public array  $config,
+        public Config  $config,
     )
     {
     }
@@ -35,7 +35,7 @@ class Feed implements Resource
             data_get($data, 'name'),
             data_get($data, 'mappingIdentifier'),
             data_get($data, 'mediaProvider'),
-            data_get($data, 'config'),
+            Config::fromArray(data_get($data, 'config')),
         );
     }
 

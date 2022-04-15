@@ -20,11 +20,13 @@ class Client extends ResourceClient implements ProcessingClient
 
     public function create(array $drafts, ?string $callbackUrl = null): Processing
     {
-        return $this->createResource(array_filter([
-                'draftIds' => $drafts,
+        $processingId = $this->createResource(array_filter([
+                'draftIds' => static::unwrapArray($drafts),
                 'stateChangedNotifyUrl' => $callbackUrl
-            ], static fn(?string $value): bool => !empty($value))
+            ], static fn(mixed $value): bool => !empty($value))
         );
+
+        return $this->show($processingId);
     }
 
     public function show(string|Processing $processing): Processing
