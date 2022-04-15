@@ -24,8 +24,8 @@ class Proxy extends Base implements VariantClient
         parent::__construct($badRequestHandler);
     }
 
-    public function list(?int $page = null): Paginator
+    public function list(int $page, int $perPage = 25): Paginator
     {
-        return $this->wrap(fn(): Paginator => $this->client->list($page));
+        return $this->wrap(fn(): Paginator => $this->client->list($page, $perPage));
     }
 }

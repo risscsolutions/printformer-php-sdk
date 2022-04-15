@@ -24,9 +24,9 @@ class Proxy extends Base implements DerivativeClient
         parent::__construct($badRequestHandler);
     }
 
-    public function list(int $page): Paginator
+    public function list(int $page, int $perPage = 25): Paginator
     {
-        return static::wrap(fn(): Paginator => $this->client->list($page));
+        return static::wrap(fn(): Paginator => $this->client->list($page, $perPage));
     }
 
     public function show(string|Derivative $derivative): Derivative

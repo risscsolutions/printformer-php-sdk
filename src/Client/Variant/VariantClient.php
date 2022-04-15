@@ -17,5 +17,4 @@ use Rissc\Printformer\Client\ProvidesListing;
  */
 interface VariantClient extends ProvidesListing
 {
-    public function list(int $page): Paginator;
 }

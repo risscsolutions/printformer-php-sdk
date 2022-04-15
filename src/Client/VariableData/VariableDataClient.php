@@ -9,7 +9,6 @@
 
 namespace Rissc\Printformer\Client\VariableData;
 
-use Rissc\Printformer\Client\Paginator;
 use Rissc\Printformer\Client\ProvidesListing;
 use Rissc\Printformer\Exceptions\FeatureNotEnabledException;
 use Rissc\Printformer\Exceptions\MaintenanceException;
@@ -22,8 +21,6 @@ use Rissc\Printformer\Exceptions\ValidationException;
  */
 interface VariableDataClient extends ProvidesListing
 {
-    public function list(int $page, int $perPage = 25): Paginator;
-
     /**
      * @param \SplFileInfo $file Either a csv or xls file
      * @param Array<int|string, int> $columnMapping Column name to column index mapping

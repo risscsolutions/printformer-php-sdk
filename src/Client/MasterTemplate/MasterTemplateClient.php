@@ -9,7 +9,6 @@
 
 namespace Rissc\Printformer\Client\MasterTemplate;
 
-use Rissc\Printformer\Client\Paginator;
 use Rissc\Printformer\Client\ProvidesListing;
 
 /**
@@ -17,5 +16,4 @@ use Rissc\Printformer\Client\ProvidesListing;
  */
 interface MasterTemplateClient extends ProvidesListing
 {
-    public function list(int $page): Paginator;
 }

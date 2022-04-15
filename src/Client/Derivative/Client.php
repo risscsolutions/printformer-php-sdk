@@ -11,6 +11,7 @@ namespace Rissc\Printformer\Client\Derivative;
 
 use GuzzleHttp\ClientInterface as HTTPClient;
 use GuzzleHttp\Utils;
+use Rissc\Printformer\Client\ListsResources;
 use Rissc\Printformer\Client\PaginationMeta;
 use Rissc\Printformer\Client\Paginator;
 use Rissc\Printformer\Client\Resource;
@@ -18,9 +19,13 @@ use Rissc\Printformer\Client\ResourceClient;
 
 /**
  * @internal
-*/
+ */
 class Client extends ResourceClient implements DerivativeClient
 {
+    use ListsResources {
+        list as private _list;
+    }
+
     protected static string $resource = Derivative::class;
 
     public function __construct(HTTPClient $http, private Resource $owner)
@@ -28,17 +33,12 @@ class Client extends ResourceClient implements DerivativeClient
         parent::__construct($http);
     }
 
-    public function list(int $page): Paginator
+    public function list(int $page, int $perPage = 25): Paginator
     {
-        $page = $page === 0 ? 1 : $page;
-        $response = $this->get(self::buildResourcePath($this->owner, $this->path) . '?' . self::buildQuery(compact('page')));
-        $responseBody = Utils::jsonDecode($response->getBody()->getContents(), true);
+        $queryParams = ['page' => $page === 0 ? 1 : $page, 'per_page' => $perPage];
+        $response = $this->get(self::buildResourcePath($this->owner, $this->path) . '?' . self::buildQuery($queryParams));
 
-        return new Paginator(
-            array_map(static fn(array $derivative) => Derivative::fromArray($derivative), $responseBody['data']),
-            PaginationMeta::fromArray($responseBody['meta']),
-            $this,
-        );
+        return $this->paginatorFromResponse($response);
     }
 
     public function show(string|Derivative $derivative): Derivative

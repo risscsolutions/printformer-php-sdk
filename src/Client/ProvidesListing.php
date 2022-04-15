@@ -18,10 +18,12 @@ use Rissc\Printformer\Exceptions\TooManyRequestsException;
 interface ProvidesListing
 {
     /**
-     * @api
      * @param int $page starts at 1
-     * @throws MaintenanceException|TooManyRequestsException
+     * @param int $perPage
      * @return Paginator<T>
+     * @throws MaintenanceException
+     * @throws TooManyRequestsException
+     * @api
      */
-    public function list(int $page): Paginator;
+    public function list(int $page, int $perPage = 25): Paginator;
 }

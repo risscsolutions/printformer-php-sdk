@@ -9,7 +9,6 @@
 
 namespace Rissc\Printformer\Client\Derivative;
 
-use Rissc\Printformer\Client\Paginator;
 use Rissc\Printformer\Client\ProvidesListing;
 
 /**
@@ -17,7 +16,5 @@ use Rissc\Printformer\Client\ProvidesListing;
  */
 interface DerivativeClient extends ProvidesListing
 {
-    public function list(int $page): Paginator;
-
     public function show(string|Derivative $derivative): Derivative;
 }
