@@ -26,7 +26,7 @@ class Proxy extends Base implements VariableDataClient
 
     public function list(int $page, int $perPage = 25): Paginator
     {
-        return $this->wrap(fn(): array => $this->client->list($page, $perPage));
+        return $this->wrap(fn(): Paginator => $this->client->list($page, $perPage));
     }
 
     public function create(\SplFileInfo $file, array $columnMapping): bool

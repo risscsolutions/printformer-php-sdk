@@ -19,7 +19,7 @@ abstract class Thumbnail implements \ArrayAccess
     {
     }
 
-    public static function fromArray(array $data): static
+    public static function fromArray(array $data): Thumbnail
     {
         if (data_get($data, 'thumbnail_type') === 'color') return new Color(data_get($data, 'thumbnail_value'));
         if (data_get($data, 'thumbnail_type') === 'image') return new Image(data_get($data, 'thumbnail_value'));

@@ -12,7 +12,7 @@ namespace Rissc\Printformer\Client\Feed;
 use Illuminate\Contracts\Support\Arrayable;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
-class Polling implements \ArrayAccess, Arrayable
+final class Polling implements \ArrayAccess, Arrayable
 {
     use AccessPropertiesAsArray;
 
