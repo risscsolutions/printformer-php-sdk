@@ -12,7 +12,10 @@ namespace Rissc\Printformer\Client\Feed;
 use Illuminate\Contracts\Support\Arrayable;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
-/** @implements \ArrayAccess<string, mixed> */
+/**
+ * @implements \ArrayAccess<string, mixed>
+ * @implements Arrayable<string, mixed>
+ */
 final class Config implements \ArrayAccess, Arrayable
 {
     use AccessPropertiesAsArray;

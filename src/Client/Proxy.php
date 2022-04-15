@@ -17,7 +17,7 @@ abstract class Proxy
     {
     }
 
-    protected function wrap(\Closure $closure)
+    protected function wrap(\Closure $closure): mixed
     {
         try {
             return $closure();

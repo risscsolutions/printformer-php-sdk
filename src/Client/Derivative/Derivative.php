@@ -12,6 +12,7 @@ namespace Rissc\Printformer\Client\Derivative;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 use Rissc\Printformer\Client\Resource;
 
+/** @implements Resource<string, mixed> */
 final class Derivative implements Resource
 {
     use AccessPropertiesAsArray;
@@ -25,6 +26,7 @@ final class Derivative implements Resource
     {
     }
 
+    /** @param array{identifier: string, derivativeType: array{identifier: string, label: string, type: string}, downloadURL: string, createdAt: string} $data */
     public static function fromArray(array $data): static
     {
         return new static(

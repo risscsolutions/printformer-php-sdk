@@ -12,7 +12,7 @@ namespace Rissc\Printformer\Client\MasterTemplate;
 use Rissc\Printformer\Client\Resource;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
-/** @implements \ArrayAccess<string, string> */
+/** @implements \Resource<string, string> */
 final class GroupMember implements Resource
 {
     use AccessPropertiesAsArray;
@@ -24,6 +24,7 @@ final class GroupMember implements Resource
     {
     }
 
+    /** @param array{name: string, identifier: string} $data */
     public static function fromArray(array $data): static
     {
         return new static(

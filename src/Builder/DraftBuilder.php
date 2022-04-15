@@ -9,13 +9,11 @@
 
 namespace Rissc\Printformer\Builder;
 
-use JetBrains\PhpStorm\ArrayShape;
 use Rissc\Printformer\Client\Draft\Draft;
 use Rissc\Printformer\Client\Draft\DraftClient;
 use Rissc\Printformer\Client\Feed\Feed;
 use Rissc\Printformer\Client\MasterTemplate\GroupMember;
 use Rissc\Printformer\Client\MasterTemplate\MasterTemplate;
-use Rissc\Printformer\Client\Resource;
 use Rissc\Printformer\Client\Variant\Variant;
 use Rissc\Printformer\Util\UnwrapsResourceIdentifier;
 use Rissc\Printformer\Client\User\User;
@@ -50,12 +48,12 @@ class DraftBuilder
 
     private ?string $pageFillColor = null;
     private ?float $spineWidth = null;
-    /** @var array<array{'width': float, 'height': float}>|null */
+    /** @var array<array{width: float, height: float}>|null */
     private ?array $pageDimensions = null;
-    /** @var array{'left':float, 'right':float, 'top': float, 'right': float}|null */
+    /** @var array{left: float, right: float, top: float, right: float}|null */
     private ?array $bleedAdditions = nulL;
     private ?string $defaultGroupTemplate = null;
-    /** @var array{'containerIdentifier':string, 'catalogTemplateIdentifier' :string, 'pageNumber': int}|null */
+    /** @var array{containerIdentifier: string, catalogTemplateIdentifier :string, pageNumber: int}|null */
     private ?array $containerContentPreFilling = null;
     /** @var array<int|string>|null */
     private ?array $availableCatalogTemplates = null;
@@ -89,12 +87,14 @@ class DraftBuilder
         return $this;
     }
 
+    /** @param array<string, mixed> $apiDefaultValues */
     public function apiDefaultValues(array $apiDefaultValues): DraftBuilder
     {
         $this->apiDefaultValues = $apiDefaultValues;
         return $this;
     }
 
+    /** @param array<string, mixed> $customAttributes */
     public function customAttributes(array $customAttributes): DraftBuilder
     {
         $this->customAttributes = $customAttributes;
@@ -113,12 +113,14 @@ class DraftBuilder
         return $this;
     }
 
+    /** @param array<int|string>|null $availableVariants */
     public function availableVariants(?array $availableVariants): DraftBuilder
     {
         $this->availableVariants = $availableVariants;
         return $this;
     }
 
+    /** @param array<int|string>|null $availableVariantVersions */
     public function availableVariantVersions(?array $availableVariantVersions): DraftBuilder
     {
         $this->availableVariantVersions = $availableVariantVersions;
@@ -167,12 +169,14 @@ class DraftBuilder
         return $this;
     }
 
+    /** @param array<array{width: float, height: float}>|null $pageDimensions */
     public function pageDimensions(?array $pageDimensions): DraftBuilder
     {
         $this->pageDimensions = $pageDimensions;
         return $this;
     }
 
+    /** @param array{left:float, right:float, top: float, right: float}|null $bleedAdditions */
     public function bleedAdditions(?array $bleedAdditions): DraftBuilder
     {
         $this->bleedAdditions = $bleedAdditions;
@@ -185,12 +189,14 @@ class DraftBuilder
         return $this;
     }
 
+    /** @param array{containerIdentifier: string, catalogTemplateIdentifier: string, pageNumber: int}|null $containerContentPreFilling */
     public function containerContentPreFilling(?array $containerContentPreFilling): DraftBuilder
     {
         $this->containerContentPreFilling = $containerContentPreFilling;
         return $this;
     }
 
+    /** @param array<int|string>|null $availableCatalogTemplates */
     public function availableCatalogTemplates(?array $availableCatalogTemplates): DraftBuilder
     {
         $this->availableCatalogTemplates = $availableCatalogTemplates;

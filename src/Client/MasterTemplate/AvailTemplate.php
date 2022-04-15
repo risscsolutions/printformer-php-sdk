@@ -23,6 +23,7 @@ final class AvailTemplate implements \ArrayAccess
     {
     }
 
+    /** @param array{name: string, pageCount: int} $data */
     public static function fromArray(array $data): static
     {
         return new static(

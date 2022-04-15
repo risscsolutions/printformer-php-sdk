@@ -11,6 +11,7 @@ namespace Rissc\Printformer\Client\Derivative;
 
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
+/** @implements \ArrayAccess<string, string> */
 final class DerivativeType implements \ArrayAccess
 {
     use AccessPropertiesAsArray;
@@ -23,6 +24,7 @@ final class DerivativeType implements \ArrayAccess
     {
     }
 
+    /** @param array{identifier: string, label: string, type: string} $data */
     public static function fromArray(array $data): DerivativeType
     {
         return new DerivativeType(

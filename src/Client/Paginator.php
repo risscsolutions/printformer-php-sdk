@@ -15,9 +15,9 @@ namespace Rissc\Printformer\Client;
 final class Paginator
 {
     /**
-     * @param Array<int, T> $data
+     * @param array<int, T> $data
      * @param PaginationMeta $meta
-     * @param ProvidesListing $providesListing
+     * @param ProvidesListing<T> $providesListing
      */
     public function __construct(private array $data, private PaginationMeta $meta, private ProvidesListing $providesListing)
     {

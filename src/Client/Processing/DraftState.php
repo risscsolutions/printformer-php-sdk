@@ -11,6 +11,7 @@ namespace Rissc\Printformer\Client\Processing;
 
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
+/** @implements \ArrayAccess<string, string|null> */
 final class DraftState implements \ArrayAccess
 {
     use AccessPropertiesAsArray;
@@ -23,6 +24,7 @@ final class DraftState implements \ArrayAccess
     {
     }
 
+    /** @param array{draftId: string, state: string, message: string|null} $data */
     public static function fromArray(array $data): static
     {
         return new static(

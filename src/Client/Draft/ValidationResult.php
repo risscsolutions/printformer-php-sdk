@@ -9,9 +9,13 @@
 
 namespace Rissc\Printformer\Client\Draft;
 
+use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
-class ValidationResult
+/** @implements \ArrayAccess<string, string|int|null> */
+class ValidationResult implements \ArrayAccess
 {
+    use AccessPropertiesAsArray;
+
     public function __construct(
         public ?int   $row,
         public int    $page,
@@ -21,6 +25,8 @@ class ValidationResult
     {
     }
 
+    /** @param array{row: int|null, page: int, message: string, severity: string} $data
+     */
     public static function fromArray(array $data): ValidationResult
     {
         return new ValidationResult(

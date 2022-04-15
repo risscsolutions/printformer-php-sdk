@@ -16,15 +16,16 @@ final class PageInfo implements \ArrayAccess
 {
     use AccessPropertiesAsArray;
 
-    /** @param array<array{'width': float, 'height': float}> $dimensions */
+    /** @param array<array{width: float, height: float}> $dimensions */
     public function __construct(
         public int   $pages,
-        /** @var  array<array{'width': float, 'height': float}> $dimensions */
+        /** @var  array<array{width: float, height: float}> $dimensions */
         public array $dimensions
     )
     {
     }
 
+    /** @param array{pages:int, dimensions:array<array{width: float, height: float}} $data */
     public static function fromArray(array $data): PageInfo
     {
         return new PageInfo(

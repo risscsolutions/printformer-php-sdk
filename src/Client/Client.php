@@ -27,6 +27,7 @@ abstract class Client
         return $this->http->request('GET', $uri);
     }
 
+    /** @param array<mixed> $data */
     protected function post(string $uri, array $data): ResponseInterface
     {
         return $this->http->request('POST', $uri, [
@@ -34,6 +35,7 @@ abstract class Client
         ]);
     }
 
+    /** @param array<mixed> $data */
     protected function put(string $uri, array $data): ResponseInterface
     {
         return $this->http->request('PUT', $uri, [

@@ -12,7 +12,10 @@ namespace Rissc\Printformer\Client\Feed;
 use Illuminate\Contracts\Support\Arrayable;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
-/** @implements \ArrayAccess<string, string|bool|int> */
+/**
+ * @implements \ArrayAccess<string, bool|int>
+ * @implements Arrayable<string, bool|int>
+ */
 final class Polling implements \ArrayAccess, Arrayable
 {
     use AccessPropertiesAsArray;
@@ -25,6 +28,7 @@ final class Polling implements \ArrayAccess, Arrayable
     {
     }
 
+    /** @param array{enabled: bool, interval: int, dropBeforeImport: bool} $data */
     public static function fromArray(array $data): static
     {
         return new static(

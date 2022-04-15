@@ -14,14 +14,14 @@ use Rissc\Printformer\Util\AccessPropertiesAsArray;
 use Rissc\Printformer\Client\Resource;
 use function data_get;
 
-/** @implements \ArrayAccess<string, mixed> */
+/** @implements \Resource<string, mixed> */
 final class Draft implements Resource
 {
     use AccessPropertiesAsArray;
 
     /**
      * @param array<ValidationResult> $validationResults
-     * @param array{'amount': int} $personalizations
+     * @param array{amount: int} $personalizations
      * @param array<string, mixed> $apiDefaultValues
      * @param array<string, scalar> $customAttributes
      */
@@ -31,7 +31,7 @@ final class Draft implements Resource
         public string  $templateIdentifier,
         public ?string $activeGroupTemplateIdentifier,
         public string  $draftHash,
-        /** @var array{'amount': int} $personalizations */
+        /** @var array{amount: int} $personalizations */
         public array   $personalizations,
         public mixed   $preflightStatus,
         public array   $variant,

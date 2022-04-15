@@ -15,5 +15,6 @@ interface Resource extends \ArrayAccess
 
     public function getIdentifier(): string;
 
+    /** @param array<mixed> $data */
     public static function fromArray(array $data): static;
 }

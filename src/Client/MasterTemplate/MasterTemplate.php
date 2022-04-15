@@ -13,19 +13,27 @@ use Rissc\Printformer\Util\AccessPropertiesAsArray;
 use Rissc\Printformer\Client\Resource;
 use function data_get;
 
-/** @implements \ArrayAccess<string, mixed> */
+/** @implements \Resource<string, mixed> */
 final class MasterTemplate implements Resource
 {
     use AccessPropertiesAsArray;
 
+    /**
+     * @param array<string> $intents
+     * @param array<GroupMember> $groupMembers
+     * @param array<string, scalar> $customAttributes
+     */
     public function __construct(
         public string         $identifier,
         public string         $name,
+        /** @var array<string> $intents */
         public array          $intents,
         public int            $pageCount,
         public ?AvailTemplate $availTemplate,
+        /** @var array<GroupMember> $groupMembers */
         public ?array         $groupMembers,
         public ?AvailTemplate $correctionTemplate,
+        /** @var array<string, scalar> $customAttributes */
         public array          $customAttributes,
         public string         $updatedAt
     )
