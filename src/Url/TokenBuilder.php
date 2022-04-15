@@ -27,6 +27,7 @@ final class TokenBuilder implements \Stringable
 {
     use UnwrapsResourceIdentifier;
 
+    /** @var array<string, string> */
     private array $claims = [];
 
     public bool $withJTI = false;

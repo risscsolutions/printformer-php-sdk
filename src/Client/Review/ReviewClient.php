@@ -14,6 +14,7 @@ use Rissc\Printformer\Client\User\User;
 
 interface ReviewClient
 {
+    /** @param array<string|User> $user */
     public function create(string|Draft $draft, array $user, string $closeCallbackURL, bool $remoteAcl = false): Review;
 
     public function deleteUser(string|Review $review, string|User $user): bool;

@@ -11,6 +11,7 @@ namespace Rissc\Printformer\Client\Variant;
 
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
+/** @implements \ArrayAccess<string, string> */
 abstract class Thumbnail implements \ArrayAccess
 {
     use AccessPropertiesAsArray;

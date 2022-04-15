@@ -23,6 +23,10 @@ trait UnwrapsResourceIdentifier
         return is_string($resource) ? $resource : $resource->getIdentifier();
     }
 
+    /**
+     * @param array<string|Resource> $resources
+     * @return array<string>
+     */
     protected static function unwrapArray(array $resources): array
     {
         return array_map(fn(string|Resource $resource): string => static::unwrapResource($resource), $resources);

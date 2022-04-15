@@ -9,6 +9,7 @@
 
 namespace Rissc\Printformer\Builder;
 
+use JetBrains\PhpStorm\ArrayShape;
 use Rissc\Printformer\Client\Draft\Draft;
 use Rissc\Printformer\Client\Draft\DraftClient;
 use Rissc\Printformer\Client\Feed\Feed;
@@ -30,11 +31,15 @@ class DraftBuilder
     private ?string $userIdentifier = null;
     private ?string $userGroupIdentifier = null;
 
+    /** @var array<string, mixed> */
     private array $apiDefaultValues = [];
+    /** @var array<string, mixed> */
     private array $customAttributes = [];
     private bool $pagePlanner = false;
     private ?string $feedIdentifier = null;
+    /** @var array<int|string>|null */
     private ?array $availableVariants = null;
+    /** @var array<int|string>|null */
     private ?array $availableVariantVersions = null;
 
     private ?string $variant = null;
@@ -45,11 +50,14 @@ class DraftBuilder
 
     private ?string $pageFillColor = null;
     private ?float $spineWidth = null;
+    /** @var array<array{'width': float, 'height': float}>|null */
     private ?array $pageDimensions = null;
+    /** @var array{'left':float, 'right':float, 'top': float, 'right': float}|null */
     private ?array $bleedAdditions = nulL;
     private ?string $defaultGroupTemplate = null;
+    /** @var array{'containerIdentifier':string, 'catalogTemplateIdentifier' :string, 'pageNumber': int}|null */
     private ?array $containerContentPreFilling = null;
-
+    /** @var array<int|string>|null */
     private ?array $availableCatalogTemplates = null;
 
 

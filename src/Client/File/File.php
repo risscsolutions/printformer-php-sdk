@@ -12,6 +12,7 @@ namespace Rissc\Printformer\Client\File;
 use Rissc\Printformer\Client\Resource;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
+/** @implements \ArrayAccess<string, string> */
 final class File implements Resource
 {
     use AccessPropertiesAsArray;

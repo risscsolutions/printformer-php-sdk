@@ -11,13 +11,16 @@ namespace Rissc\Printformer\Exceptions;
 
 class ValidationException extends \LogicException
 {
+    /** @var array<string,string> */
     protected array $errors;
 
+    /** @return array<string,string> */
     public function getErrors(): array
     {
         return $this->errors;
     }
 
+    /** @param array<string,string> $errors */
     public function setErrors(array $errors): self
     {
         $this->errors = $errors;

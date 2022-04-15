@@ -17,7 +17,7 @@ use Rissc\Printformer\Exceptions\TooManyRequestsException;
 use Rissc\Printformer\Exceptions\ValidationException;
 
 /**
- * @extends ProvidesListing<array>
+ * @extends ProvidesListing<array<int, array<string, string>>>
  */
 interface VariableDataClient extends ProvidesListing
 {
@@ -30,5 +30,6 @@ interface VariableDataClient extends ProvidesListing
      */
     public function create(\SplFileInfo $file, array $columnMapping): bool;
 
+    /** @param array<int, array<string, string>> $data */
     public function update(array $data): bool;
 }

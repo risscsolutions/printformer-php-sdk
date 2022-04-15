@@ -14,25 +14,34 @@ use Rissc\Printformer\Util\AccessPropertiesAsArray;
 use Rissc\Printformer\Client\Resource;
 use function data_get;
 
-/** @property ValidationResult[] $validationResults */
+/** @implements \ArrayAccess<string, mixed> */
 final class Draft implements Resource
 {
     use AccessPropertiesAsArray;
 
+    /**
+     * @param array<ValidationResult> $validationResults
+     * @param array{'amount': int} $personalizations
+     * @param array<string, mixed> $apiDefaultValues
+     * @param array<string, scalar> $customAttributes
+     */
     public function __construct(
         public string  $userIdentifier,
         public ?string $userGroupIdentifier,
         public string  $templateIdentifier,
         public ?string $activeGroupTemplateIdentifier,
         public string  $draftHash,
-                       #[ArrayShape(['amount' => 'int'])]
-        public array $personalizations,
+        /** @var array{'amount': int} $personalizations */
+        public array   $personalizations,
         public mixed   $preflightStatus,
         public array   $variant,
+        /** @var array<string, mixed> $apiDefaultValues */
         public array   $apiDefaultValues,
+        /** @var array<string, scalar> $customAttributes */
         public array   $customAttributes,
         public string  $state,
         public ?string $setupStatus,
+        /** @var array<ValidationResult> $validationResults */
         public array   $validationResults,
     )
     {

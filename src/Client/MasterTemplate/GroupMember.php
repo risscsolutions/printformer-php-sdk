@@ -12,6 +12,7 @@ namespace Rissc\Printformer\Client\MasterTemplate;
 use Rissc\Printformer\Client\Resource;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
+/** @implements \ArrayAccess<string, string> */
 final class GroupMember implements Resource
 {
     use AccessPropertiesAsArray;

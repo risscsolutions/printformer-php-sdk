@@ -24,9 +24,8 @@ final class Printformer
 {
     private Repository $config;
 
-    #[Pure]
-    #[ArrayShape(['base_uri' => 'string', 'identifier' => 'string', 'api_key' => 'string',])]
-    public function __construct(array $config)
+    /** @param array{'base_uri': 'string', 'identifier': 'string', 'api_key': 'string'} $$config */
+    #[Pure] public function __construct(array $config)
     {
         $this->config = new Repository($config);
     }

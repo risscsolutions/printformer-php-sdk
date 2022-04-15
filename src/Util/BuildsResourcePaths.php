@@ -13,7 +13,7 @@ use Rissc\Printformer\Client\Resource;
 
 trait BuildsResourcePaths
 {
-    protected static function buildResourcePath(Resource $resource, ...$actions): string
+    protected static function buildResourcePath(Resource $resource, string ...$actions): string
     {
         return implode('/', [$resource::getPath(), $resource->getIdentifier(), ...$actions]);
     }

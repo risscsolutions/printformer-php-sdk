@@ -11,6 +11,7 @@ namespace Rissc\Printformer\Util;
 
 trait BuildsQueryStrings
 {
+    /** @param array<string> $args */
     protected static function buildQuery(array $args): string
     {
         return http_build_query(array_filter($args, static fn(?string $value) => !empty($value)));

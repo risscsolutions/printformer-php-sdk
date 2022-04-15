@@ -11,6 +11,7 @@ namespace Rissc\Printformer\Client\MasterTemplate;
 
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
+/** @implements \ArrayAccess<string, string|int> */
 final class AvailTemplate implements \ArrayAccess
 {
     use AccessPropertiesAsArray;
