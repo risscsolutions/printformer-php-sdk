@@ -21,7 +21,7 @@ interface VariableDataClient extends ProvidesListing
 {
     /**
      * @inheritDoc
-     * @return Paginator<int, array>
+     * @return Paginator<array>
      */
     public function list(int $page): Paginator;
 

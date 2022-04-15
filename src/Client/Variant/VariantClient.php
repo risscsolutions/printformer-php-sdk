@@ -16,7 +16,7 @@ interface VariantClient extends ProvidesListing
 {
     /**
      * @inheritDoc
-     * @return Paginator<int, Variant>
+     * @return Paginator<Variant>
      */
     public function list(int $page): Paginator;
 }

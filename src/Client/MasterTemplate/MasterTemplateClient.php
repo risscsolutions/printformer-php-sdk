@@ -16,7 +16,7 @@ interface MasterTemplateClient extends ProvidesListing
 {
     /**
      * @inheritDoc
-     * @return Paginator<int, MasterTemplate>
+     * @return Paginator<MasterTemplate>
      */
     public function list(int $page): Paginator;
 }

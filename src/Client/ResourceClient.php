@@ -32,7 +32,7 @@ abstract class ResourceClient extends Client
     }
 
     /**
-     * @return T
+     * @return T of Rissc\Printformer\Client\Resource
      */
     protected function showResource(string|Resource $resource): Resource
     {
@@ -40,7 +40,7 @@ abstract class ResourceClient extends Client
     }
 
     /**
-     * @return T
+     * @return T of Rissc\Printformer\Client\Resource
      */
     public function createResource(array $data): Resource
     {
@@ -48,7 +48,7 @@ abstract class ResourceClient extends Client
     }
 
     /**
-     * @return T
+     * @return T of Rissc\Printformer\Client\Resource
      */
     protected function updateResource(string|Resource $resource, array $data): Resource
     {
@@ -61,7 +61,7 @@ abstract class ResourceClient extends Client
     }
 
     /**
-     * @return T
+     * @return T of Rissc\Printformer\Client\Resource
      */
     protected static function resourceFromResponse(ResponseInterface $response): Resource
     {

@@ -24,26 +24,26 @@ abstract class Client
 
     protected function get(string $uri): ResponseInterface
     {
-        return $this->http->get($uri);
+        return $this->http->request('GET', $uri);
     }
 
     protected function post(string $uri, array $data): ResponseInterface
     {
-        return $this->http->post($uri, [
+        return $this->http->request('POST', $uri, [
             'json' => $data
         ]);
     }
 
     protected function put(string $uri, array $data): ResponseInterface
     {
-        return $this->http->put($uri, [
+        return $this->http->request('PUT', $uri, [
             'json' => $data
         ]);
     }
 
     protected function delete(string $uri): ResponseInterface
     {
-        return $this->http->delete($uri);
+        return $this->http->request('DELETE', $uri);
     }
 
     protected static function assertEmptyResponse(ResponseInterface $response): bool

@@ -21,7 +21,7 @@ interface ProvidesListing
      * @api
      * @param int $page starts at 1
      * @throws MaintenanceException|TooManyRequestsException
-     * @return Paginator<int, T>
+     * @return Paginator<T>
      */
     public function list(int $page): Paginator;
 }
