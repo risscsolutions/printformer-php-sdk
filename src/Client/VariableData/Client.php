@@ -52,7 +52,7 @@ class Client extends Base implements VariableDataClient
     public function create(\SplFileInfo $file, array $columnMapping): bool
     {
         return self::assertEmptyResponse(
-            $this->http->post($this->path, [
+            $this->http->request('POST', $this->path, [
                 'multipart' => [
                     [
                         'name' => 'file',

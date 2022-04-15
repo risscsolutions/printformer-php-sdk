@@ -16,14 +16,14 @@ use Rissc\Printformer\Util\BuildsResourcePaths;
 use Rissc\Printformer\Util\UnwrapsResourceIdentifier;
 
 /**
- * @template T
+ * @template T of Resource
  */
 abstract class ResourceClient extends Client
 {
     use UnwrapsResourceIdentifier;
     use BuildsResourcePaths;
 
-    /** @var class-string<T> */
+    /** @var class-string<Resource> */
     protected static string $resource;
 
     public function __construct(HTTPClient $http)
@@ -32,7 +32,7 @@ abstract class ResourceClient extends Client
     }
 
     /**
-     * @return T of Rissc\Printformer\Client\Resource
+     * @return T
      */
     protected function showResource(string|Resource $resource): Resource
     {
@@ -40,7 +40,7 @@ abstract class ResourceClient extends Client
     }
 
     /**
-     * @return T of Rissc\Printformer\Client\Resource
+     * @return T
      */
     public function createResource(array $data): Resource
     {
@@ -48,7 +48,7 @@ abstract class ResourceClient extends Client
     }
 
     /**
-     * @return T of Rissc\Printformer\Client\Resource
+     * @return T
      */
     protected function updateResource(string|Resource $resource, array $data): Resource
     {
@@ -61,7 +61,7 @@ abstract class ResourceClient extends Client
     }
 
     /**
-     * @return T of Rissc\Printformer\Client\Resource
+     * @return T
      */
     protected static function resourceFromResponse(ResponseInterface $response): Resource
     {

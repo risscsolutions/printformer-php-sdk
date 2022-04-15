@@ -11,12 +11,16 @@ namespace Rissc\Printformer\Client\Derivative;
 
 use Rissc\Printformer\Client\Paginator;
 use Rissc\Printformer\Client\ProvidesListing;
+use Rissc\Printformer\Client\ResourceClient;
 
+/**
+ * @extends ResourceClient<Derivative>
+ */
 interface DerivativeClient extends ProvidesListing
 {
     /**
      * @inheritDoc
-     * @return Paginator<int, Derivative>
+     * @return Paginator<Derivative>
      */
     public function list(int $page): Paginator;
 

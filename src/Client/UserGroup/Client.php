@@ -21,7 +21,7 @@ class Client extends ResourceClient implements UserGroupClient
 
     public function create(): UserGroup
     {
-        return self::resourceFromResponse($this->http->post($this->path));
+        return self::resourceFromResponse($this->http->request('POST', $this->path));
     }
 
     public function show(string|UserGroup $userGroup): UserGroup

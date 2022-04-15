@@ -10,12 +10,16 @@
 namespace Rissc\Printformer\Client\Draft;
 
 use JetBrains\PhpStorm\ArrayShape;
+use Rissc\Printformer\Client\ResourceClient;
 use Rissc\Printformer\Client\User\User;
 use Rissc\Printformer\Exceptions\MaintenanceException;
 use Rissc\Printformer\Exceptions\NotFoundException;
 use Rissc\Printformer\Exceptions\TooManyRequestsException;
 use Rissc\Printformer\Exceptions\ValidationException;
 
+/**
+ * @extends ResourceClient<Draft>
+ */
 interface DraftClient
 {
     /**

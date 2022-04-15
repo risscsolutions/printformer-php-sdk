@@ -20,7 +20,7 @@ class Client extends ResourceClient implements FileClient
 
     public function create(\SplFileInfo $file): File
     {
-        return self::resourceFromResponse($this->http->post($this->resource, [
+        return self::resourceFromResponse($this->http->request('POST', $this->resource, [
             'multipart' => [
                 [
                     'name' => 'file',

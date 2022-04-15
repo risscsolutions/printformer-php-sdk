@@ -11,7 +11,11 @@ namespace Rissc\Printformer\Client\MasterTemplate;
 
 use Rissc\Printformer\Client\Paginator;
 use Rissc\Printformer\Client\ProvidesListing;
+use Rissc\Printformer\Client\ResourceClient;
 
+/**
+ * @extends ResourceClient<MasterTemplate>
+ */
 interface MasterTemplateClient extends ProvidesListing
 {
     /**

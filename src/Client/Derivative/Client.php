@@ -18,7 +18,7 @@ use Rissc\Printformer\Client\ResourceClient;
 
 /**
  * @internal
- */
+*/
 class Client extends ResourceClient implements DerivativeClient
 {
     protected static string $resource = Derivative::class;

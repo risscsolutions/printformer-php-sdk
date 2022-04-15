@@ -45,7 +45,7 @@ class Client extends ResourceClient implements ReviewClient
     public function closeReview(string|Review $review): bool
     {
         return self::assertEmptyResponse(
-            $this->http->post($this->buildPath($review, 'close-review'))
+            $this->http->request('POST', $this->buildPath($review, 'close-review'))
         );
     }
 
