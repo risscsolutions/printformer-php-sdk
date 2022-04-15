@@ -746,11 +746,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Rissc-Printformer-Client-MasterTemplate-MasterTemplateClient.html"
         },                {
-            "fqsen": "\\Rissc\\Printformer\\Client\\MasterTemplate\\MasterTemplateClient\u003A\u003Alist\u0028\u0029",
-            "name": "list",
-            "summary": "",
-            "url": "classes/Rissc-Printformer-Client-MasterTemplate-MasterTemplateClient.html#method_list"
-        },                {
             "fqsen": "\\Rissc\\Printformer\\Client\\PaginationMeta",
             "name": "PaginationMeta",
             "summary": "",
@@ -1145,11 +1140,6 @@ Search.appendIndex(
             "name": "VariableDataClient",
             "summary": "",
             "url": "classes/Rissc-Printformer-Client-VariableData-VariableDataClient.html"
-        },                {
-            "fqsen": "\\Rissc\\Printformer\\Client\\VariableData\\VariableDataClient\u003A\u003Alist\u0028\u0029",
-            "name": "list",
-            "summary": "",
-            "url": "classes/Rissc-Printformer-Client-VariableData-VariableDataClient.html#method_list"
         },                {
             "fqsen": "\\Rissc\\Printformer\\Client\\VariableData\\VariableDataClient\u003A\u003Acreate\u0028\u0029",
             "name": "create",
@@ -1585,11 +1575,6 @@ Search.appendIndex(
             "name": "DerivativeClient",
             "summary": "",
             "url": "classes/Rissc-Printformer-Client-Derivative-DerivativeClient.html"
-        },                {
-            "fqsen": "\\Rissc\\Printformer\\Client\\Derivative\\DerivativeClient\u003A\u003Alist\u0028\u0029",
-            "name": "list",
-            "summary": "",
-            "url": "classes/Rissc-Printformer-Client-Derivative-DerivativeClient.html#method_list"
         },                {
             "fqsen": "\\Rissc\\Printformer\\Client\\Derivative\\DerivativeClient\u003A\u003Ashow\u0028\u0029",
             "name": "show",
@@ -2056,11 +2041,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Rissc-Printformer-Client-Variant-VariantClient.html"
         },                {
-            "fqsen": "\\Rissc\\Printformer\\Client\\Variant\\VariantClient\u003A\u003Alist\u0028\u0029",
-            "name": "list",
-            "summary": "",
-            "url": "classes/Rissc-Printformer-Client-Variant-VariantClient.html#method_list"
-        },                {
             "fqsen": "\\Rissc\\Printformer\\Util\\BuildsResourcePaths",
             "name": "BuildsResourcePaths",
             "summary": "",
@@ -2100,6 +2080,16 @@ Search.appendIndex(
             "name": "message",
             "summary": "",
             "url": "classes/Rissc-Printformer-Client-Processing-DraftState.html#property_message"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Client\\ListsResources",
+            "name": "ListsResources",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Client-ListsResources.html"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Client\\ListsResources\u003A\u003Alist\u0028\u0029",
+            "name": "list",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Client-ListsResources.html#method_list"
         },                {
             "fqsen": "\\",
             "name": "\\",

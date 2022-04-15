@@ -75,7 +75,7 @@ class ClientTest extends TestCase
         $request = head($container)['request'];
 
         static::assertEquals('GET', $request->getMethod());
-        static::assertStringMatchesFormat('https://printformer.test/api-ext/variant?page=1', (string)$request->getUri());
+        static::assertStringMatchesFormat('https://printformer.test/api-ext/variant?page=1&per_page=25', (string)$request->getUri());
         static::assertTrue($masterPaginator->isLast());
 
         $variants = $masterPaginator->getData();
