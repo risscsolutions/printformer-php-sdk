@@ -189,7 +189,7 @@ class DraftBuilder
         return $this;
     }
 
-    /** @param array{containerIdentifier: string, catalogTemplateIdentifier: string, pageNumber: int}|null $containerContentPreFilling */
+    /** @param array<array{containerIdentifier: string, catalogTemplateIdentifier: string, pageNumber: int}>|null $containerContentPreFilling */
     public function containerContentPreFilling(?array $containerContentPreFilling): DraftBuilder
     {
         $this->containerContentPreFilling = $containerContentPreFilling;

@@ -11,6 +11,7 @@ namespace Rissc\Printformer\Client\Draft;
 
 use GuzzleHttp\Utils;
 use Rissc\Printformer\Client\DestroysResources;
+use Rissc\Printformer\Client\Resource;
 use Rissc\Printformer\Client\ResourceClient;
 use Rissc\Printformer\Client\User\User;
 
@@ -26,7 +27,9 @@ class Client extends ResourceClient implements DraftClient
 
     public function create(array $data): Draft
     {
-        return $this->createResource($data);
+        return $this->createResource(
+            array_map(static fn(mixed $val): mixed => $val instanceof Resource ? $val->getIdentifier() : $val, $data)
+        );
     }
 
     public function show(string|Draft $draft): Draft
