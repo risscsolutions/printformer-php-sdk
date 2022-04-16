@@ -25,25 +25,25 @@ interface DraftClient
      *     intent: string,
      *     templateIdentifier: string,
      *     user_identifier: string,
-     *     userGroupIdentifier: string,
-     *     apiDefaultValues: array<string, mixed>,
-     *     customAttributes: array<string, scalar>,
-     *     pagePlanner: bool,
-     *     feedIdentifier: string,
-     *     availableVariants: array<string|int>,
-     *     availableVariantVersions: array<string>,
-     *     variant: int,
-     *     version: int,
-     *     remoteAcl: bool,
-     *     locked: bool,
-     *     disablePreflight: bool,
-     *     pageFillColor: string,
-     *     spineWidth: float,
-     *     pageDimensions: array<array{width: float, height: float}>,
-     *     bleedAdditions: array{left:float, right:float, top: float, right: float},
-     *     defaultGroupTemplate: string,
-     *     containerContentPreFilling: array<array{containerIdentifier: string, catalogTemplateIdentifier: string, pageNumber: int}>,
-     *     availableCatalogTemplates: array<string>
+     *     userGroupIdentifier?: string,
+     *     apiDefaultValues?: array<string, mixed>,
+     *     customAttributes?: array<string, scalar>,
+     *     pagePlanner?: bool,
+     *     feedIdentifier?: string,
+     *     availableVariants?: array<string|int>,
+     *     availableVariantVersions?: array<string>,
+     *     variant?: int,
+     *     version?: int,
+     *     remoteAcl?: bool,
+     *     locked?: bool,
+     *     disablePreflight?: bool,
+     *     pageFillColor?: string,
+     *     spineWidth?: float,
+     *     pageDimensions?: array<array{width: float, height: float}>,
+     *     bleedAdditions?: array{left:float, right:float, top: float, right: float},
+     *     defaultGroupTemplate?: string,
+     *     containerContentPreFilling?: array<array{containerIdentifier: string, catalogTemplateIdentifier: string, pageNumber: int}>,
+     *     availableCatalogTemplates?: array<string>
      * } $data
      * @return Draft
      * @throws MaintenanceException|TooManyRequestsException|NotFoundException|ValidationException
@@ -53,18 +53,27 @@ interface DraftClient
     public function show(string|Draft $draft): Draft;
 
     /** @param array{
-     *     variant: int,
-     *     version: int,
-     *     apiDefaultValues: array<string, mixed>,
-     *     customAttributes: array<string, scalar>,
-     *     availableCatalogTemplates: array<string>
+     *     variant?: int,
+     *     version?: int,
+     *     apiDefaultValues?: array<string, mixed>,
+     *     customAttributes?: array<string, scalar>,
+     *     availableCatalogTemplates?: array<string>
      * } $data
      */
     public function update(string|Draft $draft, array $data): Draft;
 
     public function destroy(string|Draft $draft): bool;
 
-    /** @param array{pagePlanner: array{projectCode:string, projectName:string, apiDefaultValues:array<string, mixed>, customAttributes:array<string, scalar>, draftParameter: array<string, scalar>}} $data */
+    /** @param array{
+     *     pagePlanner?: array{
+     *      projectCode: string,
+     *      projectName: string,
+     *     },
+     *     apiDefaultValues?: array<string, mixed>,
+     *     customAttributes?: array<string, scalar>,
+     *     draftParameter?: array<string, scalar>
+     * } $data
+     */
     public function replicate(string|Draft $draft, array $data): Draft;
 
     /**

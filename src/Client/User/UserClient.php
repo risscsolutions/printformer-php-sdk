@@ -9,16 +9,32 @@
 
 namespace Rissc\Printformer\Client\User;
 
-use JetBrains\PhpStorm\ArrayShape;
-
 interface UserClient
 {
-    #[ArrayShape(['email' => 'string', 'firstName' => 'string', 'lastName' => 'string', 'title' => 'string', 'salutation' => 'string', 'customAttributes' => 'array', 'locale' => 'string',])]
+    /** @param array{
+     *     email: string,
+     *     firstName: string,
+     *     lastName: string,
+     *     title: string,
+     *     salutation: string,
+     *     customAttributes: array<string, scalar>,
+     *     locale: string
+     * } $data
+     */
     public function create(array $data): User;
 
     public function show(string|User $user): User;
 
-    #[ArrayShape(['email' => 'string', 'firstName' => 'string', 'lastName' => 'string', 'title' => 'string', 'salutation' => 'string', 'customAttributes' => 'array', 'locale' => 'string',])]
+    /** @param array{
+     *     email: string,
+     *     firstName: string,
+     *     lastName: string,
+     *     title: string,
+     *     salutation: string,
+     *     customAttributes: array<string, scalar>,
+     *     locale: string
+     * } $data
+     */
     public function update(string|User $user, array $data): User;
 
     public function destroy(string|User $user): bool;

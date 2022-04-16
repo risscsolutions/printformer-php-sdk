@@ -25,12 +25,35 @@ final class Config implements \ArrayAccess, Arrayable
         public bool        $parseHTML,
         public int         $offset,
         public string      $identifierAttribute,
+        public ?string     $url,
         public Polling     $polling,
         public ?Connection $connection,
     )
     {
     }
 
+    /**
+     * @param array{
+     *  separator: string,
+     *  parseHTML: bool,
+     *  offset: int,
+     *  dentifierAttribute: string,
+     *  polling: array{
+     *      enabled: bool,
+     *      interval: int,
+     *      dropBeforeImport: bool
+     *  },
+     *  url?: string,
+     *  connection?: array{
+     *      host: string,
+     *      username: string,
+     *      password: string,
+     *      path: string,
+     *      port: int,
+     *      passive: bool
+     *     },
+     * } $data
+     */
     public static function fromArray(array $data): static
     {
         return new static(
@@ -38,6 +61,7 @@ final class Config implements \ArrayAccess, Arrayable
             data_get($data, 'parseHTML'),
             data_get($data, 'offset'),
             data_get($data, 'identifierAttribute'),
+            data_get($data, 'url'),
             Polling::fromArray(data_get($data, 'polling')),
             transform(data_get($data, 'connection'), static fn($connection) => Connection::fromArray($connection)),
         );

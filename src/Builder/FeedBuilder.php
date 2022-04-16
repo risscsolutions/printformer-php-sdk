@@ -24,7 +24,42 @@ class FeedBuilder
     private ?string $mediaProvider = null;
     private ?string $type = null;
     private ?bool $shouldReplicate = null;
-    private ?Config $config = null;
+
+    /** @var ?array{
+     *     separator: string,
+     *     parseHTML: bool,
+     *     offset: int,
+     *     identifierAttribute: string,
+     *     polling: array{
+     *      enabled: bool,
+     *      interval: int,
+     *      dropBeforeImport: bool
+     *     }
+     * }
+     */
+    private ?array $config = null;
+
+    /** @var ?array{
+     *     host: string,
+     *     username: string,
+     *     password: string,
+     *     path: string,
+     *     port: int,
+     *     passive: bool
+     * }
+     */
+    private ?array $ftp = null;
+
+    /** @var ?array{
+     *     host: string,
+     *     username: string,
+     *     password: string,
+     *     path: string,
+     *     port: int,
+     *     passive: bool
+     * }
+     */
+    private ?array $sftp = null;
     private ?string $file = null;
     private ?string $url = null;
 
@@ -50,33 +85,73 @@ class FeedBuilder
         return $this;
     }
 
-    public function type(?string $type): FeedBuilder
-    {
-        $this->type = $type;
-        return $this;
-    }
-
     public function shouldReplicate(?bool $shouldReplicate): FeedBuilder
     {
         $this->shouldReplicate = $shouldReplicate;
         return $this;
     }
 
-    public function config(?Config $config): FeedBuilder
+    /** @param array{
+     *     separator: string,
+     *     parseHTML: bool,
+     *     offset: int,
+     *     identifierAttribute: string,
+     *     polling: array{
+     *      enabled: bool,
+     *      interval: int,
+     *      dropBeforeImport: bool
+     *     }
+     * } $config
+     */
+    public function config(array $config): FeedBuilder
     {
         $this->config = $config;
         return $this;
     }
 
-    public function file(null|string|File $file): FeedBuilder
+    public function file(string|File $file): FeedBuilder
     {
-        $this->file = static::unwrapOptionalResource($file);
+        $this->file = static::unwrapResource($file);
+        $this->type = 'local';
         return $this;
     }
 
-    public function url(?string $url): FeedBuilder
+    public function url(string $url): FeedBuilder
     {
         $this->url = $url;
+        $this->type = 'url';
+        return $this;
+    }
+
+    /** @param array{
+     *     host: string,
+     *     username: string,
+     *     password: string,
+     *     path: string,
+     *     port: int,
+     *     passive: bool
+     * } $ftp
+     */
+    public function ftp(array $ftp): FeedBuilder
+    {
+        $this->ftp = $ftp;
+        $this->type = 'ftp';
+        return $this;
+    }
+
+    /** @param array{
+     *     host: string,
+     *     username: string,
+     *     password: string,
+     *     path: string,
+     *     port: int,
+     *     passive: bool
+     * } $sftp
+     */
+    public function sftp(array $sftp): FeedBuilder
+    {
+        $this->sftp = $sftp;
+        $this->type = 'sftp';
         return $this;
     }
 
@@ -88,7 +163,9 @@ class FeedBuilder
             'mediaProvider' => $this->mediaProvider,
             'type' => $this->type,
             'shouldReplicate' => $this->shouldReplicate,
-            'config' => (array)$this->config,
+            'config' => $this->config,
+            'ftp' => $this->ftp,
+            'sftp' => $this->sftp,
             'file' => $this->file,
             'url' => $this->url,
         ], static fn($value): bool => $value !== null));

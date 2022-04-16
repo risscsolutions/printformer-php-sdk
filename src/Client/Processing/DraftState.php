@@ -24,7 +24,7 @@ final class DraftState implements \ArrayAccess
     {
     }
 
-    /** @param array{draftId: string, state: string, message: string|null} $data */
+    /** @param array{draftId: string, state: string, message: ?string} $data */
     public static function fromArray(array $data): static
     {
         return new static(

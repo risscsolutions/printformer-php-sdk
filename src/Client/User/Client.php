@@ -24,7 +24,6 @@ class Client extends ResourceClient implements UserClient
 
     protected static string $resource = User::class;
 
-    /** @param array{email: string, firstName: string, lastName: string, title: string, salutation: string, customAttributes: array, locale: string} $data */
     public function create(array $data): User
     {
         return $this->createResource($data);
@@ -35,7 +34,6 @@ class Client extends ResourceClient implements UserClient
         return $this->showResource($user);
     }
 
-    /** @param array{email: string, firstName: string, lastName: string, title: string, salutation: string, customAttributes: array, locale: string} $data */
     public function update(string|User $user, array $data): User
     {
         return $this->updateResource($user, $data);
