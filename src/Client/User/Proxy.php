@@ -24,6 +24,7 @@ class Proxy extends Base implements UserClient
         parent::__construct($badRequestHandler);
     }
 
+    /** @param array{email: string, firstName: string, lastName: string, title: string, salutation: string, customAttributes: array, locale: string} $data */
     public function create(array $data): User
     {
         return $this->wrap(fn(): User => $this->client->create($data));
@@ -39,6 +40,7 @@ class Proxy extends Base implements UserClient
         return $this->wrap(fn(): User => $this->client->show($user));
     }
 
+    /** @param array{email: string, firstName: string, lastName: string, title: string, salutation: string, customAttributes: array, locale: string} $data */
     public function update(string|User $user, array $data): User
     {
         return $this->wrap(fn(): User => $this->client->update($user, $data));

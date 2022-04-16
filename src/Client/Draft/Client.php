@@ -10,6 +10,7 @@
 namespace Rissc\Printformer\Client\Draft;
 
 use GuzzleHttp\Utils;
+use phpDocumentor\Reflection\Types\Scalar;
 use Rissc\Printformer\Client\DestroysResources;
 use Rissc\Printformer\Client\ResourceClient;
 use Rissc\Printformer\Client\User\User;
@@ -24,7 +25,6 @@ class Client extends ResourceClient implements DraftClient
 
     protected static string $resource = Draft::class;
 
-    /** @param array<mixed> $data */
     public function create(array $data): Draft
     {
         return $this->createResource($data);
@@ -41,6 +41,7 @@ class Client extends ResourceClient implements DraftClient
         return $this->updateResource($draft, $data);
     }
 
+    /** @param array{pagePlanner: array{projectCode:string, projectName:string, apiDefaultValues:array<string, mixed>, customAttributes:array<string, scalar>, draftParameter: array<string, scalar>}} $data */
     public function replicate(string|Draft $draft, array $data): Draft
     {
         return self::resourceFromResponse($this->post(

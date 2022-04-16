@@ -31,6 +31,7 @@ final class Connection implements \ArrayAccess, Arrayable
     {
     }
 
+    /** @param array{host: string, username: string, password: string, path: string, port: int, passive: bool } $data */
     public static function fromArray(array $data): static
     {
         return new static(

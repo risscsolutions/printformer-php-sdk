@@ -9,6 +9,7 @@
 
 namespace Rissc\Printformer\Client\Draft;
 
+use phpDocumentor\Reflection\Types\Scalar;
 use Rissc\Printformer\Client\BadRequestHandler;
 use Rissc\Printformer\Client\Proxy as Base;
 use JetBrains\PhpStorm\ArrayShape;
@@ -47,16 +48,8 @@ class Proxy extends Base implements DraftClient
         return $this->wrap(fn(): Draft => $this->client->update($draft, $data));
     }
 
-    #[ArrayShape([
-        'pagePlanner' => [
-            'projectCode' => 'string',
-            'projectName' => 'string',
-        ],
-        'apiDefaultValues' => 'array',
-        'customAttributes' => 'array',
-        'draftParameter' => 'array',
-
-    ])] public function replicate(string|Draft $draft, array $data): Draft
+    /** @param array{pagePlanner: array{projectCode:string, projectName:string, apiDefaultValues:array<string, mixed>, customAttributes:array<string, scalar>, draftParameter: array<string, scalar>}} $data */
+    public function replicate(string|Draft $draft, array $data): Draft
     {
         return $this->wrap(fn(): Draft => $this->client->replicate($draft, $data));
     }
