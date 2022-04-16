@@ -13,11 +13,13 @@ use Rissc\Printformer\Util\AccessPropertiesAsArray;
 use Rissc\Printformer\Client\Resource;
 use function data_get;
 
-/** @implements Resource<string, mixed> */
 final class User implements Resource
 {
     use AccessPropertiesAsArray;
 
+    /**
+     * @param array<string, scalar> $customAttributes
+     */
     public function __construct(
         public string  $identifier,
         public ?string $locale,
@@ -26,6 +28,7 @@ final class User implements Resource
         public ?string $firstName,
         public ?string $lastName,
         public ?string $email,
+        /** @var array<string, scalar> $customAttributes */
         public array   $customAttributes
     )
     {

@@ -9,20 +9,16 @@
 
 namespace Rissc\Printformer\Client\MasterTemplate;
 
-use GuzzleHttp\Utils;
 use Rissc\Printformer\Client\ListsResources;
-use Rissc\Printformer\Client\PaginationMeta;
-use Rissc\Printformer\Client\Paginator;
 use Rissc\Printformer\Client\ResourceClient;
-use Rissc\Printformer\Client\Variant\Variant;
 
 /**
  * @internal
  * @extends ResourceClient<MasterTemplate>
- * @uses ListsResources<Variant>
  */
 class Client extends ResourceClient implements MasterTemplateClient
 {
+    /** @use ListsResources<MasterTemplate> */
     use ListsResources;
 
     protected static string $resource = MasterTemplate::class;

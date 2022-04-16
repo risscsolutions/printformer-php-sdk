@@ -24,6 +24,7 @@ class Client extends ResourceClient implements DraftClient
 
     protected static string $resource = Draft::class;
 
+    /** @param array<mixed> $data */
     public function create(array $data): Draft
     {
         return $this->createResource($data);
@@ -34,6 +35,7 @@ class Client extends ResourceClient implements DraftClient
         return $this->showResource($draft);
     }
 
+    /** @param array<mixed> $data */
     public function update(string|Draft $draft, array $data): Draft
     {
         return $this->updateResource($draft, $data);

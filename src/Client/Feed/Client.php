@@ -22,6 +22,7 @@ class Client extends ResourceClient implements FeedClient
 
     protected static string $resource = Feed::class;
 
+    /** @param array<mixed> $data */
     public function create(array $data): Feed
     {
         return $this->createResource($data);
@@ -32,6 +33,7 @@ class Client extends ResourceClient implements FeedClient
         return $this->showResource($feed);
     }
 
+    /** @param array<mixed> $data */
     public function update(string|Feed $feed, array $data): Feed
     {
         return $this->updateResource($feed, $data);

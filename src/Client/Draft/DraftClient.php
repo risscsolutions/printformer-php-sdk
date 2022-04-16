@@ -63,7 +63,6 @@ interface DraftClient
             'catalogTemplateIdentifier' => 'string'
         ]],
         'availableCatalogTemplates' => 'array',
-
     ])]
     public function create(array $data): Draft;
 

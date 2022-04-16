@@ -10,9 +10,7 @@
 namespace Rissc\Printformer\Client;
 
 /**
- * @template TKey
- * @template TValue
- * @extends \ArrayAccess<TKey, TValue>
+ * @extends \ArrayAccess<string, mixed>
  */
 interface Resource extends \ArrayAccess
 {

@@ -25,6 +25,7 @@ class Proxy extends Base implements DraftClient
         parent::__construct($badRequestHandler);
     }
 
+    /** @param array<mixed> $data */
     public function create(array $data): Draft
     {
         return $this->wrap(fn(): Draft => $this->client->create($data));
@@ -40,6 +41,7 @@ class Proxy extends Base implements DraftClient
         return $this->wrap(fn(): Draft => $this->client->show($draft));
     }
 
+    /** @param array<mixed> $data */
     public function update(string|Draft $draft, array $data): Draft
     {
         return $this->wrap(fn(): Draft => $this->client->update($draft, $data));

@@ -40,6 +40,7 @@ abstract class ResourceClient extends Client
     }
 
     /**
+     * @param array<mixed> $data
      * @return T
      */
     public function createResource(array $data): Resource
@@ -48,6 +49,7 @@ abstract class ResourceClient extends Client
     }
 
     /**
+     * @param array<mixed> $data
      * @return T
      */
     protected function updateResource(string|Resource $resource, array $data): Resource

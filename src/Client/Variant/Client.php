@@ -18,10 +18,10 @@ use Rissc\Printformer\Client\ResourceClient;
 /**
  * @internal
  * @extends ResourceClient<Variant>
- * @uses ListsResources<Variant>
  */
 class Client extends ResourceClient implements VariantClient
 {
+    /** @use ListsResources<MasterTemplate> */
     use ListsResources;
 
     protected static string $resource = Variant::class;

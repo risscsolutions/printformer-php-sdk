@@ -10,21 +10,18 @@
 namespace Rissc\Printformer\Client\Derivative;
 
 use GuzzleHttp\ClientInterface as HTTPClient;
-use GuzzleHttp\Utils;
 use Rissc\Printformer\Client\ListsResources;
-use Rissc\Printformer\Client\PaginationMeta;
 use Rissc\Printformer\Client\Paginator;
 use Rissc\Printformer\Client\Resource;
 use Rissc\Printformer\Client\ResourceClient;
-use Rissc\Printformer\Client\Variant\Variant;
 
 /**
  * @internal
  * @extends ResourceClient<Derivative>
- * @uses ListsResources<Variant>
  */
 class Client extends ResourceClient implements DerivativeClient
 {
+    /** @use ListsResources<Derivative> */
     use ListsResources {
         list as private _list;
     }
