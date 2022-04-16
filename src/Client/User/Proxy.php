@@ -11,7 +11,6 @@ namespace Rissc\Printformer\Client\User;
 
 use Rissc\Printformer\Client\BadRequestHandler;
 use Rissc\Printformer\Client\Proxy as Base;
-use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\Pure;
 
 /**

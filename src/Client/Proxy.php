@@ -10,6 +10,10 @@
 namespace Rissc\Printformer\Client;
 
 use GuzzleHttp\Exception\BadResponseException;
+use Rissc\Printformer\Exceptions\MaintenanceException;
+use Rissc\Printformer\Exceptions\NotFoundException;
+use Rissc\Printformer\Exceptions\TooManyRequestsException;
+use Rissc\Printformer\Exceptions\ValidationException;
 
 abstract class Proxy
 {
@@ -17,6 +21,10 @@ abstract class Proxy
     {
     }
 
+    /**
+     * @return mixed|never
+     * @throws MaintenanceException|TooManyRequestsException|NotFoundException|ValidationException
+     */
     protected function wrap(\Closure $closure): mixed
     {
         try {

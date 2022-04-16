@@ -11,7 +11,11 @@ namespace Rissc\Printformer\Client\Draft;
 
 use JetBrains\PhpStorm\ArrayShape;
 use phpDocumentor\Reflection\Types\Scalar;
+use Rissc\Printformer\Client\Feed\Feed;
+use Rissc\Printformer\Client\MasterTemplate\GroupMember;
+use Rissc\Printformer\Client\MasterTemplate\MasterTemplate;
 use Rissc\Printformer\Client\User\User;
+use Rissc\Printformer\Client\UserGroup\UserGroup;
 use Rissc\Printformer\Exceptions\MaintenanceException;
 use Rissc\Printformer\Exceptions\NotFoundException;
 use Rissc\Printformer\Exceptions\TooManyRequestsException;
@@ -23,13 +27,13 @@ interface DraftClient
      * Creates a new Draft
      * @param array{
      *     intent: string,
-     *     templateIdentifier: string,
-     *     user_identifier: string,
-     *     userGroupIdentifier?: string,
+     *     templateIdentifier: string|MasterTemplate,
+     *     user_identifier: string|User,
+     *     userGroupIdentifier?: string|UserGroup,
      *     apiDefaultValues?: array<string, mixed>,
      *     customAttributes?: array<string, scalar>,
      *     pagePlanner?: bool,
-     *     feedIdentifier?: string,
+     *     feedIdentifier?: string|Feed,
      *     availableVariants?: array<string|int>,
      *     availableVariantVersions?: array<string>,
      *     variant?: int,
@@ -41,7 +45,7 @@ interface DraftClient
      *     spineWidth?: float,
      *     pageDimensions?: array<array{width: float, height: float}>,
      *     bleedAdditions?: array{left:float, right:float, top: float, right: float},
-     *     defaultGroupTemplate?: string,
+     *     defaultGroupTemplate?: string|GroupMember|MasterTemplate,
      *     containerContentPreFilling?: array<array{containerIdentifier: string, catalogTemplateIdentifier: string, pageNumber: int}>,
      *     availableCatalogTemplates?: array<string>
      * } $data

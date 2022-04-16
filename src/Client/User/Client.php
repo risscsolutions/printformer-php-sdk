@@ -10,6 +10,7 @@
 namespace Rissc\Printformer\Client\User;
 
 use Rissc\Printformer\Client\DestroysResources;
+use Rissc\Printformer\Client\Resource;
 use Rissc\Printformer\Client\ResourceClient;
 use Rissc\Printformer\Exceptions\SuccessFalseException;
 use GuzzleHttp\Utils;
@@ -26,7 +27,7 @@ class Client extends ResourceClient implements UserClient
 
     public function create(array $data): User
     {
-        return $this->createResource($data);
+        return $this->createResource(array_map(static fn(mixed $val): mixed => $val instanceof Resource ? $val->getIdentifier() : $val, $data));
     }
 
     public function show(string|User $user): User

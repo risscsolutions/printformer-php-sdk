@@ -53,7 +53,7 @@ class DraftBuilder
     /** @var array{left: float, right: float, top: float, right: float}|null */
     private ?array $bleedAdditions = nulL;
     private ?string $defaultGroupTemplate = null;
-    /** @var array{containerIdentifier: string, catalogTemplateIdentifier :string, pageNumber: int}|null */
+    /** @var array<array{containerIdentifier: string, catalogTemplateIdentifier :string, pageNumber: int}>|null */
     private ?array $containerContentPreFilling = null;
     /** @var array<int|string>|null */
     private ?array $availableCatalogTemplates = null;
@@ -183,7 +183,7 @@ class DraftBuilder
         return $this;
     }
 
-    public function defaultGroupTemplate(string|GroupMember|null $defaultGroupTemplate): DraftBuilder
+    public function defaultGroupTemplate(string|GroupMember|MasterTemplate|null $defaultGroupTemplate): DraftBuilder
     {
         $this->defaultGroupTemplate = static::unwrapOptionalResource($defaultGroupTemplate);
         return $this;
