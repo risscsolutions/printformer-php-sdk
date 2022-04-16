@@ -22,7 +22,6 @@ class Client extends ResourceClient implements FeedClient
 
     protected static string $resource = Feed::class;
 
-    /** @param array{name: string, mappingIdentifier: string, mediaProvider: string, type: string, shouldReplicate:bool, config:array, file:string, url:string} $data */
     public function create(array $data): Feed
     {
         return $this->createResource($data);
@@ -33,7 +32,6 @@ class Client extends ResourceClient implements FeedClient
         return $this->showResource($feed);
     }
 
-    /** @param array{name: string, mappingIdentifier: string, mediaProvider: string, type: string, shouldReplicate:bool, config:array, file:string, url:string} $data */
     public function update(string|Feed $feed, array $data): Feed
     {
         return $this->updateResource($feed, $data);

@@ -24,7 +24,6 @@ class Proxy extends Base implements FeedClient
         parent::__construct($badRequestHandler);
     }
 
-    /** @param array{name: string, mappingIdentifier: string, mediaProvider: string, type: string, shouldReplicate:bool, config:array, file:string, url:string} $data */
     public function create(array $data): Feed
     {
         return $this->wrap(fn(): Feed => $this->client->create($data));
@@ -35,7 +34,6 @@ class Proxy extends Base implements FeedClient
         return $this->wrap(fn(): Feed => $this->client->show($feed));
     }
 
-    /** @param array{name: string, mappingIdentifier: string, mediaProvider: string, type: string, shouldReplicate:bool, config:array, file:string, url:string} $data */
     public function update(string|Feed $feed, array $data): Feed
     {
         return $this->wrap(fn(): Feed => $this->client->update($feed, $data));

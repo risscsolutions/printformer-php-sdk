@@ -43,7 +43,8 @@ interface DraftClient
      *     bleedAdditions: array{left:float, right:float, top: float, right: float},
      *     defaultGroupTemplate: string,
      *     containerContentPreFilling: array<array{containerIdentifier: string, catalogTemplateIdentifier: string, pageNumber: int}>,
-     *     availableCatalogTemplates: array<string> } $data
+     *     availableCatalogTemplates: array<string>
+     * } $data
      * @return Draft
      * @throws MaintenanceException|TooManyRequestsException|NotFoundException|ValidationException
      */
@@ -51,6 +52,14 @@ interface DraftClient
 
     public function show(string|Draft $draft): Draft;
 
+    /** @param array{
+     *     variant: int,
+     *     version: int,
+     *     apiDefaultValues: array<string, mixed>,
+     *     customAttributes: array<string, scalar>,
+     *     availableCatalogTemplates: array<string>
+     * } $data
+     */
     public function update(string|Draft $draft, array $data): Draft;
 
     public function destroy(string|Draft $draft): bool;
