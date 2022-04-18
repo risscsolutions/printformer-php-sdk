@@ -129,7 +129,7 @@ class DraftBuilder
 
     public function variant(int|Variant|null $variant): DraftBuilder
     {
-        $this->variant = static::unwrapOptionalResource($variant);
+        $this->variant = is_null($variant) ? null : (int)static::unwrapResource($variant);
         return $this;
     }
 
@@ -176,6 +176,7 @@ class DraftBuilder
         return $this;
     }
 
+    /** @param array{width: float, height: float}|float $width */
     public function addPageDimension(int $page, array|float $width, float $height = null): DraftBuilder
     {
         if (!$this->pageDimensions) $this->pageDimensions = [];

@@ -1,6 +1,10 @@
 {
   "name": "risscsolutions/printformer-php-sdk",
   "description": "SDK for the printformer API",
+  "keywords": [
+    "printformer",
+    "web2print"
+  ],
   "type": "library",
   "license": [
     "MIT"

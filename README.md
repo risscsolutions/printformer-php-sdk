@@ -2,8 +2,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Latest Stable Version](https://poser.pugx.org/risscsolutions/printformer-php-sdk/v/stable.svg)](https://packagist.org/packages/risscsolutions/printformer-php-sdk)
 [![Total Downloads](https://poser.pugx.org/risscsolutions/printformer-php-sdk/downloads)](https://packagist.org/packages/risscsolutions/printformer-php-sdk)
-![GitHub Workflow Status (event)](https://img.shields.io/github/workflow/status/risscsolutions/printformer-php-sdk/PHPUnit%20tests?event=push&label=PHPUnit%20tests)
-![GitHub Workflow Status (event)](https://img.shields.io/github/workflow/status/risscsolutions/printformer-php-sdk/Psalm%20Static%20analysis?event=push&label=Psalm%20Static%20analysis)
+[![GitHub Workflow Status (event)](https://img.shields.io/github/workflow/status/risscsolutions/printformer-php-sdk/PHPUnit%20tests?event=push&label=PHPUnit%20tests)](https://github.com/risscsolutions/printformer-php-sdk/actions/workflows/tests.yml)
+[![GitHub Workflow Status (event)](https://img.shields.io/github/workflow/status/risscsolutions/printformer-php-sdk/Static%20code%20analysis?event=push&label=Static%20code%20analysis)](https://github.com/risscsolutions/printformer-php-sdk/actions/workflows/static%20code%20analysis.yml)
 
 ### [Documentation](https://risscsolutions.github.io/printformer-php-sdk/)
 
