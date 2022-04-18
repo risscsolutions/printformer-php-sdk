@@ -25,7 +25,7 @@ $config = [
     'api_key' => 'YOUR TENANT API KEY',
 ];
 
-$printformer new Printformer($config);
+$printformer = new Printformer($config);
 ```
 
 ### Create a new User

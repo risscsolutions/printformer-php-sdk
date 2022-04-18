@@ -40,8 +40,8 @@ class DraftBuilder
     /** @var array<int|string>|null */
     private ?array $availableVariantVersions = null;
 
-    private ?string $variant = null;
-    private ?string $variantVersion = null;
+    private ?int $variant = null;
+    private ?int $variantVersion = null;
     private bool $remoteAcl = false;
     private bool $locked = false;
     private bool $disablePreflight = false;
@@ -127,13 +127,13 @@ class DraftBuilder
         return $this;
     }
 
-    public function variant(string|Variant|null $variant): DraftBuilder
+    public function variant(int|Variant|null $variant): DraftBuilder
     {
         $this->variant = static::unwrapOptionalResource($variant);
         return $this;
     }
 
-    public function variantVersion(?string $variantVersion): DraftBuilder
+    public function variantVersion(?int $variantVersion): DraftBuilder
     {
         $this->variantVersion = $variantVersion;
         return $this;
@@ -176,10 +176,17 @@ class DraftBuilder
         return $this;
     }
 
-    /** @param array{left:float, right:float, top: float, right: float}|null $bleedAdditions */
-    public function bleedAdditions(?array $bleedAdditions): DraftBuilder
+    public function addPageDimension(int $page, array|float $width, float $height = null): DraftBuilder
     {
-        $this->bleedAdditions = $bleedAdditions;
+        if (!$this->pageDimensions) $this->pageDimensions = [];
+        $this->pageDimensions[$page - 1] = is_array($width) ? $width : compact('width', 'height');
+        return $this;
+    }
+
+    /** @param array{top: float, left: float, bottom: float, right: float}|float|null $top */
+    public function bleedAdditions(array|null|float $top, ?float $left = null, ?float $bottom = null, ?float $right = null): DraftBuilder
+    {
+        $this->bleedAdditions = is_float($top) ? compact(['top', 'left', 'bottom', 'right']) : $top;
         return $this;
     }
 
@@ -195,6 +202,14 @@ class DraftBuilder
         $this->containerContentPreFilling = $containerContentPreFilling;
         return $this;
     }
+
+    public function addContainerContentPreFilling(int $page, string $containerIdentifier, string $catalogTemplateIdentifier): DraftBuilder
+    {
+        if (!$this->containerContentPreFilling) $this->containerContentPreFilling = [];
+        $this->containerContentPreFilling[] = compact('page', 'catalogTemplateIdentifier', 'containerIdentifier');
+        return $this;
+    }
+
 
     /** @param array<int|string>|null $availableCatalogTemplates */
     public function availableCatalogTemplates(?array $availableCatalogTemplates): DraftBuilder

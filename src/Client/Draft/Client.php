@@ -60,7 +60,8 @@ class Client extends ResourceClient implements DraftClient
                     'dryRun' => $dryRun
                 ])
                 ->getBody()
-                ->getContents()
+                ->getContents(),
+            true
         );
     }
 

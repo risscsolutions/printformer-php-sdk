@@ -33,7 +33,7 @@ final class Draft implements Resource
         public string  $draftHash,
         /** @var array{amount: int} $personalizations */
         public array   $personalizations,
-        public mixed   $preflightStatus,
+        public int     $preflightStatus,
         /** @var array{id:int, version:int} $variant */
         public array   $variant,
         /** @var array<string, mixed> $apiDefaultValues */

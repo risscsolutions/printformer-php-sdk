@@ -20,6 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class BadRequestHandler
 {
+    /** @return never-returns */
     public function responseToException(BadResponseException $exception): void
     {
         $response = $exception->getResponse();
