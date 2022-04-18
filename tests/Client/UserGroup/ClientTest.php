@@ -47,7 +47,7 @@ class ClientTest extends TestCase
         $request = head($container)['request'];
 
         static::assertEquals('POST', $request->getMethod());
-        static::assertStringMatchesFormat('https://printformer.test/api-ext/user-group', (string)$request->getUri());
+        static::assertEquals ('https://printformer.test/api-ext/user-group', (string)$request->getUri());
         static::assertEquals('123abcxy', $userGroup->identifier);
     }
 
@@ -71,7 +71,7 @@ class ClientTest extends TestCase
         $request = head($container)['request'];
 
         static::assertEquals('GET', $request->getMethod());
-        static::assertStringMatchesFormat('https://printformer.test/api-ext/user-group/123abcxy', (string)$request->getUri());
+        static::assertEquals ('https://printformer.test/api-ext/user-group/123abcxy', (string)$request->getUri());
         static::assertEquals('123abcxy', $userGroup->identifier);
     }
 }

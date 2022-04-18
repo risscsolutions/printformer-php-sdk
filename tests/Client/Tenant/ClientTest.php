@@ -48,7 +48,7 @@ class ClientTest extends TestCase
         $request = head($container)['request'];
 
         static::assertEquals('GET', $request->getMethod());
-        static::assertStringMatchesFormat('https://printformer.test/api-ext/client', (string)$request->getUri());
+        static::assertEquals ('https://printformer.test/api-ext/client', (string)$request->getUri());
         static::assertEquals('123abcxy', $tenant->identifier);
         static::assertEquals('test name', $tenant->name);
         static::assertEquals('now', $tenant->createdAt);

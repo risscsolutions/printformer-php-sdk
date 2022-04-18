@@ -63,7 +63,7 @@ class ClientTest extends TestCase
         $request = array_shift($container)['request'];
 
         static::assertEquals('POST', $request->getMethod());
-        static::assertStringMatchesFormat('https://printformer.test/api-ext/pdf-processing', (string)$request->getUri());
+        static::assertEquals ('https://printformer.test/api-ext/pdf-processing', (string)$request->getUri());
         static::assertEquals(json_encode([
             'draftIds' => ['wijeruh3r2efwfeqfew', 'adiugawdudiawfhffeff23']
         ]), $request->getBody()->getContents());
@@ -72,7 +72,7 @@ class ClientTest extends TestCase
         $request = array_shift($container)['request'];
 
         static::assertEquals('GET', $request->getMethod());
-        static::assertStringMatchesFormat('https://printformer.test/api-ext/pdf-processing/wq3t43t4gfewdcg43r23ef', (string)$request->getUri());
+        static::assertEquals ('https://printformer.test/api-ext/pdf-processing/wq3t43t4gfewdcg43r23ef', (string)$request->getUri());
     }
 
     public function testShow(): void
@@ -106,6 +106,6 @@ class ClientTest extends TestCase
         $request = array_shift($container)['request'];
 
         static::assertEquals('GET', $request->getMethod());
-        static::assertStringMatchesFormat('https://printformer.test/api-ext/pdf-processing/wq3t43t4gfewdcg43r23ef', (string)$request->getUri());
+        static::assertEquals ('https://printformer.test/api-ext/pdf-processing/wq3t43t4gfewdcg43r23ef', (string)$request->getUri());
     }
 }

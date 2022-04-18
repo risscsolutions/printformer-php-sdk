@@ -52,7 +52,7 @@ class ClientTest extends TestCase
         $request = head($container)['request'];
 
         static::assertEquals('POST', $request->getMethod());
-        static::assertStringMatchesFormat('https://printformer.test/api-ext/user', (string)$request->getUri());
+        static::assertEquals ('https://printformer.test/api-ext/user', (string)$request->getUri());
         static::assertEquals('123abcxy', $user->identifier);
         static::assertEquals('info@rissc.com', $user->email);
         static::assertNull($user->firstName);
@@ -81,7 +81,7 @@ class ClientTest extends TestCase
         $request = head($container)['request'];
 
         static::assertEquals('GET', $request->getMethod());
-        static::assertStringMatchesFormat('https://printformer.test/api-ext/user/123abcxy', (string)$request->getUri());
+        static::assertEquals ('https://printformer.test/api-ext/user/123abcxy', (string)$request->getUri());
         static::assertEquals('123abcxy', $user->identifier);
         static::assertEquals('info@rissc.com', $user->email);
         static::assertNull($user->firstName);
@@ -112,7 +112,7 @@ class ClientTest extends TestCase
         $request = head($container)['request'];
 
         static::assertEquals('PUT', $request->getMethod());
-        static::assertStringMatchesFormat('https://printformer.test/api-ext/user/123abcxy', (string)$request->getUri());
+        static::assertEquals ('https://printformer.test/api-ext/user/123abcxy', (string)$request->getUri());
         static::assertEquals('123abcxy', $user->identifier);
         static::assertEquals('info@rissc.com', $user->email);
         static::assertNull($user->firstName);
@@ -146,11 +146,11 @@ class ClientTest extends TestCase
         $showRequest = array_shift($container)['request'];
 
         static::assertEquals('POST', $mergeRequest->getMethod());
-        static::assertStringMatchesFormat('https://printformer.test/api-ext/user/123abcxy/merge', (string)$mergeRequest->getUri());
+        static::assertEquals ('https://printformer.test/api-ext/user/123abcxy/merge', (string)$mergeRequest->getUri());
         static::assertEquals(json_encode(['source_user_identifier' => 'qwertzy12']), $mergeRequest->getBody()->getContents());
 
         static::assertEquals('GET', $showRequest->getMethod());
-        static::assertStringMatchesFormat('https://printformer.test/api-ext/user/123abcxy', (string)$showRequest->getUri());
+        static::assertEquals ('https://printformer.test/api-ext/user/123abcxy', (string)$showRequest->getUri());
 
         static::assertEquals('123abcxy', $user->identifier);
         static::assertEquals('info@rissc.com', $user->email);
@@ -174,6 +174,6 @@ class ClientTest extends TestCase
         $request = head($container)['request'];
 
         static::assertEquals('DELETE', $request->getMethod());
-        static::assertStringMatchesFormat('https://printformer.test/api-ext/user/123abcxy', (string)$request->getUri());
+        static::assertEquals ('https://printformer.test/api-ext/user/123abcxy', (string)$request->getUri());
     }
 }

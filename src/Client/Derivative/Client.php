@@ -14,6 +14,7 @@ use Rissc\Printformer\Client\ListsResources;
 use Rissc\Printformer\Client\Paginator;
 use Rissc\Printformer\Client\Resource;
 use Rissc\Printformer\Client\ResourceClient;
+use Rissc\Printformer\Util\BuildsResourcePaths;
 
 /**
  * @internal
@@ -25,6 +26,8 @@ class Client extends ResourceClient implements DerivativeClient
     use ListsResources {
         list as private _list;
     }
+
+    use BuildsResourcePaths;
 
     protected static string $resource = Derivative::class;
 

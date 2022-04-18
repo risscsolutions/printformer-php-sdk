@@ -12,7 +12,6 @@ namespace Rissc\Printformer\Client;
 use GuzzleHttp\ClientInterface as HTTPClient;
 use GuzzleHttp\Utils;
 use Psr\Http\Message\ResponseInterface;
-use Rissc\Printformer\Util\BuildsResourcePaths;
 use Rissc\Printformer\Util\UnwrapsResourceIdentifier;
 
 /**
@@ -21,7 +20,6 @@ use Rissc\Printformer\Util\UnwrapsResourceIdentifier;
 abstract class ResourceClient extends Client
 {
     use UnwrapsResourceIdentifier;
-    use BuildsResourcePaths;
 
     /** @var class-string<T> */
     protected static string $resource;

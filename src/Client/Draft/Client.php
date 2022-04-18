@@ -67,7 +67,8 @@ class Client extends ResourceClient implements DraftClient
 
     public function pageInfo(string|Draft $draft, string $usage, ?int $row = null, ?string $unit = null): PageInfo
     {
-        $url = self::buildResourcePath($draft, $usage, 'page-info') . '?' . self::buildQuery(compact('row', 'unit'));
+        $path = implode('/', [Draft::getPath(), static::unwrapResource($draft), $usage, 'page-info']);
+        $url = $path . '?' . self::buildQuery(compact('row', 'unit'));
         return PageInfo::fromArray(Utils::jsonDecode($this->get($url)->getBody()->getContents(), true)['data']);
     }
 

@@ -19,11 +19,6 @@ abstract class Files extends Base
 
     protected function buildPath(string|Resource $resource, string $action): string
     {
-        return sprintf('%s/%s',
-            self::$path,
-            is_string($resource)
-                ? implode('/', [static::$resource::getPath(), $resource, $action])
-                : self::buildResourcePath($resource, $action)
-        );
+        return sprintf('%s/%s', self::$path, implode('/', [static::$resource::getPath(), static::unwrapResource($resource), $action]));
     }
 }
