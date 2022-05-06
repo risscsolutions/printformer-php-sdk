@@ -34,6 +34,8 @@ final class MasterTemplate implements Resource
         public ?AvailTemplate $correctionTemplate,
         /** @var array<string, scalar> $customAttributes */
         public array          $customAttributes,
+        /** @var array<string> $dataKeys */
+        public array          $dataKeys,
         public string         $updatedAt
     )
     {
@@ -58,6 +60,7 @@ final class MasterTemplate implements Resource
                 static fn(array $availTemplate): AvailTemplate => AvailTemplate::fromArray($availTemplate)
             ),
             data_get($data, 'customAttributes'),
+            data_get($data, 'dataKeys', []),
             data_get($data, 'updatedAt'),
         );
     }
