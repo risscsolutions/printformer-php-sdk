@@ -31,23 +31,19 @@ class ClientTest extends TestCase
         $container = [];
         $http = $this->createMockHTTPClient($container, [
             new Response(201, [], json_encode([
-                'data' => [
-                    'processingId' => 'wq3t43t4gfewdcg43r23ef',
-                ]
+                'processingId' => 'wq3t43t4gfewdcg43r23ef',
             ])),
             new Response(200, [], json_encode([
-                'data' => [
-                    'processingId' => 'wq3t43t4gfewdcg43r23ef',
-                    'draftStates' => [[
-                        'draftId' => 'wijeruh3r2efwfeqfew',
-                        'state' => 'pending',
-                        'message' => null
-                    ], [
-                        'draftId' => 'adiugawdudiawfhffeff23',
-                        'state' => 'pending',
-                        'message' => null
-                    ]]
-                ]
+                'processingId' => 'wq3t43t4gfewdcg43r23ef',
+                'draftStates' => [[
+                    'draftId' => 'wijeruh3r2efwfeqfew',
+                    'state' => 'pending',
+                    'message' => null
+                ], [
+                    'draftId' => 'adiugawdudiawfhffeff23',
+                    'state' => 'pending',
+                    'message' => null
+                ]]
             ]))
         ]);
 
@@ -63,7 +59,7 @@ class ClientTest extends TestCase
         $request = array_shift($container)['request'];
 
         static::assertEquals('POST', $request->getMethod());
-        static::assertEquals ('https://printformer.test/api-ext/pdf-processing', (string)$request->getUri());
+        static::assertEquals('https://printformer.test/api-ext/pdf-processing', (string)$request->getUri());
         static::assertEquals(json_encode([
             'draftIds' => ['wijeruh3r2efwfeqfew', 'adiugawdudiawfhffeff23']
         ]), $request->getBody()->getContents());
@@ -72,7 +68,7 @@ class ClientTest extends TestCase
         $request = array_shift($container)['request'];
 
         static::assertEquals('GET', $request->getMethod());
-        static::assertEquals ('https://printformer.test/api-ext/pdf-processing/wq3t43t4gfewdcg43r23ef', (string)$request->getUri());
+        static::assertEquals('https://printformer.test/api-ext/pdf-processing/wq3t43t4gfewdcg43r23ef', (string)$request->getUri());
     }
 
     public function testShow(): void
@@ -80,18 +76,16 @@ class ClientTest extends TestCase
         $container = [];
         $http = $this->createMockHTTPClient($container, [
             new Response(200, [], json_encode([
-                'data' => [
-                    'processingId' => 'wq3t43t4gfewdcg43r23ef',
-                    'draftStates' => [[
-                        'draftId' => 'wijeruh3r2efwfeqfew',
-                        'state' => 'pending',
-                        'message' => null
-                    ], [
-                        'draftId' => 'adiugawdudiawfhffeff23',
-                        'state' => 'pending',
-                        'message' => null
-                    ]]
-                ]
+                'processingId' => 'wq3t43t4gfewdcg43r23ef',
+                'draftStates' => [[
+                    'draftId' => 'wijeruh3r2efwfeqfew',
+                    'state' => 'pending',
+                    'message' => null
+                ], [
+                    'draftId' => 'adiugawdudiawfhffeff23',
+                    'state' => 'pending',
+                    'message' => null
+                ]]
             ]))
         ]);
 
@@ -106,6 +100,6 @@ class ClientTest extends TestCase
         $request = array_shift($container)['request'];
 
         static::assertEquals('GET', $request->getMethod());
-        static::assertEquals ('https://printformer.test/api-ext/pdf-processing/wq3t43t4gfewdcg43r23ef', (string)$request->getUri());
+        static::assertEquals('https://printformer.test/api-ext/pdf-processing/wq3t43t4gfewdcg43r23ef', (string)$request->getUri());
     }
 }

@@ -9,6 +9,9 @@
 
 namespace Rissc\Printformer\Client\Processing;
 
+use GuzzleHttp\Utils;
+use Psr\Http\Message\ResponseInterface;
+use Rissc\Printformer\Client\Resource;
 use Rissc\Printformer\Client\ResourceClient;
 
 /**
@@ -33,5 +36,10 @@ class Client extends ResourceClient implements ProcessingClient
     public function show(string|Processing $processing): Processing
     {
         return $this->showResource($processing);
+    }
+
+    protected static function resourceFromResponse(ResponseInterface $response): Resource
+    {
+        return static::$resource::fromArray(Utils::jsonDecode($response->getBody()->getContents(), true));
     }
 }
