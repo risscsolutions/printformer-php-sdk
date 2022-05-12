@@ -62,9 +62,10 @@ $draft = $draftBuilder
 ### Create a URL to the Editor
 ```php
 $url = (string)$printformer->urlGenerator()->editor()
-        ->draft($draft->getIdentifier(), 'https://YOUR-CALLBACK-URL-HERE')
+        ->draft($draft->getIdentifier(), 'https://YOUR-SUCCESS-CALLBACK-URL-HERE', 'https://YOUR-CANCEL-CALLBACK-URL-HERE')
         ->user($pfUser->getIdentifier());
 ```
+The response of the callback URLs are empty. You will have to apply a parameter in the URL to identify the draft.
 
 ### Create a Print PDF
 ```php
@@ -73,6 +74,7 @@ $printformer->clientFactory()->processing()->create(
     'https://YOUR-CALLBACK-URL-HERE'
 );
 ```
+The response of the callback URL is empty. You will have to apply a parameter in the URL to identify the draft.
 
 ### Create a URL to the Print PDF
 ```php
