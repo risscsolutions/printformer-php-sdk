@@ -81,3 +81,8 @@ $printformer->clientFactory()->processing()->create(
 ->printFile($draft->getIdentifier())
 ->expiresAt((new \DateTimeImmutable())->modify('+1 hour'))
 ```
+
+### Replicate a draft
+$draftClient = $printformer->clientFactory()->draft();
+$draft = $draftClient
+    ->replicate($draft,[]);
