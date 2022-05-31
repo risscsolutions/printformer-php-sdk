@@ -83,6 +83,8 @@ $printformer->clientFactory()->processing()->create(
 ```
 
 ### Replicate a draft
+```php
 $draftClient = $printformer->clientFactory()->draft();
 $draft = $draftClient
     ->replicate($draft,[]);
+```
