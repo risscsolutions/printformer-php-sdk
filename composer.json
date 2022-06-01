@@ -34,7 +34,7 @@
   },
   "scripts": {
     "local-tests": [
-      "docker run --rm -v ${PWD}:/var/www/html endlezz/php-dev bash -c \"php composer.phar du && phpdbg vendor/bin/phpunit --coverage-html --configuration phpunit.xml\""
+      "docker run --rm -v ${PWD}:/var/www/html endlezz/php-dev bash -c \"php composer.phar du && php vendor/bin/phpunit --configuration phpunit.xml\""
     ],
     "local-coverage": [
       "docker run --rm -v ${PWD}:/var/www/html endlezz/php-dev bash -c \"php composer.phar du && XDEBUG_MODE=coverage php vendor/bin/phpunit --coverage-html coverage --configuration phpunit.xml\""

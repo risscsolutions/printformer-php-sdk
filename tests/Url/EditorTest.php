@@ -75,4 +75,45 @@ class EditorTest extends TestCase
         static::assertEquals('test api identifier', $claims->get('client'));
         static::assertEquals('https://printformer.test/editor/1qayxsw223edccvfrr45tgbbnhz6', $claims->get('redirect'));
     }
+
+    public function testEditorWithStepsAndCallback(): void
+    {
+        $configuration = Configuration::forSymmetricSigner(
+            new Sha256(),
+            InMemory::plainText(self::TEST_API_TOKEN)
+        );
+
+        $configuration->setValidationConstraints(
+            new SignedWith(
+                new Sha256(),
+                InMemory::plainText(self::TEST_API_TOKEN)
+            ),
+            new LooseValidAt(SystemClock::fromUTC())
+        );
+
+        $url = new Uri(
+            (string)$this->editor
+                ->draft('1qayxsw223edccvfrr45tgbbnhz6')
+                ->user(new User('okmlp12', null, null, null, null, null, null, []))
+                ->step('preview')
+                ->callback('https://my-callback.com')
+        );
+
+        static::assertEquals('https', $url->getScheme());
+        static::assertEquals('printformer.test', $url->getHost());
+        static::assertEquals('/auth', $url->getPath());
+
+        parse_str($url->getQuery(), $query);
+        static::assertArrayHasKey('jwt', $query);
+
+        $token = $this->parseToken($configuration, $query['jwt']);
+        static::assertTrue($token->headers()->has('jti'));
+        $claims = $token->claims();
+        static::assertEquals('okmlp12', $claims->get('user'));
+        static::assertEquals('test api identifier', $claims->get('client'));
+        static::assertEquals(
+            'https://printformer.test/editor/1qayxsw223edccvfrr45tgbbnhz6/preview?' . http_build_query(['callback' => base64_encode('https://my-callback.com')]),
+            $claims->get('redirect')
+        );
+    }
 }

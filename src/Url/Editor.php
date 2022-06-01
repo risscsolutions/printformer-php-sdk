@@ -14,13 +14,54 @@ use Rissc\Printformer\Client\Draft\Draft;
 
 final class Editor extends Auth
 {
+    protected array $callbacks = [];
+    protected null|string|Draft $draft = null;
+    protected ?string $step = null;
+
     public function draft(string|Draft $draft, ?string $callback = null, ?string $callback_cancel = null, ?string $callback_halt = null): self
     {
-        $callbacks = array_map('base64_encode', array_filter(compact('callback', 'callback_cancel', 'callback_halt'), static fn(?string $value) => !empty($value)));
-        $this->tokenBuilder->redirect = (new Uri($this->config->get('base_uri')))
-            ->withPath(sprintf('/editor/%s', static::unwrapResource($draft)))
-            ->withQuery(self::buildQuery($callbacks));
-        $this->tokenBuilder->withJTI = true;
+        $this->draft = $draft;
+        if (!is_null($callback)) $this->callbacks = compact('callback', 'callback_cancel', 'callback_halt');
         return $this;
+    }
+
+    public function callback(?string $callback): self
+    {
+        $this->callbacks['callback'] = $callback;
+        return $this;
+    }
+
+    public function callbackCancel(?string $callback): self
+    {
+        $this->callbacks['callback_cancel'] = $callback;
+        return $this;
+    }
+
+    public function callbackHalt(?string $callback): self
+    {
+        $this->callbacks['callback_halt'] = $callback;
+        return $this;
+    }
+
+    public function step(string $step): self
+    {
+        $this->step = $step;
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        $path = $this->step
+            ? sprintf('/editor/%s/%s', self::unwrapResource($this->draft), $this->step)
+            : sprintf('/editor/%s', self::unwrapResource($this->draft));
+
+        $query = self::buildQuery(array_map('base64_encode', array_filter($this->callbacks, static fn(?string $value) => !empty($value))));
+
+        $this->tokenBuilder->redirect = (new Uri($this->config->get('base_uri')))
+            ->withPath($path)
+            ->withQuery($query);
+        $this->tokenBuilder->withJTI = true;
+
+        return parent::__toString();
     }
 }
