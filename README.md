@@ -62,8 +62,12 @@ $draft = $draftBuilder
 ### Create a URL to the Editor
 ```php
 $url = (string)$printformer->urlGenerator()->editor()
-        ->draft($draft->getIdentifier(), 'https://YOUR-CALLBACK-URL-HERE')
-        ->user($pfUser->getIdentifier());
+        ->draft($draft->getIdentifier())
+        ->callback('https://YOUR-CALLBACK-URL-HERE')
+        ->callbackCancel('https://YOUR-CANCEL-CALLBACK-URL-HERE') // Optional, if omitted the callback URL is used
+        ->callbackHalt('https://YOUR-HALT-CALLBACK-URL-HERE') // Optional, if omitted the callbackCancel URL is used
+        ->user($pfUser->getIdentifier())
+        ->step('preview') // Optional, if omitted the editor jumps to the last visited step
 ```
 
 ### Create a Print PDF
