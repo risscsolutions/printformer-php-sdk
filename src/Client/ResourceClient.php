@@ -41,7 +41,7 @@ abstract class ResourceClient extends Client
      * @param array<mixed> $data
      * @return T
      */
-    public function createResource(array $data): Resource
+    protected function createResource(array $data): Resource
     {
         return static::resourceFromResponse($this->post($this->path, $data));
     }

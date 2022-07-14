@@ -24,6 +24,7 @@ class DraftBuilder
     use UnwrapsResourceIdentifier;
 
     private ?string $intent = null;
+    private ?string $unit = null;
     private ?string $templateIdentifier = null;
 
     private ?string $userIdentifier = null;
@@ -61,6 +62,12 @@ class DraftBuilder
 
     public function __construct(private DraftClient $draftClient)
     {
+    }
+
+    public function unit(?string $unit): DraftBuilder
+    {
+        $this->unit = $unit;
+        return $this;
     }
 
     public function intent(?string $intent): DraftBuilder
@@ -244,6 +251,7 @@ class DraftBuilder
 
             'pageFillColor' => $this->pageFillColor,
             'spineWidth' => $this->spineWidth,
+            'unit' => $this->unit,
             'pageDimensions' => $this->pageDimensions,
             'bleedAdditions' => $this->bleedAdditions,
             'defaultGroupTemplate' => $this->defaultGroupTemplate,

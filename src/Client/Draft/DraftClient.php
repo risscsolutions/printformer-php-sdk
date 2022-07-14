@@ -43,6 +43,7 @@ interface DraftClient
      *     disablePreflight?: bool,
      *     pageFillColor?: string,
      *     spineWidth?: float,
+     *     unit?: string,
      *     pageDimensions?: array<array{width: float, height: float}>,
      *     bleedAdditions?: array{left:float, right:float, top: float, right: float},
      *     defaultGroupTemplate?: string|GroupMember|MasterTemplate,

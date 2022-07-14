@@ -90,5 +90,5 @@ $printformer->clientFactory()->processing()->create(
 ```php
 $draftClient = $printformer->clientFactory()->draft();
 $draft = $draftClient
-    ->replicate($draft,[]);
+    ->replicate($draft, []);
 ```
