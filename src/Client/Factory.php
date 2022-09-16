@@ -18,6 +18,7 @@ use Rissc\Printformer\Client\MasterTemplate\MasterTemplateClient;
 use Rissc\Printformer\Client\Processing\ProcessingClient;
 use Rissc\Printformer\Client\Review\ReviewClient;
 use Rissc\Printformer\Client\Tenant\TenantClient;
+use Rissc\Printformer\Client\Theme\ThemeClient;
 use Rissc\Printformer\Client\User\UserClient;
 use Rissc\Printformer\Client\UserGroup\UserGroupClient;
 use Rissc\Printformer\Client\VariableData\VariableDataClient;
@@ -51,6 +52,8 @@ interface Factory
 //TODO    public function pagePlanner();
 
     public function tenant(): TenantClient;
+
+    public function theme(): ThemeClient;
 
     public function file(): FileClient;
 

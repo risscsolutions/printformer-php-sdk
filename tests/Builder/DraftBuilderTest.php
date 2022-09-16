@@ -13,6 +13,7 @@ use PHPUnit\Framework\TestCase;
 use Rissc\Printformer\Builder\DraftBuilder;
 use Rissc\Printformer\Client\Draft\Draft;
 use Rissc\Printformer\Client\Draft\DraftClient;
+use Rissc\Printformer\Client\Theme\Theme;
 
 class DraftBuilderTest extends TestCase
 {
@@ -80,6 +81,9 @@ class DraftBuilderTest extends TestCase
                 'availableVariantVersions' => [23, 5],
                 'availableCatalogTemplates' => ['vgzuhb89', '56rdzg78'],
 
+                'unit' => 'mm',
+                'theme' => 'aw3n4h8H',
+
                 'apiDefaultValues' => ['a' => 'b'],
                 'customAttributes' => ['pf-ca-c' => 'd'],
 
@@ -144,7 +148,9 @@ class DraftBuilderTest extends TestCase
             ->remoteAcl(true)
             ->locked(true)
             ->disablePreflight(true)
+            ->unit('mm')
             ->feed('98bv5rjf')
+            ->theme(new Theme('aw3n4h8H', 'My First Theme'))
             ->pageDimensions([['width' => 230, 'height' => 50]])
             ->addPageDimension(2, 200, 100)
             ->addPageDimension(3, ['width' => 230, 'height' => 50])

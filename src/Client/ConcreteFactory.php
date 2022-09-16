@@ -34,6 +34,9 @@ use Rissc\Printformer\Client\Review\ReviewClient as ReviewClientContract;
 use Rissc\Printformer\Client\Tenant\Client as TenantClient;
 use Rissc\Printformer\Client\Tenant\Proxy as TenantProxy;
 use Rissc\Printformer\Client\Tenant\TenantClient as TenantClientContract;
+use Rissc\Printformer\Client\Theme\Client as ThemeClient;
+use Rissc\Printformer\Client\Theme\Proxy as ThemeProxy;
+use Rissc\Printformer\Client\Theme\ThemeClient as ThemeClientContract;
 use Rissc\Printformer\Client\User\Client as UserClient;
 use Rissc\Printformer\Client\User\Proxy as UserProxy;
 use Rissc\Printformer\Client\User\UserClient as UserClientContract;
@@ -116,6 +119,11 @@ final class ConcreteFactory implements Factory
     public function tenant(): TenantClientContract
     {
         return new TenantProxy(new BadRequestHandler(), new TenantClient($this->http));
+    }
+
+    public function theme(): ThemeClientContract
+    {
+        return new ThemeProxy(new BadRequestHandler(), new ThemeClient($this->http));
     }
 
     public function variableData(string|Draft $draft): VariableDataClientContract

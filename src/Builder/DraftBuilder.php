@@ -14,6 +14,7 @@ use Rissc\Printformer\Client\Draft\DraftClient;
 use Rissc\Printformer\Client\Feed\Feed;
 use Rissc\Printformer\Client\MasterTemplate\GroupMember;
 use Rissc\Printformer\Client\MasterTemplate\MasterTemplate;
+use Rissc\Printformer\Client\Theme\Theme;
 use Rissc\Printformer\Client\Variant\Variant;
 use Rissc\Printformer\Util\UnwrapsResourceIdentifier;
 use Rissc\Printformer\Client\User\User;
@@ -25,6 +26,7 @@ class DraftBuilder
 
     private ?string $intent = null;
     private ?string $unit = null;
+    private ?string $theme = null;
     private ?string $templateIdentifier = null;
 
     private ?string $userIdentifier = null;
@@ -67,6 +69,13 @@ class DraftBuilder
     public function unit(?string $unit): DraftBuilder
     {
         $this->unit = $unit;
+        return $this;
+    }
+
+    public function theme(string|Theme $theme): DraftBuilder
+    {
+        $this->theme = static::unwrapResource($theme);
+
         return $this;
     }
 
@@ -252,6 +261,7 @@ class DraftBuilder
             'pageFillColor' => $this->pageFillColor,
             'spineWidth' => $this->spineWidth,
             'unit' => $this->unit,
+            'theme' => $this->theme,
             'pageDimensions' => $this->pageDimensions,
             'bleedAdditions' => $this->bleedAdditions,
             'defaultGroupTemplate' => $this->defaultGroupTemplate,

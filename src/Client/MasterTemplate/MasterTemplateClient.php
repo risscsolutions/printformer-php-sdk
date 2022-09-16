@@ -16,4 +16,5 @@ use Rissc\Printformer\Client\ProvidesListing;
  */
 interface MasterTemplateClient extends ProvidesListing
 {
+    public function show(string|MasterTemplate $template): MasterTemplate;
 }

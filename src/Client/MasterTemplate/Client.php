@@ -22,4 +22,9 @@ class Client extends ResourceClient implements MasterTemplateClient
     use ListsResources;
 
     protected static string $resource = MasterTemplate::class;
+
+    public function show(string|MasterTemplate $template): MasterTemplate
+    {
+        return $this->showResource($template);
+    }
 }

@@ -44,6 +44,7 @@ interface DraftClient
      *     pageFillColor?: string,
      *     spineWidth?: float,
      *     unit?: string,
+     *     theme?: string,
      *     pageDimensions?: array<array{width: float, height: float}>,
      *     bleedAdditions?: array{left:float, right:float, top: float, right: float},
      *     defaultGroupTemplate?: string|GroupMember|MasterTemplate,

@@ -4,23 +4,22 @@
  * Team Dementia
  * luc@rissc.com
  *
- * Date: 29.03.22
+ * Date: 27.03.22
  */
 
-namespace Rissc\Printformer\Client\MasterTemplate;
+namespace Rissc\Printformer\Client\Theme;
 
 use Rissc\Printformer\Client\BadRequestHandler;
 use Rissc\Printformer\Client\Paginator;
 use Rissc\Printformer\Client\Proxy as Base;
 use JetBrains\PhpStorm\Pure;
-use Rissc\Printformer\Client\User\User;
 
 /**
  * @internal
  */
-class Proxy extends Base implements MasterTemplateClient
+class Proxy extends Base implements ThemeClient
 {
-    #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private MasterTemplateClient $client)
+    #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private ThemeClient $client)
     {
         parent::__construct($badRequestHandler);
     }
@@ -28,10 +27,5 @@ class Proxy extends Base implements MasterTemplateClient
     public function list(int $page, int $perPage = 25): Paginator
     {
         return $this->wrap(fn(): Paginator => $this->client->list($page, $perPage));
-    }
-
-    public function show(string|MasterTemplate $template): MasterTemplate
-    {
-        return $this->wrap(fn(): MasterTemplate => $this->client->show($template));
     }
 }

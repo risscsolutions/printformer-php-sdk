@@ -16,6 +16,7 @@ use Nyholm\NSA;
 use PHPUnit\Framework\TestCase;
 use Rissc\Printformer\Client\ConcreteFactory;
 use Rissc\Printformer\Client\Draft\Proxy as DraftProxy;
+use Rissc\Printformer\Client\Factory;
 use Rissc\Printformer\Client\MasterTemplate\Proxy as MasterTemplateProxy;
 use Rissc\Printformer\Client\User\Proxy as UserProxy;
 use Rissc\Printformer\Client\Workflow\Proxy as WorkflowProxy;
@@ -24,28 +25,21 @@ use Rissc\Printformer\Client\UserGroup\Proxy as UserGroupProxy;
 use Rissc\Printformer\Client\Review\Proxy as ReviewProxy;
 use Rissc\Printformer\Client\Feed\Proxy as FeedProxy;
 use Rissc\Printformer\Client\Tenant\Proxy as TenantProxy;
+use Rissc\Printformer\Client\Theme\Proxy as ThemeProxy;
 use Rissc\Printformer\Client\File\Proxy as FileProxy;
 use Rissc\Printformer\Client\Variant\Proxy as VariantProxy;
 
 class FactoryTest extends TestCase
 {
-    private static ConcreteFactory $factory;
-
-    public static function setUpBeforeClass(): void
+    public function testConstruct(): Factory
     {
-        parent::setUpBeforeClass();
-
-        static::$factory = new ConcreteFactory(new Repository([
+        $factory = new ConcreteFactory(new Repository([
             'base_uri' => 'https://printformer.test',
             'identifier' => 'test api identifier',
             'api_key' => 'test api token'
         ]));
-    }
-
-    public function testConstruct(): void
-    {
         /** @var HTTPClient $http */
-        $http = NSA::getProperty(static::$factory, 'http');
+        $http = NSA::getProperty($factory, 'http');
         /** @var array $config */
         $config = NSA::getProperty($http, 'config');
         /** @var Uri $baseUri */
@@ -58,6 +52,8 @@ class FactoryTest extends TestCase
             'Authorization' => 'Bearer test api token',
             'User-Agent' => 'GuzzleHttp/7'
         ], $config['headers']);
+
+        return $factory;
     }
 
     public function methodToExpectedProvider(): \Generator
@@ -73,14 +69,15 @@ class FactoryTest extends TestCase
         yield 'File' => ['file', FileProxy::class];
         yield 'Tenant' => ['tenant', TenantProxy::class];
         yield 'Variant' => ['variant', VariantProxy::class];
+        yield 'Theme' => ['theme', ThemeProxy::class];
     }
 
     /**
      * @depends      testConstruct
      * @dataProvider methodToExpectedProvider
      */
-    public function testMake(string $method, string $expected): void
+    public function testMake(string $method, string $expected, Factory $factory): void
     {
-        static::assertInstanceOf($expected, static::$factory->$method());
+        static::assertInstanceOf($expected, $factory->$method());
     }
 }
