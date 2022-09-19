@@ -19,7 +19,7 @@ final class Draft implements Resource
     use AccessPropertiesAsArray;
 
     /**
-     * @param array{id:int, version:int} $variant
+     * @param array{id:int, identifier:string, version:int} $variant
      * @param array<ValidationResult> $validationResults
      * @param array{amount: int} $personalizations
      * @param array<string, mixed> $apiDefaultValues
@@ -34,7 +34,7 @@ final class Draft implements Resource
         /** @var array{amount: int} $personalizations */
         public array   $personalizations,
         public int     $preflightStatus,
-        /** @var array{id:int, version:int} $variant */
+        /** @var array{id:int, identifier:string, version:int} $variant */
         public array   $variant,
         /** @var array<string, mixed> $apiDefaultValues */
         public array   $apiDefaultValues,

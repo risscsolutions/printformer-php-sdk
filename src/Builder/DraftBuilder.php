@@ -72,9 +72,9 @@ class DraftBuilder
         return $this;
     }
 
-    public function theme(string|Theme $theme): DraftBuilder
+    public function theme(string|Theme|null $theme): DraftBuilder
     {
-        $this->theme = static::unwrapResource($theme);
+        $this->theme = static::unwrapOptionalResource($theme);
 
         return $this;
     }
@@ -145,7 +145,7 @@ class DraftBuilder
 
     public function variant(int|Variant|null $variant): DraftBuilder
     {
-        $this->variant = is_null($variant) ? null : (int)static::unwrapResource($variant);
+        $this->variant = static::unwrapOptionalResource($variant);
         return $this;
     }
 

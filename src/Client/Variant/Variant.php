@@ -32,7 +32,7 @@ final class Variant implements Resource
 
     public function getIdentifier(): string
     {
-        return (string)$this->id;
+        return $this->identifier;
     }
 
     public static function fromArray(array $data): static

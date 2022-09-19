@@ -36,7 +36,8 @@ final class MasterTemplate implements Resource
         public array          $customAttributes,
         /** @var array<string> $dataKeys */
         public array          $dataKeys,
-        public string         $updatedAt
+        public string         $updatedAt,
+        public array          $variants,
     )
     {
     }
@@ -62,6 +63,7 @@ final class MasterTemplate implements Resource
             data_get($data, 'customAttributes'),
             data_get($data, 'dataKeys', []),
             data_get($data, 'updatedAt'),
+            data_get($data, 'variants', [])
         );
     }
 
