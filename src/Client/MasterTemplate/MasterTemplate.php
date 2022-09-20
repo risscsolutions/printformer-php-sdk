@@ -54,7 +54,7 @@ final class MasterTemplate implements Resource
                 static fn(array $availTemplate): AvailTemplate => AvailTemplate::fromArray($availTemplate)
             ),
             transform(
-                data_get($data, 'groupMembers'),
+                data_get($data, 'groupMembers', []),
                 static fn(array $groupMembers): array => array_map(static fn(array $groupMember): GroupMember => GroupMember::fromArray($groupMember), $groupMembers)),
             transform(
                 data_get($data, 'correctionTemplate'),
