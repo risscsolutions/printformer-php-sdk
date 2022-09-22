@@ -37,6 +37,7 @@ class ClientTest extends TestCase
                     [
                         'identifier' => 'xyzabc12',
                         'name' => 'Test Master',
+                        'type' => 'customizable',
                         'intents' => ['customize'],
                         'pageCount' => 1,
                         'availTemplate' => null,
@@ -85,6 +86,7 @@ class ClientTest extends TestCase
                 'data' => [
                     'identifier' => 'xyzabc12',
                     'name' => 'Test Master',
+                    'type' => 'customizable',
                     'intents' => ['customize'],
                     'pageCount' => 1,
                     'availTemplate' => null,

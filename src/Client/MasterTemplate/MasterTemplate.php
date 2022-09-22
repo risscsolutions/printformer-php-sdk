@@ -25,6 +25,7 @@ final class MasterTemplate implements Resource
     public function __construct(
         public string         $identifier,
         public string         $name,
+        public string         $type,
         /** @var array<string> $intents */
         public array          $intents,
         public int            $pageCount,
@@ -47,6 +48,7 @@ final class MasterTemplate implements Resource
         return new static(
             data_get($data, 'identifier'),
             data_get($data, 'name'),
+            data_get($data, 'type'),
             data_get($data, 'intents'),
             data_get($data, 'pageCount'),
             transform(
