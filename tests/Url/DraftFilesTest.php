@@ -26,7 +26,7 @@ class DraftFilesTest extends TestCase
 {
     use ParsesTokens;
 
-    private const TEST_API_TOKEN = 'pqalymxnskwoiedjcnvbfhrutzg';
+    private const TEST_API_TOKEN = 'pqalymxnskwoiela73bdjcnvbfhrutzg';
     private DraftFiles $draftFiles;
 
     public function setUp(): void

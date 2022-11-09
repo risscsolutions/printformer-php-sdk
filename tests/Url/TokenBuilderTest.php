@@ -24,7 +24,7 @@ class TokenBuilderTest extends TestCase
 {
     use ParsesTokens;
 
-    private const TEST_API_TOKEN = 'pqalymxnskwoiedjcnvbfhrutzg';
+    private const TEST_API_TOKEN = 'pqalymxnskwoiela73bdjcnvbfhrutzg';
     private TokenBuilder $tokenBuilder;
 
     protected function setUp(): void

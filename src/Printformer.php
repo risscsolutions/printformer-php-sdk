@@ -17,7 +17,6 @@ use Rissc\Printformer\Client\ConcreteFactory as ConcreteClientFactory;
 use Rissc\Printformer\Url\GeneratorFactory;
 use Rissc\Printformer\Url\TokenBuilder;
 use Illuminate\Config\Repository;
-use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\Pure;
 
 final class Printformer

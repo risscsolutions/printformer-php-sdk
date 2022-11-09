@@ -168,6 +168,6 @@ class FeedBuilder
             'sftp' => $this->sftp,
             'file' => $this->file,
             'url' => $this->url,
-        ], static fn($value): bool => $value !== null));
+        ], static fn(mixed $value): bool => $value !== null));
     }
 }

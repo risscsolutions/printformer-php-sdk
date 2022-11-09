@@ -4,7 +4,7 @@
  * Team Dementia
  * luc@rissc.com
  *
- * Date: 15.04.22
+ * Date: 09.11.22
  */
 
 namespace Rissc\Printformer\Tests\Url;
@@ -18,17 +18,18 @@ use Lcobucci\JWT\Signer\Key\InMemory;
 use Lcobucci\JWT\Validation\Constraint\LooseValidAt;
 use Lcobucci\JWT\Validation\Constraint\SignedWith;
 use PHPUnit\Framework\TestCase;
+use Rissc\Printformer\Client\Derivative\Derivative;
+use Rissc\Printformer\Client\Derivative\DerivativeType;
 use Rissc\Printformer\Client\User\User;
-use Rissc\Printformer\Url\DraftFiles;
-use Rissc\Printformer\Url\TemplateFiles;
+use Rissc\Printformer\Url\DerivativeFiles;
 use Rissc\Printformer\Url\TokenBuilder;
 
-class TemplateFilesTest extends TestCase
+class DerivativeFilesTest extends TestCase
 {
     use ParsesTokens;
 
     private const TEST_API_TOKEN = 'pqalymxnskwoiela73bdjcnvbfhrutzg';
-    private TemplateFiles $templateFiles;
+    private DerivativeFiles $derivativeFiles;
 
     public function setUp(): void
     {
@@ -38,15 +39,12 @@ class TemplateFilesTest extends TestCase
             'identifier' => 'test api identifier',
             'api_key' => self::TEST_API_TOKEN
         ]);
-        $this->templateFiles = new TemplateFiles($config, new TokenBuilder($config));
+        $this->derivativeFiles = new DerivativeFiles($config, new TokenBuilder($config));
     }
 
     public function dataProvider(): \Generator
     {
-        yield 'variantExport' => ['variantExport', 'variant-export'];
-        yield 'variantThumb' => ['variantThumb', 'variant-thumb'];
-        yield 'photoThumb' => ['photoThumb', 'photo-thumb'];
-        yield 'pagePreviewThumb' => ['pagePreviewThumb', 'page-preview-thumb'];
+        yield 'file' => ['file', 'file'];
     }
 
     /** @dataProvider dataProvider */
@@ -65,12 +63,14 @@ class TemplateFilesTest extends TestCase
             new LooseValidAt(SystemClock::fromUTC())
         );
 
-        $url = new Uri((string)$this->templateFiles->$method('1qayxsw223'));
+        $url = new Uri((string)$this->derivativeFiles
+            ->user(new User('okmlp12', null, null, null, null, null, null, []))
+            ->$method(new Derivative('r2nnd1H2', new DerivativeType('saD43n3c', 'my derivative', 'png'), '', '')));
 
         static::assertEquals('https', $url->getScheme());
         static::assertEquals('printformer.test', $url->getHost());
 
-        $path = sprintf('/api-ext/files/template/1qayxsw223/%s', $pathSegment);
+        $path = sprintf('/api-ext/files/derivative/r2nnd1H2/%s', $pathSegment);
         static::assertEquals($path, $url->getPath());
 
         parse_str($url->getQuery(), $query);
@@ -79,6 +79,7 @@ class TemplateFilesTest extends TestCase
         $token = $this->parseToken($configuration, $query['jwt']);
         static::assertFalse($token->headers()->has('jti'));
         $claims = $token->claims();
+        static::assertEquals('okmlp12', $claims->get('user'));
         static::assertEquals('test api identifier', $claims->get('client'));
         static::assertEquals($path, $claims->get('urlPath'));
     }

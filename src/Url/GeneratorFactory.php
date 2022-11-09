@@ -32,6 +32,11 @@ final class GeneratorFactory
         return new DraftFiles($this->config, new TokenBuilder($this->config));
     }
 
+    public function derivativeFiles(): DerivativeFiles
+    {
+        return new DerivativeFiles($this->config, new TokenBuilder($this->config));
+    }
+
     public function templateFiles(): TemplateFiles
     {
         return new TemplateFiles($this->config, new TokenBuilder($this->config));

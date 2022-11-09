@@ -9,10 +9,7 @@
 
 namespace Rissc\Printformer\Client\Variant;
 
-use GuzzleHttp\Utils;
 use Rissc\Printformer\Client\ListsResources;
-use Rissc\Printformer\Client\PaginationMeta;
-use Rissc\Printformer\Client\Paginator;
 use Rissc\Printformer\Client\ResourceClient;
 
 /**
