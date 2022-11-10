@@ -27,7 +27,7 @@ class ReviewTest extends TestCase
 {
     use ParsesTokens;
 
-    private const TEST_API_TOKEN = 'pqalymxnskwoiedjcnvbfhrutzg';
+    private const TEST_API_TOKEN = 'pqalymxnskwoiela73bdjcnvbfhrutzg';
     private Review $review;
 
     public function setUp(): void

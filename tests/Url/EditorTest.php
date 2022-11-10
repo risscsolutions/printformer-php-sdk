@@ -26,7 +26,7 @@ class EditorTest extends TestCase
 {
     use ParsesTokens;
 
-    private const TEST_API_TOKEN = 'pqalymxnskwoiedjcnvbfhrutzg';
+    private const TEST_API_TOKEN = 'pqalymxnskwoiela73bdjcnvbfhrutzg';
     private Editor $editor;
 
     public function setUp(): void
