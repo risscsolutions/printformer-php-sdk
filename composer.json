@@ -50,5 +50,10 @@
       "email": "luc@rissc.de"
     }
   ],
-  "minimum-stability": "stable"
+  "minimum-stability": "stable",
+  "config": {
+    "allow-plugins": {
+      "infection/extension-installer": false
+    }
+  }
 }
