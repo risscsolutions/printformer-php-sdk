@@ -24,6 +24,12 @@ final class DerivativeFiles extends Files
         return $this;
     }
 
+    public function page(?int $page = null): self
+    {
+        $this->page = $page;
+        return $this;
+    }
+
     public function __toString(): string
     {
         return (new Uri($this->config->get('base_uri')))
