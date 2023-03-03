@@ -9,11 +9,10 @@
 
 namespace Rissc\Printformer\Client\Draft;
 
-use JetBrains\PhpStorm\ArrayShape;
-use phpDocumentor\Reflection\Types\Scalar;
 use Rissc\Printformer\Client\Feed\Feed;
 use Rissc\Printformer\Client\MasterTemplate\GroupMember;
 use Rissc\Printformer\Client\MasterTemplate\MasterTemplate;
+use Rissc\Printformer\Client\ProvidesListing;
 use Rissc\Printformer\Client\User\User;
 use Rissc\Printformer\Client\UserGroup\UserGroup;
 use Rissc\Printformer\Exceptions\MaintenanceException;
@@ -21,7 +20,10 @@ use Rissc\Printformer\Exceptions\NotFoundException;
 use Rissc\Printformer\Exceptions\TooManyRequestsException;
 use Rissc\Printformer\Exceptions\ValidationException;
 
-interface DraftClient
+/**
+ * @extends ProvidesListing<Draft>
+ */
+interface DraftClient extends ProvidesListing
 {
     /**
      * Creates a new Draft

@@ -51,6 +51,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Rissc-Printformer-Builder-DraftBuilder.html#method___construct"
         },                {
+            "fqsen": "\\Rissc\\Printformer\\Builder\\DraftBuilder\u003A\u003Aunit\u0028\u0029",
+            "name": "unit",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Builder-DraftBuilder.html#method_unit"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Builder\\DraftBuilder\u003A\u003Atheme\u0028\u0029",
+            "name": "theme",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Builder-DraftBuilder.html#method_theme"
+        },                {
             "fqsen": "\\Rissc\\Printformer\\Builder\\DraftBuilder\u003A\u003Aintent\u0028\u0029",
             "name": "intent",
             "summary": "",
@@ -141,6 +151,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Rissc-Printformer-Builder-DraftBuilder.html#method_pageDimensions"
         },                {
+            "fqsen": "\\Rissc\\Printformer\\Builder\\DraftBuilder\u003A\u003AaddPageDimension\u0028\u0029",
+            "name": "addPageDimension",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Builder-DraftBuilder.html#method_addPageDimension"
+        },                {
             "fqsen": "\\Rissc\\Printformer\\Builder\\DraftBuilder\u003A\u003AbleedAdditions\u0028\u0029",
             "name": "bleedAdditions",
             "summary": "",
@@ -155,6 +170,11 @@ Search.appendIndex(
             "name": "containerContentPreFilling",
             "summary": "",
             "url": "classes/Rissc-Printformer-Builder-DraftBuilder.html#method_containerContentPreFilling"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Builder\\DraftBuilder\u003A\u003AaddContainerContentPreFilling\u0028\u0029",
+            "name": "addContainerContentPreFilling",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Builder-DraftBuilder.html#method_addContainerContentPreFilling"
         },                {
             "fqsen": "\\Rissc\\Printformer\\Builder\\DraftBuilder\u003A\u003AavailableCatalogTemplates\u0028\u0029",
             "name": "availableCatalogTemplates",
@@ -260,6 +280,11 @@ Search.appendIndex(
             "name": "tenant",
             "summary": "",
             "url": "classes/Rissc-Printformer-Client-ConcreteFactory.html#method_tenant"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Client\\ConcreteFactory\u003A\u003Atheme\u0028\u0029",
+            "name": "theme",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Client-ConcreteFactory.html#method_theme"
         },                {
             "fqsen": "\\Rissc\\Printformer\\Client\\ConcreteFactory\u003A\u003AvariableData\u0028\u0029",
             "name": "variableData",
@@ -536,6 +561,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Rissc-Printformer-Client-Factory.html#method_tenant"
         },                {
+            "fqsen": "\\Rissc\\Printformer\\Client\\Factory\u003A\u003Atheme\u0028\u0029",
+            "name": "theme",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Client-Factory.html#method_theme"
+        },                {
             "fqsen": "\\Rissc\\Printformer\\Client\\Factory\u003A\u003Afile\u0028\u0029",
             "name": "file",
             "summary": "",
@@ -706,6 +736,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Rissc-Printformer-Client-MasterTemplate-MasterTemplate.html#property_name"
         },                {
+            "fqsen": "\\Rissc\\Printformer\\Client\\MasterTemplate\\MasterTemplate\u003A\u003A\u0024type",
+            "name": "type",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Client-MasterTemplate-MasterTemplate.html#property_type"
+        },                {
             "fqsen": "\\Rissc\\Printformer\\Client\\MasterTemplate\\MasterTemplate\u003A\u003A\u0024intents",
             "name": "intents",
             "summary": "",
@@ -736,15 +771,30 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Rissc-Printformer-Client-MasterTemplate-MasterTemplate.html#property_customAttributes"
         },                {
+            "fqsen": "\\Rissc\\Printformer\\Client\\MasterTemplate\\MasterTemplate\u003A\u003A\u0024dataKeys",
+            "name": "dataKeys",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Client-MasterTemplate-MasterTemplate.html#property_dataKeys"
+        },                {
             "fqsen": "\\Rissc\\Printformer\\Client\\MasterTemplate\\MasterTemplate\u003A\u003A\u0024updatedAt",
             "name": "updatedAt",
             "summary": "",
             "url": "classes/Rissc-Printformer-Client-MasterTemplate-MasterTemplate.html#property_updatedAt"
         },                {
+            "fqsen": "\\Rissc\\Printformer\\Client\\MasterTemplate\\MasterTemplate\u003A\u003A\u0024variants",
+            "name": "variants",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Client-MasterTemplate-MasterTemplate.html#property_variants"
+        },                {
             "fqsen": "\\Rissc\\Printformer\\Client\\MasterTemplate\\MasterTemplateClient",
             "name": "MasterTemplateClient",
             "summary": "",
             "url": "classes/Rissc-Printformer-Client-MasterTemplate-MasterTemplateClient.html"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Client\\MasterTemplate\\MasterTemplateClient\u003A\u003Ashow\u0028\u0029",
+            "name": "show",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Client-MasterTemplate-MasterTemplateClient.html#method_show"
         },                {
             "fqsen": "\\Rissc\\Printformer\\Client\\PaginationMeta",
             "name": "PaginationMeta",
@@ -1406,6 +1456,31 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Rissc-Printformer-Url-Editor.html#method_draft"
         },                {
+            "fqsen": "\\Rissc\\Printformer\\Url\\Editor\u003A\u003Acallback\u0028\u0029",
+            "name": "callback",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Url-Editor.html#method_callback"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Url\\Editor\u003A\u003AcallbackCancel\u0028\u0029",
+            "name": "callbackCancel",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Url-Editor.html#method_callbackCancel"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Url\\Editor\u003A\u003AcallbackHalt\u0028\u0029",
+            "name": "callbackHalt",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Url-Editor.html#method_callbackHalt"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Url\\Editor\u003A\u003Astep\u0028\u0029",
+            "name": "step",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Url-Editor.html#method_step"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Url\\Editor\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Url-Editor.html#method___toString"
+        },                {
             "fqsen": "\\Rissc\\Printformer\\Url\\GeneratorFactory",
             "name": "GeneratorFactory",
             "summary": "",
@@ -1430,6 +1505,11 @@ Search.appendIndex(
             "name": "draftFiles",
             "summary": "",
             "url": "classes/Rissc-Printformer-Url-GeneratorFactory.html#method_draftFiles"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Url\\GeneratorFactory\u003A\u003AderivativeFiles\u0028\u0029",
+            "name": "derivativeFiles",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Url-GeneratorFactory.html#method_derivativeFiles"
         },                {
             "fqsen": "\\Rissc\\Printformer\\Url\\GeneratorFactory\u003A\u003AtemplateFiles\u0028\u0029",
             "name": "templateFiles",
@@ -1701,11 +1781,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Rissc-Printformer-Client-ResourceClient.html#method___construct"
         },                {
-            "fqsen": "\\Rissc\\Printformer\\Client\\ResourceClient\u003A\u003AcreateResource\u0028\u0029",
-            "name": "createResource",
-            "summary": "",
-            "url": "classes/Rissc-Printformer-Client-ResourceClient.html#method_createResource"
-        },                {
             "fqsen": "\\Rissc\\Printformer\\Client\\Workflow\\WorkflowSubject",
             "name": "WorkflowSubject",
             "summary": "",
@@ -1796,11 +1871,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Rissc-Printformer-Builder-FeedBuilder.html#method_mediaProvider"
         },                {
-            "fqsen": "\\Rissc\\Printformer\\Builder\\FeedBuilder\u003A\u003Atype\u0028\u0029",
-            "name": "type",
-            "summary": "",
-            "url": "classes/Rissc-Printformer-Builder-FeedBuilder.html#method_type"
-        },                {
             "fqsen": "\\Rissc\\Printformer\\Builder\\FeedBuilder\u003A\u003AshouldReplicate\u0028\u0029",
             "name": "shouldReplicate",
             "summary": "",
@@ -1820,6 +1890,16 @@ Search.appendIndex(
             "name": "url",
             "summary": "",
             "url": "classes/Rissc-Printformer-Builder-FeedBuilder.html#method_url"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Builder\\FeedBuilder\u003A\u003Aftp\u0028\u0029",
+            "name": "ftp",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Builder-FeedBuilder.html#method_ftp"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Builder\\FeedBuilder\u003A\u003Asftp\u0028\u0029",
+            "name": "sftp",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Builder-FeedBuilder.html#method_sftp"
         },                {
             "fqsen": "\\Rissc\\Printformer\\Builder\\FeedBuilder\u003A\u003Acreate\u0028\u0029",
             "name": "create",
@@ -1865,6 +1945,11 @@ Search.appendIndex(
             "name": "identifierAttribute",
             "summary": "",
             "url": "classes/Rissc-Printformer-Client-Feed-Config.html#property_identifierAttribute"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Client\\Feed\\Config\u003A\u003A\u0024url",
+            "name": "url",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Client-Feed-Config.html#property_url"
         },                {
             "fqsen": "\\Rissc\\Printformer\\Client\\Feed\\Config\u003A\u003A\u0024polling",
             "name": "polling",
@@ -2091,6 +2176,71 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Rissc-Printformer-Client-ListsResources.html#method_list"
         },                {
+            "fqsen": "\\Rissc\\Printformer\\Client\\Theme\\Client",
+            "name": "Client",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Client-Theme-Client.html"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Client\\Theme\\Theme",
+            "name": "Theme",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Client-Theme-Theme.html"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Client\\Theme\\Theme\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Client-Theme-Theme.html#method___construct"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Client\\Theme\\Theme\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Client-Theme-Theme.html#method_fromArray"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Client\\Theme\\Theme\u003A\u003AgetIdentifier\u0028\u0029",
+            "name": "getIdentifier",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Client-Theme-Theme.html#method_getIdentifier"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Client\\Theme\\Theme\u003A\u003AgetPath\u0028\u0029",
+            "name": "getPath",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Client-Theme-Theme.html#method_getPath"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Client\\Theme\\Theme\u003A\u003A\u0024identifier",
+            "name": "identifier",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Client-Theme-Theme.html#property_identifier"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Client\\Theme\\Theme\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Client-Theme-Theme.html#property_name"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Client\\Theme\\ThemeClient",
+            "name": "ThemeClient",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Client-Theme-ThemeClient.html"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Url\\DerivativeFiles",
+            "name": "DerivativeFiles",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Url-DerivativeFiles.html"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Url\\DerivativeFiles\u003A\u003Afile\u0028\u0029",
+            "name": "file",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Url-DerivativeFiles.html#method_file"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Url\\DerivativeFiles\u003A\u003Apage\u0028\u0029",
+            "name": "page",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Url-DerivativeFiles.html#method_page"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Url\\DerivativeFiles\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Rissc-Printformer-Url-DerivativeFiles.html#method___toString"
+        },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",
@@ -2150,6 +2300,11 @@ Search.appendIndex(
             "name": "Tenant",
             "summary": "",
             "url": "namespaces/rissc-printformer-client-tenant.html"
+        },                {
+            "fqsen": "\\Rissc\\Printformer\\Client\\Theme",
+            "name": "Theme",
+            "summary": "",
+            "url": "namespaces/rissc-printformer-client-theme.html"
         },                {
             "fqsen": "\\Rissc\\Printformer\\Client\\User",
             "name": "User",

@@ -12,6 +12,10 @@ namespace Rissc\Printformer\Client\Theme;
 use Rissc\Printformer\Client\ListsResources;
 use Rissc\Printformer\Client\ResourceClient;
 
+/**
+ * @internal
+ * @extends ResourceClient<Theme>
+ */
 class Client extends ResourceClient implements ThemeClient
 {
     /** @use ListsResources<Theme> */

@@ -14,6 +14,7 @@ use Rissc\Printformer\Client\Draft\Draft;
 
 final class Editor extends Auth
 {
+    /** @var array<string, null|string> */
     protected array $callbacks = [];
     protected null|string|Draft $draft = null;
     protected ?string $step = null;

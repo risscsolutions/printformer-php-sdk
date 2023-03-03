@@ -17,7 +17,8 @@ use JetBrains\PhpStorm\Pure;
  */
 class Proxy extends \Rissc\Printformer\Client\Proxy implements FileClient
 {
-    #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private FileClient $client)
+    #[Pure]
+    public function __construct(BadRequestHandler $badRequestHandler, private FileClient $client)
     {
         parent::__construct($badRequestHandler);
     }

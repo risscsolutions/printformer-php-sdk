@@ -9,8 +9,8 @@
 
 namespace Rissc\Printformer\Client\Draft;
 
-use phpDocumentor\Reflection\Types\Scalar;
 use Rissc\Printformer\Client\BadRequestHandler;
+use Rissc\Printformer\Client\Paginator;
 use Rissc\Printformer\Client\Proxy as Base;
 use JetBrains\PhpStorm\Pure;
 use Rissc\Printformer\Client\User\User;
@@ -20,9 +20,15 @@ use Rissc\Printformer\Client\User\User;
  */
 class Proxy extends Base implements DraftClient
 {
-    #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private DraftClient $client)
+    #[Pure]
+    public function __construct(BadRequestHandler $badRequestHandler, private DraftClient $client)
     {
         parent::__construct($badRequestHandler);
+    }
+
+    public function list(int $page, int $perPage = 25): Paginator
+    {
+        return $this->wrap(fn(): Paginator => $this->client->list($page, $perPage));
     }
 
     public function create(array $data): Draft

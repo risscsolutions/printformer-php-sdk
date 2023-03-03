@@ -98,12 +98,16 @@
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/rissc.html">Rissc</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/rissc-printformer.html">Printformer</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/rissc-printformer-client.html">Client</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/rissc-printformer-client-theme.html">Theme</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    Proxy
+    Client
 
+        <span class="phpdocumentor-element__extends">
+        extends <a href="classes/Rissc-Printformer-Client-ResourceClient.html"><abbr title="\Rissc\Printformer\Client\ResourceClient">ResourceClient</abbr></a>
+    </span>
     
             <div class="phpdocumentor-element__package">
             in package
@@ -113,24 +117,41 @@
                             </ul>
         </div>
     
+            <span class="phpdocumentor-element__implements">
+            implements
+                            <a href="classes/Rissc-Printformer-Client-Theme-ThemeClient.html"><abbr title="\Rissc\Printformer\Client\Theme\ThemeClient">ThemeClient</abbr></a>                    </span>
     
+            <span class="phpdocumentor-element__extends">
+            Uses
+                            <a href="classes/Rissc-Printformer-Client-ListsResources.html"><abbr title="\Rissc\Printformer\Client\ListsResources">ListsResources</abbr></a>                    </span>
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Client/Proxy.php"><a href="files/src-client-proxy.html"><abbr title="src/Client/Proxy.php">Proxy.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Client/Theme/Client.php"><a href="files/src-client-theme-client.html"><abbr title="src/Client/Theme/Client.php">Client.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">18</span>
+    <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
         
-    <section class="phpdocumentor-description"></section>
 
 
 
 
 
 
+<h3 id="interfaces_class_traits">
+    Interfaces, Classes, Traits and Enums
+    <a href="#interfaces_class_traits" class="headerlink"><i class="fas fa-link"></i></a>
+</h3>
+
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Rissc-Printformer-Client-Theme-ThemeClient.html"><abbr title="\Rissc\Printformer\Client\Theme\ThemeClient">ThemeClient</abbr></a></dt>
+        <dd></dd>
+    
+    
+    
+    </dl>
 
 
 <h3 id="toc">
@@ -140,9 +161,16 @@
 
 <dl class="phpdocumentor-table-of-contents">
                         <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Rissc-Printformer-Client-Proxy.html#method___construct">__construct()</a>
+    <a href="classes/Rissc-Printformer-Client-Client.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Rissc-Printformer-Client-ListsResources.html#method_list">list()</a>
+    <span>
+                                &nbsp;: <a href="classes/Rissc-Printformer-Client-Paginator.html"><abbr title="\Rissc\Printformer\Client\Paginator">Paginator</abbr></a>&lt;string|int, <abbr title="\Rissc\Printformer\Client\T">T</abbr>&gt;    </span>
 </dt>
 <dd></dd>
 
@@ -157,7 +185,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Rissc-Printformer-Client-Proxy.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Rissc-Printformer-Client-Theme-Client.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article
         class="phpdocumentor-element
@@ -167,27 +195,35 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/Rissc-Printformer-Client-Proxy.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Rissc-Printformer-Client-Client.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Client/Proxy.php"><a href="files/src-client-proxy.html"><abbr title="src/Client/Proxy.php">Proxy.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Client/Client.php"><a href="files/src-client-client.html"><abbr title="src/Client/Client.php">Client.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Rissc-Printformer-Client-BadRequestHandler.html"><abbr title="\Rissc\Printformer\Client\BadRequestHandler">BadRequestHandler</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$badRequestHandler</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\GuzzleHttp\ClientInterface">ClientInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$http</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$path</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
         <section class="phpdocumentor-description"></section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$badRequestHandler</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Rissc-Printformer-Client-BadRequestHandler.html"><abbr title="\Rissc\Printformer\Client\BadRequestHandler">BadRequestHandler</abbr></a></span>
+                <span class="phpdocumentor-signature__argument__name">$http</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\GuzzleHttp\ClientInterface">ClientInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$path</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"></section>
@@ -199,6 +235,55 @@
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">mixed</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_list">
+        list()
+        <a href="classes/Rissc-Printformer-Client-ListsResources.html#method_list" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Client/ListsResources.php"><a href="files/src-client-listsresources.html"><abbr title="src/Client/ListsResources.php">ListsResources.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">25</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">list</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$perPage</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">25</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Rissc-Printformer-Client-Paginator.html"><abbr title="\Rissc\Printformer\Client\Paginator">Paginator</abbr></a>&lt;string|int, <abbr title="\Rissc\Printformer\Client\T">T</abbr>&gt;</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$page</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$perPage</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">25</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type"><a href="classes/Rissc-Printformer-Client-Paginator.html"><abbr title="\Rissc\Printformer\Client\Paginator">Paginator</abbr></a>&lt;string|int, <abbr title="\Rissc\Printformer\Client\T">T</abbr>&gt;</span>
             &mdash;
         
     
@@ -281,7 +366,7 @@
 </section>
             </div>
         </div>
-        <a href="classes/Rissc-Printformer-Client-Proxy.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Rissc-Printformer-Client-Theme-Client.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

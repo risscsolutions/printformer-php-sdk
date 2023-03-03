@@ -15,7 +15,9 @@ use GuzzleHttp\Utils;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Rissc\Printformer\Client\Draft\Client;
+use Rissc\Printformer\Client\Draft\Draft;
 use Rissc\Printformer\Client\Draft\DraftClient;
+use Rissc\Printformer\Client\MasterTemplate\MasterTemplate;
 use Rissc\Printformer\Client\User\User;
 use Rissc\Printformer\Tests\Client\TestsHTTPCalls;
 
@@ -26,6 +28,57 @@ class ClientTest extends TestCase
     protected static function createAPIClient(HTTPClient $http): DraftClient
     {
         return new Client($http);
+    }
+
+    public function testIndex(): void
+    {
+        $container = [];
+        $http = $this->createMockHTTPClient($container, [
+            new Response(200, [], json_encode([
+                'data' => [
+                    [
+                        'userIdentifier' => 'pkojbvdd',
+                        'userGroupIdentifier' => null,
+                        'templateIdentifier' => '123abcxy',
+                        'activeGroupTemplateIdentifier' => null,
+                        'draftHash' => '2138r43r90fojnduewfbnwmcfgre',
+                        'personalizations' => ['amount' => 0],
+                        'preflightStatus' => -1,
+                        'variant' => [
+                            'id' => null,
+                            'version' => null
+                        ],
+                        'apiDefaultValues' => [],
+                        'customAttributes' => [],
+                        'state' => 'init',
+                        'setupStatus' => 'pending',
+                        'validationResults' => []
+                    ]
+                ],
+                'meta' => [
+                    'currentPage' => 1,
+                    'lastPage' => 1,
+                    'perPage' => 25,
+                    'total' => 1,
+                ]
+            ])),
+        ]);
+
+        $client = static::createAPIClient($http);
+        $draftPaginator = $client->list(1);
+
+        static::assertCount(1, $container);
+
+        /** @var RequestInterface $request */
+        $request = head($container)['request'];
+
+        static::assertEquals('GET', $request->getMethod());
+        static::assertEquals('https://printformer.test/api-ext/draft?page=1&per_page=25', (string)$request->getUri());
+        static::assertCount(1, $draftPaginator->getData());
+        static::assertTrue($draftPaginator->isLast());
+        /** @var Draft $draft */
+        $draft = head($draftPaginator->getData());
+        static::assertEquals('123abcxy', $draft->templateIdentifier);
     }
 
     public function testCreate(): void
