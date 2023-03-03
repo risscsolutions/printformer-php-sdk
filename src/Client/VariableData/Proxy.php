@@ -19,7 +19,8 @@ use Rissc\Printformer\Client\Proxy as Base;
  */
 class Proxy extends Base implements VariableDataClient
 {
-    #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private VariableDataClient $client)
+    #[Pure]
+    public function __construct(BadRequestHandler $badRequestHandler, private VariableDataClient $client)
     {
         parent::__construct($badRequestHandler);
     }

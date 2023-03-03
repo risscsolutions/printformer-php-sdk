@@ -19,7 +19,8 @@ use JetBrains\PhpStorm\Pure;
  */
 class Proxy extends Base implements VariantClient
 {
-    #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private VariantClient $client)
+    #[Pure]
+    public function __construct(BadRequestHandler $badRequestHandler, private VariantClient $client)
     {
         parent::__construct($badRequestHandler);
     }

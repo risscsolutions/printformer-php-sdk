@@ -24,17 +24,20 @@ final class Printformer
     private Repository $config;
 
     /** @param array{base_uri: string, identifier: string, api_key: string} $config */
-    #[Pure] public function __construct(array $config)
+    #[Pure]
+    public function __construct(array $config)
     {
         $this->config = new Repository($config);
     }
 
-    #[Pure] public function tokenBuilder(): TokenBuilder
+    #[Pure]
+    public function tokenBuilder(): TokenBuilder
     {
         return new TokenBuilder($this->config);
     }
 
-    #[Pure] public function urlGenerator(): GeneratorFactory
+    #[Pure]
+    public function urlGenerator(): GeneratorFactory
     {
         return new GeneratorFactory($this->config);
     }
@@ -44,12 +47,14 @@ final class Printformer
         return new ConcreteClientFactory($this->config);
     }
 
-    #[Pure] public function acl(): Handler
+    #[Pure]
+    public function acl(): Handler
     {
         return new Handler();
     }
 
-    #[Pure] public function builderFactory(): BuilderFactory
+    #[Pure]
+    public function builderFactory(): BuilderFactory
     {
         return new ConcreteBuilderFactory($this);
     }

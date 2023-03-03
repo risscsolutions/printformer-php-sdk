@@ -19,7 +19,8 @@ use JetBrains\PhpStorm\Pure;
  */
 class Proxy extends Base implements ThemeClient
 {
-    #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private ThemeClient $client)
+    #[Pure]
+    public function __construct(BadRequestHandler $badRequestHandler, private ThemeClient $client)
     {
         parent::__construct($badRequestHandler);
     }

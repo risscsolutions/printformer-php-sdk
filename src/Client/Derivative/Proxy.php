@@ -19,7 +19,8 @@ use Rissc\Printformer\Client\Proxy as Base;
  */
 class Proxy extends Base implements DerivativeClient
 {
-    #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private DerivativeClient $client)
+    #[Pure]
+    public function __construct(BadRequestHandler $badRequestHandler, private DerivativeClient $client)
     {
         parent::__construct($badRequestHandler);
     }

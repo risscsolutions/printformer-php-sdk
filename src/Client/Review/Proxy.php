@@ -21,7 +21,8 @@ use Rissc\Printformer\Client\User\User;
  */
 class Proxy extends Base implements ReviewClient
 {
-    #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private ReviewClient $client)
+    #[Pure]
+    public function __construct(BadRequestHandler $badRequestHandler, private ReviewClient $client)
     {
         parent::__construct($badRequestHandler);
     }

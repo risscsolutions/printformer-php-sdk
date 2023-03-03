@@ -11,6 +11,7 @@ namespace Rissc\Printformer\Client\Draft;
 
 use GuzzleHttp\Utils;
 use Rissc\Printformer\Client\DestroysResources;
+use Rissc\Printformer\Client\ListsResources;
 use Rissc\Printformer\Client\Resource;
 use Rissc\Printformer\Client\ResourceClient;
 use Rissc\Printformer\Client\User\User;
@@ -21,10 +22,11 @@ use Rissc\Printformer\Client\User\User;
  */
 class Client extends ResourceClient implements DraftClient
 {
+    /** @use ListsResources<Draft> */
+    use ListsResources;
     use DestroysResources;
 
     protected static string $resource = Draft::class;
-
     public function create(array $data): Draft
     {
         return $this->createResource(

@@ -19,7 +19,8 @@ use JetBrains\PhpStorm\Pure;
  */
 class Proxy extends Base implements ProcessingClient
 {
-    #[Pure] public function __construct(BadRequestHandler $badRequestHandler, private ProcessingClient $client)
+    #[Pure]
+    public function __construct(BadRequestHandler $badRequestHandler, private ProcessingClient $client)
     {
         parent::__construct($badRequestHandler);
     }
