@@ -9,6 +9,9 @@
 
 namespace Rissc\Printformer\Client\File;
 
+use GuzzleHttp\Utils;
+use Psr\Http\Message\ResponseInterface;
+use Rissc\Printformer\Client\Resource;
 use Rissc\Printformer\Client\ResourceClient;
 
 /**
@@ -30,5 +33,13 @@ class Client extends ResourceClient implements FileClient
                 ]
             ],
         ]));
+    }
+
+    /**
+     * @return File
+     */
+    protected static function resourceFromResponse(ResponseInterface $response): Resource
+    {
+        return File::fromArray(Utils::jsonDecode($response->getBody()->getContents(), true));
     }
 }
