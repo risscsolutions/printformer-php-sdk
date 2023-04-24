@@ -58,7 +58,7 @@ final class Config implements \ArrayAccess, Arrayable
     {
         return new static(
             data_get($data, 'delimiter', data_get($data, 'separator')),
-            data_get($data, 'parseHTML'),
+            data_get($data, 'parseHTML', data_get($data, 'parse_html', false)),
             data_get($data, 'offset'),
             data_get($data, 'identifierAttribute'),
             data_get($data, 'url'),
