@@ -57,7 +57,7 @@ final class Config implements \ArrayAccess, Arrayable
     public static function fromArray(array $data): static
     {
         return new static(
-            data_get($data, 'separator'),
+            data_get($data, 'delimiter', data_get($data, 'separator')),
             data_get($data, 'parseHTML'),
             data_get($data, 'offset'),
             data_get($data, 'identifierAttribute'),
