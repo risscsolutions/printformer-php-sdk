@@ -21,9 +21,9 @@ final class Polling implements \ArrayAccess, Arrayable
     use AccessPropertiesAsArray;
 
     public function __construct(
-        public bool $enabled,
-        public int  $interval,
-        public bool $dropBeforeImport,
+        public bool   $enabled,
+        public string $interval,
+        public bool   $dropBeforeImport,
     )
     {
     }

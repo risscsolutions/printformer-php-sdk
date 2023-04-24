@@ -54,7 +54,7 @@ class FeedBuilderTest extends TestCase
                     'identifierAttribute' => 'nr',
                     'polling' => [
                         'enabled' => false,
-                        'interval' => 0,
+                        'interval' => '0 1 * * *',
                         'dropBeforeImport' => false,
                     ]
                 ])
@@ -185,7 +185,7 @@ class FeedBuilderTest extends TestCase
                     'identifierAttribute' => 'nr',
                     'polling' => [
                         'enabled' => false,
-                        'interval' => 0,
+                        'interval' => '0 1 * * *',
                         'dropBeforeImport' => false,
                     ],
                     'connection' => [
