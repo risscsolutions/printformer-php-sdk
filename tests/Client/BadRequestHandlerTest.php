@@ -13,6 +13,8 @@ use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Rissc\Printformer\Client\BadRequestHandler;
+use Rissc\Printformer\Exceptions\FeatureNotEnabledException;
+use Rissc\Printformer\Exceptions\MaintenanceException;
 use Rissc\Printformer\Exceptions\NotFoundException;
 
 class BadRequestHandlerTest extends TestCase
@@ -53,6 +55,57 @@ class BadRequestHandlerTest extends TestCase
             $this->createMockHTTPClient($container, [
                 new Response(500, [], json_encode([
                     'message' => 'We fucked up',
+                    'success' => false
+                ]))
+            ])
+                ->get('');
+        } catch (BadResponseException $e) {
+            static::$badRequestHandler->responseToException($e);
+        }
+    }
+
+    public function testMaintenance(): void
+    {
+        static::expectException(MaintenanceException::class);
+        try {
+            $container = [];
+            $this->createMockHTTPClient($container, [
+                new Response(502, [], json_encode([
+                    'message' => 'We deploy atm',
+                    'success' => false
+                ]))
+            ])
+                ->get('');
+        } catch (BadResponseException $e) {
+            static::$badRequestHandler->responseToException($e);
+        }
+    }
+
+    public function testFeatureNotEnabled(): void
+    {
+        static::expectException(FeatureNotEnabledException::class);
+        try {
+            $container = [];
+            $this->createMockHTTPClient($container, [
+                new Response(403, [], json_encode([
+                    'message' => 'This endpoint is not available in your current subscription. Please contact our support.',
+                    'success' => false
+                ]))
+            ])
+                ->get('');
+        } catch (BadResponseException $e) {
+            static::$badRequestHandler->responseToException($e);
+        }
+    }
+
+    public function testOtherError(): void
+    {
+        static::expectException(BadResponseException::class);
+        try {
+            $container = [];
+            $this->createMockHTTPClient($container, [
+                new Response(418, [], json_encode([
+                    'message' => 'I am a Tea Pot',
                     'success' => false
                 ]))
             ])
