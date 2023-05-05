@@ -152,7 +152,7 @@ final class ConcreteFactory implements Factory
         return new DeclarationProxy(new BadRequestHandler(), new DeclarationClient($this->http));
     }
 
-    public function ingredients(): IngredientClientContract
+    public function ingredient(): IngredientClientContract
     {
         return new IngredientProxy(new BadRequestHandler(), new IngredientClient($this->http));
     }

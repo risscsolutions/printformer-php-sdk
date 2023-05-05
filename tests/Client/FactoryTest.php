@@ -15,6 +15,8 @@ use Illuminate\Config\Repository;
 use Nyholm\NSA;
 use PHPUnit\Framework\TestCase;
 use Rissc\Printformer\Client\ConcreteFactory;
+use Rissc\Printformer\Client\Declaration\Ingredient\Proxy as IngredientProxy;
+use Rissc\Printformer\Client\Declaration\Proxy as DeclarationProxy;
 use Rissc\Printformer\Client\Draft\Proxy as DraftProxy;
 use Rissc\Printformer\Client\Factory;
 use Rissc\Printformer\Client\MasterTemplate\Proxy as MasterTemplateProxy;
@@ -70,6 +72,8 @@ class FactoryTest extends TestCase
         yield 'Tenant' => ['tenant', TenantProxy::class];
         yield 'Variant' => ['variant', VariantProxy::class];
         yield 'Theme' => ['theme', ThemeProxy::class];
+        yield 'Declaration' => ['declaration', DeclarationProxy::class];
+        yield 'Ingredient' => ['ingredient', IngredientProxy::class];
     }
 
     /**

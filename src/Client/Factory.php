@@ -63,7 +63,7 @@ interface Factory
 
     public function declaration(): DeclarationClient;
 
-    public function ingredients(): IngredientClient;
+    public function ingredient(): IngredientClient;
 
     public function variant(): VariantClient;
 
