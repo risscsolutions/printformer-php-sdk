@@ -9,6 +9,8 @@
 
 namespace Rissc\Printformer\Client;
 
+use Rissc\Printformer\Client\Declaration\DeclarationClient;
+use Rissc\Printformer\Client\Declaration\Ingredient\IngredientClient;
 use Rissc\Printformer\Client\Derivative\DerivativeClient;
 use Rissc\Printformer\Client\Draft\Draft;
 use Rissc\Printformer\Client\Draft\DraftClient;
@@ -59,7 +61,9 @@ interface Factory
 
     public function derivative(Resource $owner): DerivativeClient;
 
-//TODO    public function declaration();
+    public function declaration(): DeclarationClient;
+
+    public function ingredients(): IngredientClient;
 
     public function variant(): VariantClient;
 

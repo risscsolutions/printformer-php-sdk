@@ -9,6 +9,7 @@
 
 namespace Rissc\Printformer\Builder;
 
+use Rissc\Printformer\Client\Declaration\Declaration;
 use Rissc\Printformer\Client\Draft\Draft;
 use Rissc\Printformer\Client\Draft\DraftClient;
 use Rissc\Printformer\Client\Feed\Feed;
@@ -45,6 +46,7 @@ class DraftBuilder
 
     private ?int $variant = null;
     private ?int $variantVersion = null;
+    private ?string $declarationIdentifier = null;
     private bool $remoteAcl = false;
     private bool $locked = false;
     private bool $disablePreflight = false;
@@ -126,6 +128,12 @@ class DraftBuilder
     public function feed(string|Feed|null $feed): DraftBuilder
     {
         $this->feedIdentifier = static::unwrapOptionalResource($feed);
+        return $this;
+    }
+
+    public function declaration(string|Declaration|null $declaration): DraftBuilder
+    {
+        $this->declarationIdentifier = static::unwrapOptionalResource($declaration);
         return $this;
     }
 
@@ -248,6 +256,8 @@ class DraftBuilder
 
             'pagePlanner' => $this->pagePlanner,
             'feedIdentifier' => $this->feedIdentifier,
+
+            'declarationIdentifier' => $this->declarationIdentifier,
 
             'availableVariants' => $this->availableVariants,
             'availableVariantVersions' => $this->availableVariantVersions,

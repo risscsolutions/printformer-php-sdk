@@ -73,6 +73,7 @@ class DraftBuilderTest extends TestCase
                 'templateIdentifier' => 'poiuzt12',
                 'userGroupIdentifier' => 'loikujzh',
                 'feedIdentifier' => '98bv5rjf',
+                'declarationIdentifier' => 'zsn83nbr7',
                 'defaultGroupTemplate' => 'arhjtuk5',
 
                 'variant' => 23,
@@ -150,6 +151,7 @@ class DraftBuilderTest extends TestCase
             ->disablePreflight(true)
             ->unit('mm')
             ->feed('98bv5rjf')
+            ->declaration('zsn83nbr7')
             ->theme(new Theme('aw3n4h8H', 'My First Theme'))
             ->pageDimensions([['width' => 230, 'height' => 50]])
             ->addPageDimension(2, 200, 100)

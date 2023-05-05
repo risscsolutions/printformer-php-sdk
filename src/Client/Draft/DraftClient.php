@@ -9,6 +9,7 @@
 
 namespace Rissc\Printformer\Client\Draft;
 
+use Rissc\Printformer\Client\Declaration\Declaration;
 use Rissc\Printformer\Client\Feed\Feed;
 use Rissc\Printformer\Client\MasterTemplate\GroupMember;
 use Rissc\Printformer\Client\MasterTemplate\MasterTemplate;
@@ -36,6 +37,7 @@ interface DraftClient extends ProvidesListing
      *     customAttributes?: array<string, scalar>,
      *     pagePlanner?: bool,
      *     feedIdentifier?: string|Feed,
+     *     declarationIdentifier?: string|Declaration,
      *     availableVariants?: array<string|int>,
      *     availableVariantVersions?: array<string>,
      *     variant?: int,

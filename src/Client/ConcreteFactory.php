@@ -9,6 +9,12 @@
 
 namespace Rissc\Printformer\Client;
 
+use Rissc\Printformer\Client\Declaration\Client as DeclarationClient;
+use Rissc\Printformer\Client\Declaration\DeclarationClient as DeclarationClientContract;
+use Rissc\Printformer\Client\Declaration\Ingredient\Client as IngredientClient;
+use Rissc\Printformer\Client\Declaration\Ingredient\IngredientClient as IngredientClientContract;
+use Rissc\Printformer\Client\Declaration\Ingredient\Proxy as IngredientProxy;
+use Rissc\Printformer\Client\Declaration\Proxy as DeclarationProxy;
 use Rissc\Printformer\Client\Derivative\Client as DerivativeClient;
 use Rissc\Printformer\Client\Derivative\DerivativeClient as DerivativeClientContract;
 use Rissc\Printformer\Client\Derivative\Proxy as DerivativeProxy;
@@ -139,5 +145,15 @@ final class ConcreteFactory implements Factory
     public function variant(): VariantClientContract
     {
         return new VariantProxy(new BadRequestHandler(), new VariantClient($this->http));
+    }
+
+    public function declaration(): DeclarationClientContract
+    {
+        return new DeclarationProxy(new BadRequestHandler(), new DeclarationClient($this->http));
+    }
+
+    public function ingredients(): IngredientClientContract
+    {
+        return new IngredientProxy(new BadRequestHandler(), new IngredientClient($this->http));
     }
 }

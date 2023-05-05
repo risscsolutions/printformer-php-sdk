@@ -55,7 +55,7 @@ class ClientTest extends TestCase
         ]);
 
         $client = static::createAPIClient($http);
-        $masterPaginator = $client->list(1);
+        $paginator = $client->list(1);
 
         static::assertCount(1, $container);
 
@@ -64,10 +64,10 @@ class ClientTest extends TestCase
 
         static::assertEquals('GET', $request->getMethod());
         static::assertEquals ('https://printformer.test/api-ext/user/okmlp12/derivative?page=1&per_page=25', (string)$request->getUri());
-        static::assertCount(1, $masterPaginator->getData());
-        static::assertTrue($masterPaginator->isLast());
+        static::assertCount(1, $paginator->getData());
+        static::assertTrue($paginator->isLast());
         /** @var Derivative $derivative */
-        $derivative = head($masterPaginator->getData());
+        $derivative = head($paginator->getData());
         static::assertEquals('xyzabc12', $derivative->identifier);
         static::assertEquals('https://url-to-derivative.com', $derivative->downloadURL);
         static::assertEquals('now', $derivative->createdAt);
