@@ -13,6 +13,7 @@ use GuzzleHttp\ClientInterface as HTTPClient;
 use GuzzleHttp\Utils;
 use Rissc\Printformer\Client\Client as Base;
 use Rissc\Printformer\Client\Draft\Draft;
+use Rissc\Printformer\Client\File\File;
 use Rissc\Printformer\Client\PaginationMeta;
 use Rissc\Printformer\Client\Paginator;
 use Rissc\Printformer\Util\BuildsResourcePaths;
@@ -49,22 +50,29 @@ class Client extends Base implements VariableDataClient
         );
     }
 
-    public function create(\SplFileInfo $file, array $columnMapping): bool
+    public function create(\SplFileInfo|File|string $file, array $columnMapping): bool
     {
-        return self::assertEmptyResponse(
-            $this->http->request('POST', $this->path, [
-                'multipart' => [
-                    [
-                        'name' => 'file',
-                        'contents' => file_get_contents($file->getRealPath()),
-                        'filename' => $file->getFilename()
+        if ($file instanceof \SplFileInfo) {
+            return self::assertEmptyResponse(
+                $this->http->request('POST', $this->path, [
+                    'multipart' => [
+                        [
+                            'name' => 'file',
+                            'contents' => file_get_contents($file->getRealPath()),
+                            'filename' => $file->getFilename()
+                        ],
+                        [
+                            'name' => 'columnMapping',
+                            'contents' => json_encode($columnMapping)
+                        ]
                     ],
-                    [
-                        'name' => 'columnMapping',
-                        'contents' => json_encode($columnMapping)
-                    ]
-                ],
-            ]));
+                ]));
+        }
+
+        return self::assertEmptyResponse($this->http->post($this->path, [
+            'file' => static::unwrapResource($file),
+            'columnMapping' => $columnMapping
+        ]));
     }
 
     public function update(array $data): bool
