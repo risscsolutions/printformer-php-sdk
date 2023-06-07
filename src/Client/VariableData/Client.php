@@ -69,7 +69,7 @@ class Client extends Base implements VariableDataClient
                 ]));
         }
 
-        return self::assertEmptyResponse($this->http->post($this->path, [
+        return self::assertEmptyResponse($this->post($this->path, [
             'file' => static::unwrapResource($file),
             'columnMapping' => $columnMapping
         ]));
