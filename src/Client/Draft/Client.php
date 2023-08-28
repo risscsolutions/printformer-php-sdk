@@ -27,6 +27,7 @@ class Client extends ResourceClient implements DraftClient
     use DestroysResources;
 
     protected static string $resource = Draft::class;
+
     public function create(array $data): Draft
     {
         return $this->createResource(
@@ -72,6 +73,15 @@ class Client extends ResourceClient implements DraftClient
         $path = implode('/', [Draft::getPath(), static::unwrapResource($draft), $usage, 'page-info']);
         $url = $path . '?' . self::buildQuery(compact('row', 'unit'));
         return PageInfo::fromArray(Utils::jsonDecode($this->get($url)->getBody()->getContents(), true)['data']);
+    }
+
+    public function products(string|Draft $draft, string $contentType = 'application/json'): string
+    {
+        $path = $this->buildPath($draft, 'products');
+        return $this->http
+            ->request('GET', $path, ['Accept' => $contentType])
+            ->getBody()
+            ->getContents();
     }
 
     public function requestIdmlPackage(string|Draft $draft, string $callbackURL): bool

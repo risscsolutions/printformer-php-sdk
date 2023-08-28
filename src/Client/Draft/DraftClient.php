@@ -94,5 +94,7 @@ interface DraftClient extends ProvidesListing
 
     public function pageInfo(string|Draft $draft, string $usage, ?int $row = null, ?string $unit = null): PageInfo;
 
+    public function products(string|Draft $draft, string $contentType = 'application/json'): string;
+
     public function requestIdmlPackage(string|Draft $draft, string $callbackURL): bool;
 }
