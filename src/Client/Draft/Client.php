@@ -79,7 +79,7 @@ class Client extends ResourceClient implements DraftClient
     {
         $path = $this->buildPath($draft, 'products');
         return $this->http
-            ->request('GET', $path, ['Accept' => $contentType])
+            ->request('GET', $path, ['headers' => ['Accept' => $contentType]])
             ->getBody()
             ->getContents();
     }
