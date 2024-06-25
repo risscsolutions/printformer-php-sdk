@@ -70,14 +70,15 @@ class ClientTest extends TestCase
         static::assertCount(1, $container);
 
         /** @var RequestInterface $request */
-        $request = head($container)['request'];
+        $request = reset($container)['request'];
 
         static::assertEquals('GET', $request->getMethod());
         static::assertEquals('https://printformer.test/api-ext/draft?page=1&per_page=25', (string)$request->getUri());
-        static::assertCount(1, $draftPaginator->getData());
+        $data = $draftPaginator->getData();
+        static::assertCount(1, $data);
         static::assertTrue($draftPaginator->isLast());
         /** @var Draft $draft */
-        $draft = head($draftPaginator->getData());
+        $draft = reset($data);
         static::assertEquals('123abcxy', $draft->templateIdentifier);
     }
 
@@ -117,7 +118,7 @@ class ClientTest extends TestCase
         static::assertCount(1, $container);
 
         /** @var RequestInterface $request */
-        $request = head($container)['request'];
+        $request = reset($container)['request'];
 
         static::assertEquals('POST', $request->getMethod());
         static::assertEquals('https://printformer.test/api-ext/draft', (string)$request->getUri());
@@ -156,7 +157,7 @@ class ClientTest extends TestCase
         static::assertCount(1, $container);
 
         /** @var RequestInterface $request */
-        $request = head($container)['request'];
+        $request = reset($container)['request'];
 
         static::assertEquals('GET', $request->getMethod());
         static::assertEquals('https://printformer.test/api-ext/draft/2138r43r90fojnduewfbnwmcfgre', (string)$request->getUri());
@@ -196,7 +197,7 @@ class ClientTest extends TestCase
         static::assertCount(1, $container);
 
         /** @var RequestInterface $request */
-        $request = head($container)['request'];
+        $request = reset($container)['request'];
 
         static::assertEquals('PUT', $request->getMethod());
         static::assertEquals('https://printformer.test/api-ext/draft/2138r43r90fojnduewfbnwmcfgre', (string)$request->getUri());
@@ -237,7 +238,7 @@ class ClientTest extends TestCase
         static::assertCount(1, $container);
 
         /** @var RequestInterface $request */
-        $request = head($container)['request'];
+        $request = reset($container)['request'];
 
         static::assertEquals('POST', $request->getMethod());
         static::assertEquals('https://printformer.test/api-ext/draft/2138r43r90fojnduewfbnwmcfgre/replicate', (string)$request->getUri());
@@ -263,7 +264,7 @@ class ClientTest extends TestCase
         static::assertCount(1, $container);
 
         /** @var RequestInterface $request */
-        $request = head($container)['request'];
+        $request = reset($container)['request'];
 
         static::assertEquals('POST', $request->getMethod());
         static::assertEquals('https://printformer.test/api-ext/draft/claim', (string)$request->getUri());
@@ -295,7 +296,7 @@ class ClientTest extends TestCase
         static::assertCount(1, $container);
 
         /** @var RequestInterface $request */
-        $request = head($container)['request'];
+        $request = reset($container)['request'];
 
         static::assertEquals('GET', $request->getMethod());
         static::assertEquals('https://printformer.test/api-ext/draft/2138r43r90fojnduewfbnwmcfgre/print/page-info', (string)$request->getUri());
@@ -315,7 +316,7 @@ class ClientTest extends TestCase
         static::assertCount(1, $container);
 
         /** @var RequestInterface $request */
-        $request = head($container)['request'];
+        $request = reset($container)['request'];
 
         static::assertEquals('POST', $request->getMethod());
         static::assertEquals('https://printformer.test/api-ext/draft/2138r43r90fojnduewfbnwmcfgre/request-idml-package', (string)$request->getUri());
@@ -335,7 +336,7 @@ class ClientTest extends TestCase
         static::assertCount(1, $container);
 
         /** @var RequestInterface $request */
-        $request = head($container)['request'];
+        $request = reset($container)['request'];
 
         static::assertEquals('DELETE', $request->getMethod());
         static::assertEquals('https://printformer.test/api-ext/draft/fwenuzgfhueidnqe7tquqnfww', (string)$request->getUri());

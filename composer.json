@@ -12,10 +12,7 @@
   "require": {
     "php": "^8.0",
     "guzzlehttp/guzzle": "^7.4",
-    "illuminate/support": "^8.0|^9.0|^10.0|^11.0",
-    "lcobucci/jwt": "^4.1",
-    "symfony/http-foundation": "^6.0|^7.0",
-    "illuminate/config": "^8.0|^9.0|^10.0|^11.0"
+    "lcobucci/jwt": "^4.1"
   },
   "require-dev": {
     "phpunit/phpunit": "9.6.8",
@@ -35,10 +32,11 @@
   },
   "scripts": {
     "local-tests": [
-      "docker run --rm -v ${PWD}:/var/www/html endlezz/php-dev bash -c \"php composer.phar du && php vendor/bin/phpunit --configuration phpunit.xml\""
+      "docker build . -t printformer-php-sdk",
+      "docker run --rm -v ${PWD}:/var/www/html printformer-php-sdk bash -c \"php composer.phar du && php vendor/bin/phpunit --configuration phpunit.xml\""
     ],
     "local-coverage": [
-      "docker run --rm -v ${PWD}:/var/www/html endlezz/php-dev bash -c \"php composer.phar du && XDEBUG_MODE=coverage php vendor/bin/phpunit --coverage-html coverage --configuration phpunit.xml\""
+      "docker run --rm -v ${PWD}:/var/www/html printformer-php-sdk bash -c \"php composer.phar du && XDEBUG_MODE=coverage php vendor/bin/phpunit --coverage-html coverage --configuration phpunit.xml\""
     ],
     "doc": [
       "docker run --rm -v ${PWD}:/data phpdoc/phpdoc:3 phpDocumentor --config .phpdoc/phpdoc.xml"

@@ -29,8 +29,8 @@ final class PageInfo implements \ArrayAccess
     public static function fromArray(array $data): PageInfo
     {
         return new PageInfo(
-            data_get($data, 'pages'),
-            data_get($data, 'dimensions'),
+            $data['pages'] ?? null,
+            $data['dimensions'] ?? null,
         );
     }
 }

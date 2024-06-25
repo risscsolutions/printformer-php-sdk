@@ -9,14 +9,12 @@
 
 namespace Rissc\Printformer\Client\Feed;
 
-use Illuminate\Contracts\Support\Arrayable;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
 /**
  * @implements \ArrayAccess<string, mixed>
- * @implements Arrayable<string, mixed>
  */
-final class Config implements \ArrayAccess, Arrayable
+final class Config implements \ArrayAccess
 {
     use AccessPropertiesAsArray;
 
@@ -37,7 +35,7 @@ final class Config implements \ArrayAccess, Arrayable
      *  separator: string,
      *  parseHTML: bool,
      *  offset: int,
-     *  dentifierAttribute: string,
+     *  identifierAttribute: string,
      *  polling: array{
      *      enabled: bool,
      *      interval: int,
@@ -57,13 +55,15 @@ final class Config implements \ArrayAccess, Arrayable
     public static function fromArray(array $data): static
     {
         return new static(
-            data_get($data, 'delimiter', data_get($data, 'separator')),
-            data_get($data, 'parseHTML', data_get($data, 'parse_html', false)),
-            data_get($data, 'offset'),
-            data_get($data, 'identifierAttribute'),
-            data_get($data, 'url'),
-            Polling::fromArray(data_get($data, 'polling')),
-            transform(data_get($data, 'connection'), static fn($connection) => Connection::fromArray($connection)),
+            $data['delimiter'] ?? $data['separator'] ?? null,
+            $data['parseHTML'] ?? $data['parse_html'] ?? false,
+            $data['offset'] ?? null,
+            $data['identifierAttribute'] ?? null,
+            $data['url'] ?? null,
+            Polling::fromArray($data['polling'] ?? []),
+            isset($data['connection'])
+                ? Connection::fromArray($data['connection'])
+                : null
         );
     }
 

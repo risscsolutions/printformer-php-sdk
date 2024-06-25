@@ -59,20 +59,19 @@ use Rissc\Printformer\Client\Workflow\Client as WorkflowClient;
 use Rissc\Printformer\Client\Workflow\Proxy as WorkflowProxy;
 use Rissc\Printformer\Client\Workflow\WorkflowClient as WorkflowClientContract;
 use GuzzleHttp\Client as HTTPClient;
-use Illuminate\Config\Repository;
 
 final class ConcreteFactory implements Factory
 {
     private HTTPClient $http;
 
-    public function __construct(private Repository $config)
+    public function __construct(private array $config)
     {
         $this->http = new HTTPClient([
-            'base_uri' => sprintf('%s/api-ext/', $this->config->get('base_uri')),
+            'base_uri' => sprintf('%s/api-ext/', $this->config['base_uri']),
             'headers' => [
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
-                'Authorization' => sprintf('Bearer %s', $this->config->get('api_key'))
+                'Authorization' => sprintf('Bearer %s', $this->config['api_key'])
             ]
         ]);
     }

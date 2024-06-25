@@ -58,7 +58,7 @@ final class Editor extends Auth
 
         $query = self::buildQuery(array_map('base64_encode', array_filter($this->callbacks, static fn(?string $value) => !empty($value))));
 
-        $this->tokenBuilder->redirect = (new Uri($this->config->get('base_uri')))
+        $this->tokenBuilder->redirect = (new Uri($this->config['base_uri']))
             ->withPath($path)
             ->withQuery($query);
         $this->tokenBuilder->withJTI = true;

@@ -31,15 +31,15 @@ class Nutrition extends Ingredient
     public static function fromArray(array $data): static
     {
         return new static(
-            data_get($data, 'identifier'),
-            data_get($data, 'label'),
-            data_get($data, 'short'),
-            data_get($data, 'allergenic'),
-            data_get($data, 'comment'),
-            data_get($data, 'quantity'),
-            data_get($data, 'daily_requirement'),
-            data_get($data, 'order'),
-            data_get($data, 'data_key'),
+            $data['identifier'] ?? null,
+            $data['label'] ?? null,
+            $data['short'] ?? null,
+            $data['allergenic'] ?? null,
+            $data['comment'] ?? null,
+            $data['quantity'] ?? null,
+            $data['daily_requirement'] ?? null,
+            $data['order'] ?? null,
+            $data['data_key'] ?? null,
         );
     }
 }

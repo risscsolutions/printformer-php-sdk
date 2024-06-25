@@ -30,12 +30,12 @@ final class Feed implements Resource
     public static function fromArray(array $data): static
     {
         return new static(
-            data_get($data, 'identifier'),
-            data_get($data, 'type'),
-            data_get($data, 'name'),
-            data_get($data, 'mappingIdentifier'),
-            data_get($data, 'mediaProvider'),
-            Config::fromArray(data_get($data, 'config')),
+            $data['identifier'] ?? null,
+            $data['type'] ?? null,
+            $data['name'] ?? null,
+            $data['mappingIdentifier'] ?? null,
+            $data['mediaProvider'] ?? null,
+            Config::fromArray($data['config'] ?? []),
         );
     }
 

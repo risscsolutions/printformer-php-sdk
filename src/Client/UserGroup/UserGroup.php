@@ -11,7 +11,6 @@ namespace Rissc\Printformer\Client\UserGroup;
 
 use Rissc\Printformer\Client\Resource;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
-use function data_get;
 
 final class UserGroup implements Resource
 {
@@ -23,7 +22,7 @@ final class UserGroup implements Resource
 
     public static function fromArray(array $data): static
     {
-        return new static(data_get($data, 'identifier'));
+        return new static($data['identifier'] ?? null);
     }
 
     public static function getPath(): string

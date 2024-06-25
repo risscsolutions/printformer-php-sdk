@@ -16,7 +16,7 @@ final class Review extends Auth
 {
     public function review(string|ReviewResource $review): self
     {
-        $this->tokenBuilder->redirect = (new Uri($this->config->get('base_uri')))
+        $this->tokenBuilder->redirect = (new Uri($this->config['base_uri']))
             ->withPath(sprintf('/%s/%s', ReviewResource::getPath(), static::unwrapResource($review)));
         $this->tokenBuilder->withJTI = true;
         return $this;

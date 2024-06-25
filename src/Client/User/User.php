@@ -11,7 +11,6 @@ namespace Rissc\Printformer\Client\User;
 
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 use Rissc\Printformer\Client\Resource;
-use function data_get;
 
 final class User implements Resource
 {
@@ -37,14 +36,14 @@ final class User implements Resource
     public static function fromArray(array $data): static
     {
         return new static(
-            data_get($data, 'identifier'),
-            data_get($data, 'locale'),
-            data_get($data, 'profile.salutation'),
-            data_get($data, 'profile.title'),
-            data_get($data, 'profile.firstName'),
-            data_get($data, 'profile.lastName'),
-            data_get($data, 'profile.email'),
-            data_get($data, 'customAttributes', []),
+            $data ['identifier'] ?? null,
+            $data ['locale'] ?? null,
+            $data ['profile']['salutation'] ?? null,
+            $data ['profile']['title'] ?? null,
+            $data ['profile']['firstName'] ?? null,
+            $data ['profile']['lastName'] ?? null,
+            $data ['profile']['email'] ?? null,
+            $data ['customAttributes'] ?? [],
         );
     }
 

@@ -12,6 +12,7 @@ namespace Rissc\Printformer\Client\Declaration;
 use Rissc\Printformer\Client\Declaration\Ingredient\QuantifiedIngredient;
 use Rissc\Printformer\Client\Resource;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
+use Rissc\Printformer\Util\Util;
 
 class Declaration implements Resource
 {
@@ -35,16 +36,17 @@ class Declaration implements Resource
     public static function fromArray(array $data): static
     {
         return new static(
-            data_get($data, 'identifier'),
-            data_get($data, 'label'),
-            data_get($data, 'grammage'),
-            data_get($data, 'bbd'),
-            data_get($data, 'comment'),
+            $data['identifier'] ?? null,
+            $data['label'] ?? null,
+            $data['grammage'] ?? null,
+            $data['bbd'] ?? null,
+            $data['comment'] ?? null,
 
-            array_map(static fn(array $entry) => QuantifiedIngredient::fromArray($entry), data_get($data, 'ingredients')),
-            array_map(static fn(array $entry) => Nutrition::fromArray($entry), data_get($data, 'nutritionInformation')),
-            data_get($data, 'html.ingredients'),
-            data_get($data, 'html.nutritionInformation'),
+            array_map(static fn(array $entry) => QuantifiedIngredient::fromArray($entry), $data['ingredients'] ?? []),
+            array_map(static fn(array $entry) => Nutrition::fromArray($entry), $data['nutritionInformation'] ?? []),
+
+            Util::get($data, 'html.ingredients'),
+            Util::get($data, 'html.nutritionInformation'),
         );
     }
 

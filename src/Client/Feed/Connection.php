@@ -9,14 +9,12 @@
 
 namespace Rissc\Printformer\Client\Feed;
 
-use Illuminate\Contracts\Support\Arrayable;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
 /**
  * @implements \ArrayAccess<string, string|bool|int>
- * @implements Arrayable<string, string|bool|int>
  */
-final class Connection implements \ArrayAccess, Arrayable
+final class Connection implements \ArrayAccess
 {
     use AccessPropertiesAsArray;
 
@@ -35,12 +33,12 @@ final class Connection implements \ArrayAccess, Arrayable
     public static function fromArray(array $data): static
     {
         return new static(
-            data_get($data, 'host'),
-            data_get($data, 'username'),
-            data_get($data, 'password'),
-            data_get($data, 'path'),
-            data_get($data, 'port'),
-            data_get($data, 'passive'),
+            $data['host'] ?? null,
+            $data['username'] ?? null,
+            $data['password'] ?? null,
+            $data['path'] ?? null,
+            $data['port'] ?? null,
+            $data['passive'] ?? null,
         );
     }
 

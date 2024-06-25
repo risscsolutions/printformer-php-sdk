@@ -9,6 +9,8 @@
 
 namespace Rissc\Printformer\Client;
 
+use Rissc\Printformer\Util\Util;
+
 final class PaginationMeta
 {
     public function __construct(
@@ -23,10 +25,10 @@ final class PaginationMeta
     public static function fromArray(mixed $meta): PaginationMeta
     {
         return new PaginationMeta(
-            data_get($meta, 'currentPage'),
-            data_get($meta, 'lastPage'),
-            data_get($meta, 'perPage'),
-            data_get($meta, 'total')
+            Util::get($meta, 'currentPage'),
+            Util::get($meta, 'lastPage'),
+            Util::get($meta, 'perPage'),
+            Util::get($meta, 'total')
         );
     }
 }

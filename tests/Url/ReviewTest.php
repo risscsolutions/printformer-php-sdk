@@ -10,7 +10,6 @@
 namespace Rissc\Printformer\Tests\Url;
 
 use GuzzleHttp\Psr7\Uri;
-use Illuminate\Config\Repository;
 use Lcobucci\Clock\SystemClock;
 use Lcobucci\JWT\Configuration;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
@@ -19,7 +18,6 @@ use Lcobucci\JWT\Validation\Constraint\LooseValidAt;
 use Lcobucci\JWT\Validation\Constraint\SignedWith;
 use PHPUnit\Framework\TestCase;
 use Rissc\Printformer\Client\User\User;
-use Rissc\Printformer\Url\Editor;
 use Rissc\Printformer\Url\Review;
 use Rissc\Printformer\Url\TokenBuilder;
 
@@ -33,11 +31,11 @@ class ReviewTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $config = new Repository([
+        $config = [
             'base_uri' => 'https://printformer.test',
             'identifier' => 'test api identifier',
             'api_key' => self::TEST_API_TOKEN
-        ]);
+        ];
         $this->review = new Review($config, new TokenBuilder($config));
     }
 

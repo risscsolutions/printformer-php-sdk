@@ -12,7 +12,6 @@ namespace Rissc\Printformer\Client;
 use GuzzleHttp\ClientInterface as HTTPClient;
 use Psr\Http\Message\ResponseInterface;
 use Rissc\Printformer\Util\BuildsQueryStrings;
-use Symfony\Component\HttpFoundation\Response;
 
 abstract class Client
 {
@@ -50,6 +49,6 @@ abstract class Client
 
     protected static function assertEmptyResponse(ResponseInterface $response): bool
     {
-        return $response->getStatusCode() === Response::HTTP_NO_CONTENT;
+        return $response->getStatusCode() === 204;
     }
 }

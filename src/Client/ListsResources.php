@@ -27,18 +27,18 @@ trait ListsResources
         $queryParams = ['page' => $page === 0 ? 1 : $page, 'per_page' => $perPage];
         $response = $this->get($this->path . '?' . self::buildQuery($queryParams));
 
-        return $this->paginatorFromResponse($response);
+        return $this->resourcePaginatorFromResponse($response);
     }
 
     /**
      * @param ResponseInterface $response
      * @return Paginator<T>
      */
-    protected function paginatorFromResponse(ResponseInterface $response): Paginator
+    protected function resourcePaginatorFromResponse(ResponseInterface $response): Paginator
     {
         $responseBody = Utils::jsonDecode($response->getBody()->getContents(), true);
         return new Paginator(
-            array_map(static fn(array $derivative) => static::$resource::fromArray($derivative), $responseBody['data']),
+            array_map(static fn(array $object) => static::$resource::fromArray($object), $responseBody['data']),
             PaginationMeta::fromArray($responseBody['meta']),
             $this,
         );

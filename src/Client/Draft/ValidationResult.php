@@ -30,10 +30,10 @@ class ValidationResult implements \ArrayAccess
     public static function fromArray(array $data): ValidationResult
     {
         return new ValidationResult(
-            data_get($data, 'row'),
-            data_get($data, 'page'),
-            data_get($data, 'message'),
-            data_get($data, 'severity'),
+            $data['row'] ?? null,
+            $data['page'] ?? null,
+            $data['message'] ?? null,
+            $data['severity'] ?? null,
         );
     }
 }

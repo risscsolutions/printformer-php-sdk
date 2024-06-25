@@ -23,7 +23,7 @@ final class File implements Resource
     /** @param array{identifier: string} $data */
     public static function fromArray(array $data): static
     {
-        return new static(data_get($data, 'identifier'));
+        return new static($data['identifier']);
     }
 
     public static function getPath(): string

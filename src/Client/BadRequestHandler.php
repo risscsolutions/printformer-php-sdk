@@ -16,7 +16,6 @@ use Rissc\Printformer\Exceptions\TooManyRequestsException;
 use Rissc\Printformer\Exceptions\ValidationException;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Utils;
-use Symfony\Component\HttpFoundation\Response;
 
 final class BadRequestHandler
 {
@@ -27,12 +26,12 @@ final class BadRequestHandler
         $responseBody = Utils::jsonDecode($response->getBody()->getContents(), true);
 
         throw match ($response->getStatusCode()) {
-            Response::HTTP_UNPROCESSABLE_ENTITY => (new ValidationException($exception->getMessage(), $exception->getCode(), $exception))->setErrors($responseBody['errors'] ?? [$responseBody['message']]),
-            Response::HTTP_FORBIDDEN => new FeatureNotEnabledException($responseBody['message'], $exception->getCode(), $exception),
-            Response::HTTP_NOT_FOUND => new NotFoundException($responseBody['message'], $exception->getCode(), $exception),
-            Response::HTTP_TOO_MANY_REQUESTS => new TooManyRequestsException($responseBody['message'], $exception->getCode(), $exception),
-            Response::HTTP_BAD_GATEWAY, Response::HTTP_SERVICE_UNAVAILABLE => new MaintenanceException($exception->getMessage(), $exception->getCode(), $exception),
-            Response::HTTP_INTERNAL_SERVER_ERROR => $exception,
+            422 => (new ValidationException($exception->getMessage(), $exception->getCode(), $exception))->setErrors($responseBody['errors'] ?? [$responseBody['message']]),
+            403 => new FeatureNotEnabledException($responseBody['message'], $exception->getCode(), $exception),
+            404 => new NotFoundException($responseBody['message'], $exception->getCode(), $exception),
+            429 => new TooManyRequestsException($responseBody['message'], $exception->getCode(), $exception),
+            502, 503 => new MaintenanceException($exception->getMessage(), $exception->getCode(), $exception),
+            500 => $exception,
             default => $exception,
         };
     }

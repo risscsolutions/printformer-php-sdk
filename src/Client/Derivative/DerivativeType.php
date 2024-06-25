@@ -28,9 +28,9 @@ final class DerivativeType implements \ArrayAccess
     public static function fromArray(array $data): DerivativeType
     {
         return new DerivativeType(
-            data_get($data, 'identifier'),
-            data_get($data, 'label'),
-            data_get($data, 'type'),
+            $data['identifier'] ?? null,
+            $data['label'] ?? null,
+            $data['type'] ?? null,
         );
     }
 }

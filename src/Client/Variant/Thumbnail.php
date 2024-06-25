@@ -23,8 +23,8 @@ abstract class Thumbnail implements \ArrayAccess
     /** @param array{thumbnail_type: string, thumbnail_value:string} $data */
     public static function fromArray(array $data): Thumbnail
     {
-        if (data_get($data, 'thumbnail_type') === 'color') return new Color(data_get($data, 'thumbnail_value'));
-        if (data_get($data, 'thumbnail_type') === 'image') return new Image(data_get($data, 'thumbnail_value'));
+        if (($data['thumbnail_type'] ?? null) === 'color') return new Color($data['thumbnail_value'] ?? null);
+        if (($data['thumbnail_type'] ?? null) === 'image') return new Image($data['thumbnail_value'] ?? null);
         throw new \InvalidArgumentException();
     }
 }

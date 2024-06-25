@@ -27,8 +27,8 @@ final class AvailTemplate implements \ArrayAccess
     public static function fromArray(array $data): static
     {
         return new static(
-            data_get($data, 'name'),
-            data_get($data, 'pageCount'),
+            $data['name'] ?? null,
+            $data['pageCount'] ?? null,
         );
     }
 }

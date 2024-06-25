@@ -44,7 +44,7 @@ class ClientTest extends TestCase
         static::assertCount(1, $container);
 
         /** @var RequestInterface $request */
-        $request = head($container)['request'];
+        $request = reset($container)['request'];
 
         static::assertEquals('POST', $request->getMethod());
         static::assertEquals ('https://printformer.test/api-ext/user-group', (string)$request->getUri());
@@ -68,7 +68,7 @@ class ClientTest extends TestCase
         static::assertCount(1, $container);
 
         /** @var RequestInterface $request */
-        $request = head($container)['request'];
+        $request = reset($container)['request'];
 
         static::assertEquals('GET', $request->getMethod());
         static::assertEquals ('https://printformer.test/api-ext/user-group/123abcxy', (string)$request->getUri());

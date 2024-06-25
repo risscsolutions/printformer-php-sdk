@@ -16,18 +16,14 @@ use Rissc\Printformer\Client\Factory as ClientFactory;
 use Rissc\Printformer\Client\ConcreteFactory as ConcreteClientFactory;
 use Rissc\Printformer\Url\GeneratorFactory;
 use Rissc\Printformer\Url\TokenBuilder;
-use Illuminate\Config\Repository;
 use JetBrains\PhpStorm\Pure;
 
 final class Printformer
 {
-    private Repository $config;
-
     /** @param array{base_uri: string, identifier: string, api_key: string} $config */
     #[Pure]
-    public function __construct(array $config)
+    public function __construct(private array $config)
     {
-        $this->config = new Repository($config);
     }
 
     #[Pure]

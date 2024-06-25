@@ -9,7 +9,6 @@
 
 namespace Rissc\Printformer\Url;
 
-use Illuminate\Config\Repository;
 use Rissc\Printformer\Client\User\User;
 use Rissc\Printformer\Util\BuildsQueryStrings;
 use Rissc\Printformer\Util\BuildsResourcePaths;
@@ -22,11 +21,11 @@ abstract class Base implements \Stringable
     use UnwrapsResourceIdentifier;
 
     public function __construct(
-        protected Repository   $config,
+        protected array        $config,
         protected TokenBuilder $tokenBuilder
     )
     {
-        $this->tokenBuilder->client = $this->config->get('identifier');
+        $this->tokenBuilder->client = $this->config['identifier'];
     }
 
     public function user(string|User $user): self

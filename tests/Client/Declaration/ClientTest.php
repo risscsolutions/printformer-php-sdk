@@ -86,14 +86,15 @@ class ClientTest extends TestCase
         static::assertCount(1, $container);
 
         /** @var RequestInterface $request */
-        $request = head($container)['request'];
+        $request = reset($container)['request'];
 
         static::assertEquals('GET', $request->getMethod());
         static::assertEquals('https://printformer.test/api-ext/declaration?page=1&per_page=25', (string)$request->getUri());
-        static::assertCount(1, $paginator->getData());
+        $data = $paginator->getData();
+        static::assertCount(1, $data);
         static::assertTrue($paginator->isLast());
         /** @var Declaration $declaration */
-        $declaration = head($paginator->getData());
+        $declaration = reset($data);
         static::assertEquals('xyzabc12', $declaration->identifier);
         static::assertCount(1, $declaration->ingredients);
         static::assertCount(1, $declaration->nutritionInformation);
@@ -150,7 +151,7 @@ class ClientTest extends TestCase
         static::assertCount(1, $container);
 
         /** @var RequestInterface $request */
-        $request = head($container)['request'];
+        $request = reset($container)['request'];
 
         static::assertEquals('GET', $request->getMethod());
         static::assertEquals('https://printformer.test/api-ext/declaration/xyzabc12', (string)$request->getUri());

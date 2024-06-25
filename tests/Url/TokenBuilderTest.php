@@ -9,8 +9,6 @@
 
 namespace Rissc\Printformer\Tests\Url;
 
-use Illuminate\Config\Repository;
-use Illuminate\Support\Arr;
 use Lcobucci\Clock\SystemClock;
 use Lcobucci\JWT\Configuration;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
@@ -30,9 +28,9 @@ class TokenBuilderTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->tokenBuilder = new TokenBuilder(new Repository([
+        $this->tokenBuilder = new TokenBuilder([
             'api_key' => self::TEST_API_TOKEN
-        ]));
+        ]);
     }
 
     public function testEmptyToken(): void
@@ -56,7 +54,11 @@ class TokenBuilderTest extends TestCase
 
         $token = $this->parseToken($configuration, $tokenString);
 
-        static::assertEmpty(Arr::except($token->claims()->all(), ['iat', 'exp']));
+        $claims = $token->claims()->all();
+        static::assertCount(2, $claims);
+        static::assertArrayHasKey('iat', $claims);
+        static::assertArrayHasKey('exp', $claims);
+
         static::assertArrayHasKey('jti', $token->headers()->all());
     }
 
@@ -82,10 +84,12 @@ class TokenBuilderTest extends TestCase
 
         $token = $this->parseToken($configuration, $tokenString);
 
-        static::assertEquals([
-            'first' => 'abc',
-            'second' => true,
-            'third' => 123,
-        ], Arr::except($token->claims()->all(), ['iat', 'exp']));
+        foreach ([
+                     'first' => 'abc',
+                     'second' => true,
+                     'third' => 123,
+                 ] as $k => $v) {
+            static::assertEquals($v, $token->claims()->get($k));
+        }
     }
 }

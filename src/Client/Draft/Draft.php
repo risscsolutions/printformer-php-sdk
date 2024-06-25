@@ -9,10 +9,8 @@
 
 namespace Rissc\Printformer\Client\Draft;
 
-use JetBrains\PhpStorm\ArrayShape;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 use Rissc\Printformer\Client\Resource;
-use function data_get;
 
 final class Draft implements Resource
 {
@@ -51,19 +49,19 @@ final class Draft implements Resource
     public static function fromArray(array $data): static
     {
         return new static(
-            data_get($data, 'userIdentifier'),
-            data_get($data, 'userGroupIdentifier'),
-            data_get($data, 'templateIdentifier'),
-            data_get($data, 'activeGroupTemplateIdentifier'),
-            data_get($data, 'draftHash'),
-            data_get($data, 'personalizations'),
-            data_get($data, 'preflightStatus'),
-            data_get($data, 'variant'),
-            data_get($data, 'apiDefaultValues'),
-            data_get($data, 'customAttributes'),
-            data_get($data, 'state'),
-            data_get($data, 'setupStatus'),
-            array_map(static fn(array $result): ValidationResult => ValidationResult::fromArray($result), data_get($data, 'validationResults', []))
+            $data['userIdentifier'] ?? null,
+            $data['userGroupIdentifier'] ?? null,
+            $data['templateIdentifier'] ?? null,
+            $data['activeGroupTemplateIdentifier'] ?? null,
+            $data['draftHash'] ?? null,
+            $data['personalizations'] ?? null,
+            $data['preflightStatus'] ?? null,
+            $data['variant'] ?? null,
+            $data['apiDefaultValues'] ?? null,
+            $data['customAttributes'] ?? null,
+            $data['state'] ?? null,
+            $data['setupStatus'] ?? null,
+            array_map(static fn(array $result): ValidationResult => ValidationResult::fromArray($result), $data['validationResults'] ?? [])
         );
     }
 

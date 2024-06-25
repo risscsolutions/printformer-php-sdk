@@ -11,7 +11,6 @@ namespace Rissc\Printformer\Client\MasterTemplate;
 
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 use Rissc\Printformer\Client\Resource;
-use function data_get;
 
 final class MasterTemplate implements Resource
 {
@@ -46,26 +45,24 @@ final class MasterTemplate implements Resource
     public static function fromArray(array $data): static
     {
         return new static(
-            data_get($data, 'identifier'),
-            data_get($data, 'name'),
-            data_get($data, 'type'),
-            data_get($data, 'intents'),
-            data_get($data, 'pageCount'),
-            transform(
-                data_get($data, 'availTemplate'),
-                static fn(array $availTemplate): AvailTemplate => AvailTemplate::fromArray($availTemplate)
-            ),
-            transform(
-                data_get($data, 'groupMembers', []),
-                static fn(array $groupMembers): array => array_map(static fn(array $groupMember): GroupMember => GroupMember::fromArray($groupMember), $groupMembers)),
-            transform(
-                data_get($data, 'correctionTemplate'),
-                static fn(array $availTemplate): AvailTemplate => AvailTemplate::fromArray($availTemplate)
-            ),
-            data_get($data, 'customAttributes'),
-            data_get($data, 'dataKeys', []),
-            data_get($data, 'updatedAt'),
-            data_get($data, 'variants', [])
+            $data['identifier'] ?? null,
+            $data['name'] ?? null,
+            $data['type'] ?? null,
+            $data['intents'] ?? null,
+            $data['pageCount'] ?? null,
+            isset($data['availTemplate'])
+                ? AvailTemplate::fromArray($data['availTemplate'])
+                : null,
+            isset($data['groupMembers'])
+                ? array_map(static fn(array $groupMember): GroupMember => GroupMember::fromArray($groupMember), $data['groupMembers'])
+                : [],
+            isset($data['correctionTemplate'])
+                ? AvailTemplate::fromArray($data['correctionTemplate'])
+                : null,
+            $data['customAttributes'] ?? null,
+            $data['dataKeys'] ?? [],
+            $data['updatedAt'] ?? null,
+            $data['variants'] ?? []
         );
     }
 

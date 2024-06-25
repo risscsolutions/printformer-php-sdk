@@ -29,11 +29,11 @@ class Ingredient implements Resource
     public static function fromArray(array $data): static
     {
         return new static(
-            data_get($data, 'identifier'),
-            data_get($data, 'label'),
-            data_get($data, 'short'),
-            data_get($data, 'allergenic'),
-            data_get($data, 'comment'),
+            $data['identifier'] ?? null,
+            $data['label'] ?? null,
+            $data['short'] ?? null,
+            $data['allergenic'] ?? null,
+            $data['comment'] ?? null,
         );
     }
 

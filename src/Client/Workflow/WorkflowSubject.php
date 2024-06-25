@@ -9,15 +9,13 @@
 
 namespace Rissc\Printformer\Client\Workflow;
 
-use Illuminate\Contracts\Support\Arrayable;
 use Rissc\Printformer\Client\Resource;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 
 /**
  * @implements \ArrayAccess<string, string>
- * @implements Arrayable<string, string>
  */
-final class WorkflowSubject implements \ArrayAccess, Arrayable
+final class WorkflowSubject implements \ArrayAccess
 {
     use AccessPropertiesAsArray;
 
@@ -32,8 +30,8 @@ final class WorkflowSubject implements \ArrayAccess, Arrayable
     public static function fromArray(array $data): WorkflowSubject
     {
         return new static(
-            data_get($data, 'type'),
-            data_get($data, 'identifier'),
+            $data['type'] ?? null,
+            $data['identifier'] ?? null,
         );
     }
 

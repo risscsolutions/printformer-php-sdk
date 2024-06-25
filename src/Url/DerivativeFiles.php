@@ -32,7 +32,7 @@ final class DerivativeFiles extends Files
 
     public function __toString(): string
     {
-        return (new Uri($this->config->get('base_uri')))
+        return (new Uri($this->config['base_uri']))
             ->withPath($this->tokenBuilder->urlPath)
             ->withQuery(self::buildQuery([
                 'jwt' => (string)$this->tokenBuilder,

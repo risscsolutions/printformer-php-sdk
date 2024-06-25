@@ -11,7 +11,6 @@ namespace Rissc\Printformer\Tests\Client;
 
 use GuzzleHttp\Client as HTTPClient;
 use GuzzleHttp\Psr7\Uri;
-use Illuminate\Config\Repository;
 use Nyholm\NSA;
 use PHPUnit\Framework\TestCase;
 use Rissc\Printformer\Client\ConcreteFactory;
@@ -35,11 +34,11 @@ class FactoryTest extends TestCase
 {
     public function testConstruct(): Factory
     {
-        $factory = new ConcreteFactory(new Repository([
+        $factory = new ConcreteFactory([
             'base_uri' => 'https://printformer.test',
             'identifier' => 'test api identifier',
             'api_key' => 'test api token'
-        ]));
+        ]);
         /** @var HTTPClient $http */
         $http = NSA::getProperty($factory, 'http');
         /** @var array $config */

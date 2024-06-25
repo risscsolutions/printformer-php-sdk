@@ -11,7 +11,6 @@ namespace Rissc\Printformer\Client\Review;
 
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 use Rissc\Printformer\Client\Resource;
-use function data_get;
 
 final class Review implements Resource
 {
@@ -23,7 +22,7 @@ final class Review implements Resource
 
     public static function fromArray(mixed $data): static
     {
-        return new static(data_get($data, 'reviewId'));
+        return new static($data['reviewId'] ?? null);
     }
 
     public function getIdentifier(): string

@@ -15,7 +15,7 @@ abstract class Auth extends Base
 {
     public function __toString(): string
     {
-        return (new Uri($this->config->get('base_uri')))
+        return (new Uri($this->config['base_uri']))
             ->withPath('/auth')
             ->withQuery(self::buildQuery([
                 'jwt' => (string)$this->tokenBuilder,

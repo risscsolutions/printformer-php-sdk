@@ -9,8 +9,6 @@
 
 namespace Rissc\Printformer\Url;
 
-use Illuminate\Config\Repository;
-use Illuminate\Support\Str;
 use Lcobucci\JWT\Configuration;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Lcobucci\JWT\Signer\Key\InMemory;
@@ -33,7 +31,7 @@ final class TokenBuilder implements \Stringable
     public bool $withJTI = false;
     public \DateTimeImmutable $expiresAt;
 
-    public function __construct(private Repository $config)
+    public function __construct(private array $config)
     {
     }
 
@@ -51,7 +49,7 @@ final class TokenBuilder implements \Stringable
     {
         $configuration = Configuration::forSymmetricSigner(
             new Sha256(),
-            InMemory::plainText($this->config->get('api_key'))
+            InMemory::plainText($this->config['api_key'])
         );
 
         $builder = $configuration->builder()
@@ -62,7 +60,7 @@ final class TokenBuilder implements \Stringable
         }
 
         if ($this->withJTI) {
-            $builder->withHeader('jti', Str::random());
+            $builder->withHeader('jti', substr(str_shuffle(md5(microtime())), 0, 16));
         }
 
         foreach ($this->claims as $claim => $value) {
@@ -70,7 +68,7 @@ final class TokenBuilder implements \Stringable
         }
 
         return $builder
-            ->getToken(new Sha256(), InMemory::plainText($this->config->get('api_key')))
+            ->getToken(new Sha256(), InMemory::plainText($this->config['api_key']))
             ->toString();
     }
 }

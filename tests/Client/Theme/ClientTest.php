@@ -53,14 +53,15 @@ class ClientTest extends TestCase
         static::assertCount(1, $container);
 
         /** @var RequestInterface $request */
-        $request = head($container)['request'];
+        $request = reset($container)['request'];
 
         static::assertEquals('GET', $request->getMethod());
         static::assertEquals('https://printformer.test/api-ext/theme?page=1&per_page=25', (string)$request->getUri());
-        static::assertCount(1, $masterPaginator->getData());
+        $data = $masterPaginator->getData();
+        static::assertCount(1, $data);
         static::assertTrue($masterPaginator->isLast());
         /** @var Theme $theme */
-        $theme = head($masterPaginator->getData());
+        $theme = reset($data);
         static::assertEquals('xyzabc12', $theme->identifier);
         static::assertEquals('Test Theme', $theme->name);
     }

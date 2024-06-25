@@ -38,9 +38,9 @@ final class Variant implements Resource
     public static function fromArray(array $data): static
     {
         return new static(
-            data_get($data, 'id'),
-            data_get($data, 'identifier'),
-            data_get($data, 'name'),
+            $data['id'] ?? null,
+            $data['identifier'] ?? null,
+            $data['name'] ?? null,
             Thumbnail::fromArray($data)
         );
     }

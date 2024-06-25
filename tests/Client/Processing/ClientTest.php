@@ -53,7 +53,7 @@ class ClientTest extends TestCase
         static::assertCount(2, $container);
 
         static::assertEquals('wq3t43t4gfewdcg43r23ef', $processing->processingId);
-        static::assertEquals('wijeruh3r2efwfeqfew', head($processing->draftStates)->draftId);
+        static::assertEquals('wijeruh3r2efwfeqfew', reset($processing->draftStates)->draftId);
 
         /** @var RequestInterface $request */
         $request = array_shift($container)['request'];
@@ -94,7 +94,7 @@ class ClientTest extends TestCase
 
         static::assertCount(1, $container);
 
-        static::assertEquals('wijeruh3r2efwfeqfew', head($processing->draftStates)->draftId);
+        static::assertEquals('wijeruh3r2efwfeqfew', reset($processing->draftStates)->draftId);
 
         /** @var RequestInterface $request */
         $request = array_shift($container)['request'];

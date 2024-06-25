@@ -50,7 +50,7 @@ class ClientTest extends TestCase
         static::assertCount(1, $container);
 
         /** @var RequestInterface $request */
-        $request = head($container)['request'];
+        $request = reset($container)['request'];
 
         static::assertEquals('GET', $request->getMethod());
         static::assertEquals('https://printformer.test/api-ext/draft/fwenuzgfhueidnqe7tquqnfww/variable-data?limit=25', (string)$request->getUri());
@@ -73,7 +73,7 @@ class ClientTest extends TestCase
         static::assertCount(1, $container);
 
         /** @var RequestInterface $request */
-        $request = head($container)['request'];
+        $request = reset($container)['request'];
 
         static::assertEquals('PUT', $request->getMethod());
         static::assertEquals('https://printformer.test/api-ext/draft/fwenuzgfhueidnqe7tquqnfww/variable-data', (string)$request->getUri());

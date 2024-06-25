@@ -9,10 +9,9 @@
 
 namespace Rissc\Printformer\Client\Workflow;
 
-use JetBrains\PhpStorm\ArrayShape;
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 use Rissc\Printformer\Client\Resource;
-use function data_get;
+use Rissc\Printformer\Util\Util;
 
 final class Workflow implements Resource
 {
@@ -31,16 +30,16 @@ final class Workflow implements Resource
 
     public function get(string $key): mixed
     {
-        return data_get($this->data, $key);
+        return Util::get($this->data, $key);
     }
 
     public static function fromArray(array $data): static
     {
         return new static(
-            data_get($data, 'identifier'),
-            data_get($data, 'data'),
-            data_get($data, 'definitionIdentifier'),
-            WorkflowSubject::fromArray(data_get($data, 'subject')),
+            $data['identifier'] ?? null,
+            $data['data'] ?? null,
+            $data['definitionIdentifier'] ?? null,
+            WorkflowSubject::fromArray($data['subject'] ?? null),
         );
     }
 

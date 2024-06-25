@@ -11,7 +11,6 @@ namespace Rissc\Printformer\Client\Processing;
 
 use Rissc\Printformer\Util\AccessPropertiesAsArray;
 use Rissc\Printformer\Client\Resource;
-use function data_get;
 
 final class Processing implements Resource
 {
@@ -28,8 +27,8 @@ final class Processing implements Resource
     public static function fromArray(array $data): static
     {
         return new static(
-            data_get($data, 'processingId'),
-            array_map(static fn(array $draftState) => DraftState::fromArray($draftState), data_get($data, 'draftStates', []))
+            $data['processingId'] ?? null,
+            array_map(static fn(array $draftState) => DraftState::fromArray($draftState), $data['draftStates'] ?? [])
         );
     }
 

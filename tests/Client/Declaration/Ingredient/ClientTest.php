@@ -60,15 +60,17 @@ class ClientTest extends TestCase
         static::assertCount(1, $container);
 
         /** @var RequestInterface $request */
-        $request = head($container)['request'];
+        $request = reset($container)['request'];
 
         static::assertEquals('GET', $request->getMethod());
         static::assertEquals('https://printformer.test/api-ext/ingredient?page=1&per_page=25', (string)$request->getUri());
-        static::assertCount(1, $paginator->getData());
+
+        $data = $paginator->getData();
+        static::assertCount(1, $data);
         static::assertTrue($paginator->isLast());
 
         /** @var Ingredient $ingredient */
-        $ingredient = head($paginator->getData());
+        $ingredient = reset($data);
         static::assertEquals('YO5iWZXO', $ingredient->identifier);
         static::assertEquals('Sulfat', $ingredient->label);
     }
@@ -98,7 +100,7 @@ class ClientTest extends TestCase
         static::assertCount(1, $container);
 
         /** @var RequestInterface $request */
-        $request = head($container)['request'];
+        $request = reset($container)['request'];
 
         static::assertEquals('GET', $request->getMethod());
         static::assertEquals('https://printformer.test/api-ext/ingredient/YO5iWZXO', (string)$request->getUri());

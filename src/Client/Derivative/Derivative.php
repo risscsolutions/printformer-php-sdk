@@ -29,10 +29,10 @@ final class Derivative implements Resource
     public static function fromArray(array $data): static
     {
         return new static(
-            data_get($data, 'identifier'),
-            DerivativeType::fromArray(data_get($data, 'derivativeType')),
-            data_get($data, 'downloadURL'),
-            data_get($data, 'createdAt'),
+            $data['identifier'] ?? null,
+            DerivativeType::fromArray($data['derivativeType'] ?? null),
+            $data['downloadURL'] ?? null,
+            $data['createdAt'] ?? null,
         );
     }
 
