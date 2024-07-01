@@ -38,6 +38,7 @@ final class MasterTemplate implements Resource
         public array          $dataKeys,
         public string         $updatedAt,
         public array          $variants,
+        public ?string        $previewUrl,
     )
     {
     }
@@ -62,7 +63,8 @@ final class MasterTemplate implements Resource
             $data['customAttributes'] ?? null,
             $data['dataKeys'] ?? [],
             $data['updatedAt'] ?? null,
-            $data['variants'] ?? []
+            $data['variants'] ?? [],
+            $data['previewUrl'] ?? []
         );
     }
 

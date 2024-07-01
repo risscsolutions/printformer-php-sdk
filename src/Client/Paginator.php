@@ -38,6 +38,11 @@ final class Paginator
         return $this->data;
     }
 
+    public function getMeta(): PaginationMeta
+    {
+        return $this->meta;
+    }
+
     public function isLast(): bool
     {
         return $this->meta->currentPage === $this->meta->lastPage;
