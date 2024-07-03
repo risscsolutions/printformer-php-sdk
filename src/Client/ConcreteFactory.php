@@ -9,6 +9,7 @@
 
 namespace Rissc\Printformer\Client;
 
+use http\Env\Request;
 use Rissc\Printformer\Client\Declaration\Client as DeclarationClient;
 use Rissc\Printformer\Client\Declaration\DeclarationClient as DeclarationClientContract;
 use Rissc\Printformer\Client\Declaration\Ingredient\Client as IngredientClient;
@@ -74,6 +75,12 @@ final class ConcreteFactory implements Factory
                 'Authorization' => sprintf('Bearer %s', $this->config['api_key'])
             ]
         ]);
+    }
+
+    public function setHttp(HTTPClient $http): static
+    {
+        $this->http = $http;
+        return $this;
     }
 
     public function user(): UserClientContract
