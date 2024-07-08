@@ -92,6 +92,8 @@ interface DraftClient extends ProvidesListing
      */
     public function claim(string|User $user, array $drafts, bool $dryRun = false): array;
 
+    public function deliver(string|Draft $draft): void;
+
     public function pageInfo(string|Draft $draft, string $usage, ?int $row = null, ?string $unit = null): PageInfo;
 
     public function products(string|Draft $draft, string $contentType = 'application/json'): string;

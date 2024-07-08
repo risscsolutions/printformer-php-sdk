@@ -18,7 +18,7 @@ use Rissc\Printformer\Url\GeneratorFactory;
 use Rissc\Printformer\Url\TokenBuilder;
 use JetBrains\PhpStorm\Pure;
 
-final class Printformer
+final class Printformer implements IPrintformer
 {
     /** @param array{base_uri: string, identifier: string, api_key: string} $config */
     #[Pure]

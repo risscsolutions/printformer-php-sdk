@@ -61,6 +61,11 @@ class Proxy extends Base implements DraftClient
         return $this->wrap(fn(): array => $this->client->claim($user, $drafts, $dryRun));
     }
 
+    public function deliver(string|Draft $draft): void
+    {
+        $this->wrap(fn(): array => $this->client->deliver($draft));
+    }
+
     public function pageInfo(string|Draft $draft, string $usage, ?int $row = null, ?string $unit = null): PageInfo
     {
         return $this->wrap(fn(): PageInfo => $this->client->pageInfo($draft, $usage, $row, $unit));

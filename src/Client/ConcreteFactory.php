@@ -9,7 +9,6 @@
 
 namespace Rissc\Printformer\Client;
 
-use http\Env\Request;
 use Rissc\Printformer\Client\Declaration\Client as DeclarationClient;
 use Rissc\Printformer\Client\Declaration\DeclarationClient as DeclarationClientContract;
 use Rissc\Printformer\Client\Declaration\Ingredient\Client as IngredientClient;
@@ -50,6 +49,7 @@ use Rissc\Printformer\Client\User\UserClient as UserClientContract;
 use Rissc\Printformer\Client\UserGroup\Client as UserGroupClient;
 use Rissc\Printformer\Client\UserGroup\Proxy as UserGroupProxy;
 use Rissc\Printformer\Client\UserGroup\UserGroupClient as UserGroupClientContract;
+use Rissc\Printformer\Client\Util\UtilClient;
 use Rissc\Printformer\Client\VariableData\Client as VariableDataClient;
 use Rissc\Printformer\Client\VariableData\Proxy as VariableDataProxy;
 use Rissc\Printformer\Client\VariableData\VariableDataClient as VariableDataClientContract;
@@ -64,6 +64,7 @@ use GuzzleHttp\Client as HTTPClient;
 final class ConcreteFactory implements Factory
 {
     private HTTPClient $http;
+    private BadRequestHandler $badRequestHandler;
 
     public function __construct(private array $config)
     {
@@ -75,91 +76,91 @@ final class ConcreteFactory implements Factory
                 'Authorization' => sprintf('Bearer %s', $this->config['api_key'])
             ]
         ]);
-    }
-
-    public function setHttp(HTTPClient $http): static
-    {
-        $this->http = $http;
-        return $this;
+        $this->badRequestHandler = new BadRequestHandler();
     }
 
     public function user(): UserClientContract
     {
-        return new UserProxy(new BadRequestHandler(), new UserClient($this->http));
+        return new UserProxy($this->badRequestHandler, new UserClient($this->http));
     }
 
     public function userGroup(): UserGroupClientContract
     {
-        return new UserGroupProxy(new BadRequestHandler(), new UserGroupClient($this->http));
+        return new UserGroupProxy($this->badRequestHandler, new UserGroupClient($this->http));
     }
 
     public function masterTemplate(): MasterClientContract
     {
-        return new MasterProxy(new BadRequestHandler(), new MasterClient($this->http));
+        return new MasterProxy($this->badRequestHandler, new MasterClient($this->http));
     }
 
     public function draft(): DraftClientContract
     {
-        return new DraftProxy(new BadRequestHandler(), new DraftClient($this->http));
+        return new DraftProxy($this->badRequestHandler, new DraftClient($this->http));
     }
 
     public function workflow(): WorkflowClientContract
     {
-        return new WorkflowProxy(new BadRequestHandler(), new WorkflowClient($this->http));
+        return new WorkflowProxy($this->badRequestHandler, new WorkflowClient($this->http));
     }
 
     public function processing(): ProcessingClientContract
     {
-        return new ProcessingProxy(new BadRequestHandler(), new ProcessingClient($this->http));
+        return new ProcessingProxy($this->badRequestHandler, new ProcessingClient($this->http));
     }
 
     public function review(): ReviewClientContract
     {
-        return new ReviewProxy(new BadRequestHandler(), new ReviewClient($this->http));
+        return new ReviewProxy($this->badRequestHandler, new ReviewClient($this->http));
     }
 
     public function feed(): FeedClientContract
     {
-        return new FeedProxy(new BadRequestHandler(), new FeedClient($this->http));
+        return new FeedProxy($this->badRequestHandler, new FeedClient($this->http));
     }
 
     public function file(): FileClientContract
     {
-        return new  FileProxy(new BadRequestHandler(), new FileClient($this->http));
+        return new  FileProxy($this->badRequestHandler, new FileClient($this->http));
     }
 
     public function tenant(): TenantClientContract
     {
-        return new TenantProxy(new BadRequestHandler(), new TenantClient($this->http));
+        return new TenantProxy($this->badRequestHandler, new TenantClient($this->http));
     }
 
     public function theme(): ThemeClientContract
     {
-        return new ThemeProxy(new BadRequestHandler(), new ThemeClient($this->http));
+        return new ThemeProxy($this->badRequestHandler, new ThemeClient($this->http));
     }
 
     public function variableData(string|Draft $draft): VariableDataClientContract
     {
-        return new VariableDataProxy(new BadRequestHandler(), new VariableDataClient($this->http, $draft));
+        return new VariableDataProxy($this->badRequestHandler, new VariableDataClient($this->http, $draft));
     }
 
     public function derivative(Resource $owner): DerivativeClientContract
     {
-        return new DerivativeProxy(new BadRequestHandler(), new DerivativeClient($this->http, $owner));
+        return new DerivativeProxy($this->badRequestHandler, new DerivativeClient($this->http, $owner));
     }
 
     public function variant(): VariantClientContract
     {
-        return new VariantProxy(new BadRequestHandler(), new VariantClient($this->http));
+        return new VariantProxy($this->badRequestHandler, new VariantClient($this->http));
     }
 
     public function declaration(): DeclarationClientContract
     {
-        return new DeclarationProxy(new BadRequestHandler(), new DeclarationClient($this->http));
+        return new DeclarationProxy($this->badRequestHandler, new DeclarationClient($this->http));
     }
 
     public function ingredient(): IngredientClientContract
     {
-        return new IngredientProxy(new BadRequestHandler(), new IngredientClient($this->http));
+        return new IngredientProxy($this->badRequestHandler, new IngredientClient($this->http));
+    }
+
+    public function util(): UtilClient
+    {
+        // TODO: Implement util() method.
     }
 }

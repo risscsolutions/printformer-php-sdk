@@ -68,6 +68,11 @@ class Client extends ResourceClient implements DraftClient
         );
     }
 
+    public function deliver(string|Draft $draft): void
+    {
+        $this->post($this->buildPath($draft, 'deliver'), []);
+    }
+
     public function pageInfo(string|Draft $draft, string $usage, ?int $row = null, ?string $unit = null): PageInfo
     {
         $path = implode('/', [Draft::getPath(), static::unwrapResource($draft), $usage, 'page-info']);
