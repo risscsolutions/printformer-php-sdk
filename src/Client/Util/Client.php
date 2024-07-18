@@ -22,7 +22,7 @@ class Client extends \Rissc\Printformer\Client\Client implements UtilClient
 
     public function reAssemble(array $drafts, string $callbackURL): string
     {
-        $response = $this->post('/pdf/re-assemble', compact('drafts', 'callbackURL'));
+        $response = $this->post($this->path . '/pdf/re-assemble', compact('drafts', 'callbackURL'));
         $responseBody = Utils::jsonDecode($response->getBody()->getContents(), true);
 
         return $responseBody->identifier;
