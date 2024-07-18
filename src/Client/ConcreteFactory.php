@@ -49,7 +49,9 @@ use Rissc\Printformer\Client\User\UserClient as UserClientContract;
 use Rissc\Printformer\Client\UserGroup\Client as UserGroupClient;
 use Rissc\Printformer\Client\UserGroup\Proxy as UserGroupProxy;
 use Rissc\Printformer\Client\UserGroup\UserGroupClient as UserGroupClientContract;
-use Rissc\Printformer\Client\Util\UtilClient;
+use Rissc\Printformer\Client\Util\UtilClient as UtilClientContract;
+use Rissc\Printformer\Client\Util\Proxy as UtilProxy;
+use Rissc\Printformer\Client\Util\Client as UtilClient;
 use Rissc\Printformer\Client\VariableData\Client as VariableDataClient;
 use Rissc\Printformer\Client\VariableData\Proxy as VariableDataProxy;
 use Rissc\Printformer\Client\VariableData\VariableDataClient as VariableDataClientContract;
@@ -159,8 +161,8 @@ final class ConcreteFactory implements Factory
         return new IngredientProxy($this->badRequestHandler, new IngredientClient($this->http));
     }
 
-    public function util(): UtilClient
+    public function util(): UtilClientContract
     {
-        // TODO: Implement util() method.
+        return new UtilProxy($this->badRequestHandler, new UtilClient($this->http));
     }
 }
