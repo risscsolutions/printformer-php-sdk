@@ -9,22 +9,29 @@
 
 namespace Rissc\Printformer\Client\Util;
 
-
 use GuzzleHttp\ClientInterface as HTTPClient;
-use GuzzleHttp\Utils;
+use Rissc\Printformer\Client\File\File;
+use Rissc\Printformer\Util\UnwrapsResourceIdentifier;
 
 class Client extends \Rissc\Printformer\Client\Client implements UtilClient
 {
+    use UnwrapsResourceIdentifier;
+
     public function __construct(HTTPClient $http)
     {
         parent::__construct($http, 'util');
     }
 
-    public function reAssemble(array $drafts, string $callbackURL): string
+    public function reAssemble(array $drafts, string $callbackURL): void
     {
-        $response = $this->post($this->path . '/pdf/re-assemble', compact('drafts', 'callbackURL'));
-        $responseBody = Utils::jsonDecode($response->getBody()->getContents());
+        $this->post($this->path . '/pdf/re-assemble', compact('drafts', 'callbackURL'));
+    }
 
-        return $responseBody->identifier;
+    public function optimize(string|File $file, string $callbackURL): void
+    {
+        $this->post($this->path . '/pdf/optimize', [
+            'file' => static::unwrapResource($file),
+            'callbackURL' => $callbackURL,
+        ]);
     }
 }

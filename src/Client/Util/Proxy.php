@@ -11,6 +11,7 @@ namespace Rissc\Printformer\Client\Util;
 
 use JetBrains\PhpStorm\Pure;
 use Rissc\Printformer\Client\BadRequestHandler;
+use Rissc\Printformer\Client\File\File;
 use Rissc\Printformer\Client\Proxy as Base;
 
 class Proxy extends Base implements UtilClient
@@ -21,8 +22,13 @@ class Proxy extends Base implements UtilClient
         parent::__construct($badRequestHandler);
     }
 
-    public function reAssemble(array $drafts, string $callbackURL): string
+    public function reAssemble(array $drafts, string $callbackURL): void
     {
-        return $this->wrap(fn(): string => $this->client->reAssemble($drafts, $callbackURL));
+        $this->wrap(fn() => $this->client->reAssemble($drafts, $callbackURL));
+    }
+
+    public function optimize(string|File $file, string $callbackURL): void
+    {
+        $this->wrap(fn() => $this->client->optimize($file, $callbackURL));
     }
 }
