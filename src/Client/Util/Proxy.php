@@ -27,8 +27,8 @@ class Proxy extends Base implements UtilClient
         $this->wrap(fn() => $this->client->reAssemble($drafts, $callbackURL));
     }
 
-    public function optimize(string|File $file, string $callbackURL): void
+    public function optimize(string|File $file, string $callbackURL, ?int $dpi = null): void
     {
-        $this->wrap(fn() => $this->client->optimize($file, $callbackURL));
+        $this->wrap(fn() => $this->client->optimize($file, $callbackURL, $dpi));
     }
 }

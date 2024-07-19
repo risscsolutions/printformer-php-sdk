@@ -15,5 +15,5 @@ interface UtilClient
 {
     public function reAssemble(array $drafts, string $callbackURL): void;
 
-    public function optimize(string|File $file, string $callbackURL): void;
+    public function optimize(string|File $file, string $callbackURL, ?int $dpi = null): void;
 }

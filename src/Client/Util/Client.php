@@ -27,11 +27,12 @@ class Client extends \Rissc\Printformer\Client\Client implements UtilClient
         $this->post($this->path . '/pdf/re-assemble', compact('drafts', 'callbackURL'));
     }
 
-    public function optimize(string|File $file, string $callbackURL): void
+    public function optimize(string|File $file, string $callbackURL, ?int $dpi = null): void
     {
         $this->post($this->path . '/pdf/optimize', [
             'file' => static::unwrapResource($file),
             'callbackURL' => $callbackURL,
+            'dpi' => $dpi,
         ]);
     }
 }
