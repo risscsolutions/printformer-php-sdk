@@ -64,7 +64,7 @@ final class MasterTemplate implements Resource
             $data['dataKeys'] ?? [],
             $data['updatedAt'] ?? null,
             $data['variants'] ?? [],
-            $data['previewUrl'] ?? []
+            $data['previewUrl'] ?? null
         );
     }
 
