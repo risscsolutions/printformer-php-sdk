@@ -18,6 +18,7 @@ final class Editor extends Auth
     protected array $callbacks = [];
     protected null|string|Draft $draft = null;
     protected ?string $step = null;
+    protected ?string $locale = null;
 
     public function draft(string|Draft $draft, ?string $callback = null, ?string $callback_cancel = null, ?string $callback_halt = null): self
     {
@@ -50,13 +51,28 @@ final class Editor extends Auth
         return $this;
     }
 
+    public function locale(string $locale): self
+    {
+        $this->locale = $locale;
+        return $this;
+    }
+
     public function __toString(): string
     {
         $path = $this->step
             ? sprintf('/editor/%s/%s', self::unwrapResource($this->draft), $this->step)
             : sprintf('/editor/%s', self::unwrapResource($this->draft));
 
-        $query = self::buildQuery(array_map('base64_encode', array_filter($this->callbacks, static fn(?string $value) => !empty($value))));
+        $params = array_map(
+                'base64_encode',
+                array_filter($this->callbacks, static fn (?string $value) => !empty($value))
+            );
+
+        if ($this->locale !== null && $this->locale !== '') {
+            $params['locale'] = $this->locale;
+        }
+
+        $query = self::buildQuery($params);
 
         $this->tokenBuilder->redirect = (new Uri($this->config['base_uri']))
             ->withPath($path)
