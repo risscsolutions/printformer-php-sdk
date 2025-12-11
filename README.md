@@ -68,6 +68,7 @@ $url = (string)$printformer->urlGenerator()->editor()
         ->callbackHalt('https://YOUR-HALT-CALLBACK-URL-HERE') // Optional, if omitted the callbackCancel URL is used
         ->user($pfUser->getIdentifier())
         ->step('preview') // Optional, if omitted the editor jumps to the last visited step
+        ->locale('de') // Optional, sets the language of the editor interface
 ```
 
 ### Create a Print PDF

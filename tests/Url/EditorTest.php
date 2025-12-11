@@ -95,6 +95,7 @@ class EditorTest extends TestCase
                 ->draft('1qayxsw223edccvfrr45tgbbnhz6')
                 ->user(new User('okmlp12', null, null, null, null, null, null, []))
                 ->step('preview')
+                ->locale('en')
                 ->callback('https://my-callback.com')
         );
 
@@ -111,7 +112,7 @@ class EditorTest extends TestCase
         static::assertEquals('okmlp12', $claims->get('user'));
         static::assertEquals('test api identifier', $claims->get('client'));
         static::assertEquals(
-            'https://printformer.test/editor/1qayxsw223edccvfrr45tgbbnhz6/preview?' . http_build_query(['callback' => base64_encode('https://my-callback.com')]),
+            'https://printformer.test/editor/1qayxsw223edccvfrr45tgbbnhz6/preview?' . http_build_query(['callback' => base64_encode('https://my-callback.com')]) . '&locale=en',
             $claims->get('redirect')
         );
     }
