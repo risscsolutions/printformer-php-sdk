@@ -1861,16 +1861,16 @@
         },
         {
             "name": "nyholm/nsa",
-            "version": "1.3.0",
+            "version": "1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Nyholm/NSA.git",
-                "reference": "c264c17ed2aa8251c64ad289442ed53f64cdb283"
+                "reference": "2118651d03f83e6c1e9deeb088a5c824e5f75643"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Nyholm/NSA/zipball/c264c17ed2aa8251c64ad289442ed53f64cdb283",
-                "reference": "c264c17ed2aa8251c64ad289442ed53f64cdb283",
+                "url": "https://api.github.com/repos/Nyholm/NSA/zipball/2118651d03f83e6c1e9deeb088a5c824e5f75643",
+                "reference": "2118651d03f83e6c1e9deeb088a5c824e5f75643",
                 "shasum": ""
             },
             "require": {
@@ -1878,7 +1878,7 @@
                 "webmozart/assert": "^1.1.0"
             },
             "require-dev": {
-                "symfony/phpunit-bridge": "^4.4 || ^5.1"
+                "symfony/phpunit-bridge": "^4.4 || ^5.1 || ^6.0 || ^7.0 || ^8.0"
             },
             "type": "library",
             "autoload": {
@@ -1906,7 +1906,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Nyholm/NSA/issues",
-                "source": "https://github.com/Nyholm/NSA/tree/1.3.0"
+                "source": "https://github.com/Nyholm/NSA/tree/1.3.1"
             },
             "funding": [
                 {
@@ -1914,7 +1914,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-07-15T18:25:37+00:00"
+            "time": "2025-12-12T21:07:01+00:00"
         },
         {
             "name": "ondram/ci-detector",
