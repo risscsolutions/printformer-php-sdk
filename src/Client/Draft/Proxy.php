@@ -71,6 +71,11 @@ class Proxy extends Base implements DraftClient
         return $this->wrap(fn(): PageInfo => $this->client->pageInfo($draft, $usage, $row, $unit));
     }
 
+    public function dataKeyValues(string|Draft $draft, ?int $row = null): array
+    {
+        return $this->wrap(fn(): array => $this->client->dataKeyValues($draft, $row));
+    }
+
     public function products(Draft|string $draft, string $contentType = 'application/json'): string
     {
         return $this->wrap(fn(): string => $this->client->products($draft, $contentType));

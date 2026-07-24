@@ -303,6 +303,37 @@ class ClientTest extends TestCase
         static::assertEquals(3, $pageInfo->pages);
     }
 
+    public function testDataKeyValues(): void
+    {
+        $container = [];
+        $http = $this->createMockHTTPClient($container, [
+            new Response(200, [], json_encode([
+                'data' => [
+                    'product-name' => 'Example product',
+                    'product-number' => '1234',
+                ],
+            ])),
+        ]);
+
+        $client = static::createAPIClient($http);
+        $dataKeyValues = $client->dataKeyValues('2138r43r90fojnduewfbnwmcfgre', 0);
+
+        static::assertCount(1, $container);
+
+        /** @var RequestInterface $request */
+        $request = reset($container)['request'];
+
+        static::assertEquals('GET', $request->getMethod());
+        static::assertEquals(
+            'https://printformer.test/api-ext/draft/2138r43r90fojnduewfbnwmcfgre/data-key-values?row=0',
+            (string)$request->getUri()
+        );
+        static::assertSame([
+            'product-name' => 'Example product',
+            'product-number' => '1234',
+        ], $dataKeyValues);
+    }
+
     public function testRequestIDMLPackage(): void
     {
         $container = [];

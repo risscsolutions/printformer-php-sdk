@@ -80,6 +80,16 @@ class Client extends ResourceClient implements DraftClient
         return PageInfo::fromArray(Utils::jsonDecode($this->get($url)->getBody()->getContents(), true)['data']);
     }
 
+    public function dataKeyValues(string|Draft $draft, ?int $row = null): array
+    {
+        $url = $this->buildPath($draft, 'data-key-values');
+        if ($row !== null) {
+            $url .= '?' . http_build_query(compact('row'));
+        }
+
+        return Utils::jsonDecode($this->get($url)->getBody()->getContents(), true)['data'];
+    }
+
     public function products(string|Draft $draft, string $contentType = 'application/json'): string
     {
         $path = $this->buildPath($draft, 'products');
